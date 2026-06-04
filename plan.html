@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Plan & Reflection - Aidaf</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #f8fafc;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h1, h2, h3 { color: #38bdf8; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 10px; }
+        h1 { font-size: 2.2rem; text-align: center; margin-bottom: 30px; }
+        h2 { font-size: 1.5rem; margin-top: 40px; color: #818cf8; }
+        p, li { line-height: 1.7; color: #e2e8f0; }
+        ul { padding-left: 20px; }
+        .evidence-box { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        @media (max-width: 768px) { .evidence-box { grid-template-columns: 1fr; } }
+        .evidence-card { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 10px; text-align: center; }
+        .evidence-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; border: 2px solid #38bdf8; margin-bottom: 10px; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 40px; }
+        .btn { display: inline-block; color: white; padding: 10px 25px; font-weight: bold; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; }
+        .btn-back { background: #475569; }
+        .btn-back:hover { background: #64748b; }
+        .btn-submit { background: linear-gradient(90deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(5, 150, 105, 0.6); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Part 2: Action Plan & Personal Reflection</h1>
+
+        <!-- SECTION C -->
+        <h2>🗺️ Section C: Career Development Plan</h2>
+        <p><strong>Alatan yang Dipelajari:</strong> Wireshark (analisis paket), Kali Linux (Command line/Bash), dan Python untuk skrip automasi fail log.</p>
+        <p><strong>Garis Masa & Sijil Profesional:</strong></p>
+        <ul>
+            <li><strong>Pelan Jangka Pendek (2 Tahun):</strong> Menyasar jawatan Junior SOC Analyst dan menduduki peperiksaan <strong>CompTIA Security+</strong> atau <strong>Cisco CCNA</strong> dalam masa setahun selepas graduasi bagi mengesahkan kepakaran teknikal.</li>
+            <li><strong>Pelan Jangka Panjang (5 Tahun):</strong> Meningkat naik ke jawatan Senior SOC Analyst / Incident Responder serta mensasarkan sijil lanjutan industri seperti <strong>Certified Ethical Hacker (CEH)</strong>.</li>
+        </ul>
+
+        <!-- SECTION D -->
+        <h2>🖼️ Section D: Evidence of Learning</h2>
+        <p>Bukti visual tugasan praktikal dan aktiviti lab siber saya sepanjang kursus:</p>
+        <div class="evidence-box">
+            <div class="evidence-card">
+                <!-- Pastikan ada fail 'lab1.png' di GitHub anda, atau tukar nama fail di bawah -->
+                <img src="lab1.png" alt="Lab Rangkaian" class="evidence-img">
+                <p><strong>Bukti 1:</strong> Analisis paket rangkaian dalam lab subjek CSA30203.</p>
+            </div>
+            <div class="evidence-card">
+                <!-- Pastikan ada fail 'code1.png' di GitHub anda, atau tukar nama fail di bawah -->
+                <img src="code1.png" alt="Skrip Python" class="evidence-img">
+                <p><strong>Bukti 2:</strong> Skrip Python asas untuk penapisan data log keselamatan.</p>
+            </div>
+        </div>
+
+        <!-- SECTION E -->
+        <h2>🧠 Section E: Personal Reflection</h2>
+        <p><strong>Syarikat Impian Sasar:</strong> CyberSecurity Malaysia (CSM)</p>
+        <ul>
+            <li><strong>Why this company?</strong> CSM merupakan agensi pakar keselamatan siber kebangsaan. Bekerja di sini memberi saya peluang menghadapi dan menangani ancaman siber dunia sebenar pada skala nasional.</li>
+            <li><strong>Value I bring:</strong> Asas akademik IT/Sains Komputer yang segar, kebolehan analitikal yang tajam, serta kepantasan menguasai teknologi baharu.</li>
+            <li><strong>Why hire me?</strong> Kerana saya seorang yang proaktif. Saya faham jurang kemahiran saya (seperti dalam Section B) dan saya komited mengikut pelan tindakan (Section C) untuk memberi sumbangan terbaik kepada organisasi.</li>
+            <li><strong>Strengths & Weaknesses:</strong> Kekuatan saya adalah ketelitian tinggi (attention to detail) semasa menyiasat log rangkaian. Kelemahan saya adalah kadangkala mengambil masa agak lama untuk menyelesaikan masalah kerana ingin memahaminya secara mendalam, namun saya atasinya dengan teknik pengurusan masa Pomodoro.</li>
+        </ul>
+
+        <!-- BUTTON NAVIGATION -->
+        <div class="nav-buttons">
+            <a href="skills.html" class="btn btn-back">← Kembali ke Part 1</a>
+            <a href="#" class="btn btn-submit" onclick="alert('Tahniah Aida! Laman web portfolio 3 halaman anda telah berjaya disemak.')">Selesai Semakan ✨</a>
+        </div>
+    </div>
+
+</body>
+</html>
