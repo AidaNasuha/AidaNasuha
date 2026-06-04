@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Exploration & Skills - Aidaf</title>
+    <style>
+        /* TEMA BACKGROUND GELAP YANG SAMA DENGAN INDEX.HTML */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #f8fafc;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3 {
+            color: #38bdf8;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 10px;
+        }
+
+        h1 { font-size: 2.2rem; text-align: center; margin-bottom: 30px; }
+        h2 { font-size: 1.5rem; margin-top: 40px; color: #818cf8; }
+
+        p, li {
+            line-height: 1.7;
+            color: #e2e8f0;
+        }
+
+        ul { padding-left: 20px; }
+
+        /* DESIGN JADUAL UNTUK SECTION B */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+
+        /* BAHAGIAN GAMBAR BUKTI (SECTION D) */
+        .evidence-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .evidence-box { grid-template-columns: 1fr; }
+        }
+
+        .evidence-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .evidence-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        /* NAVIGATION BUTTONS */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            color: white;
+            padding: 10px 25px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back {
+            background: #475569;
+        }
+
+        .btn-back:hover { background: #64748b; }
+
+        .btn-submit {
+            background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CSA30203 - Assessment Details</h1>
+
+        <!-- SECTION A -->
+        <h2>📂 Section A: Career Exploration (Understanding the Field)</h2>
+        <h3>Chosen Role: Security Operations Center (SOC) Analyst</h3>
+        <p><strong>Job Responsibilities:</strong></p>
+        <ul>
+            <li><strong>Continuous Monitoring:</strong> Memantau trafik rangkaian organisasi 24/7 menggunakan alatan SIEM (Security Information and Event Management) untuk mengesan sebarang aktiviti mencurigakan atau tanda pencerobohan siber.</li>
+            <li><strong>Alert Triaging & Analysis:</strong> Menganalisis dan menyiasat amaran keselamatan (security alerts), menentukan sama ada ia adalah ancaman sebenar (true positive) atau gangguan biasa (false positive).</li>
+            <li><strong>Incident Documentation:</strong> Menyediakan laporan terperinci mengenai setiap insiden keselamatan dan bekerjasama dengan pasukan Incident Response untuk mengekang serangan.</li>
+        </ul>
+        <p><strong>Required Skills:</strong> Pengurusan log sistem, analisis trafik menggunakan Wireshark, pemikiran kritikal, serta kebolehan berkomunikasi dengan jelas di bawah tekanan.</p>
+        <p><strong>Relevance to Modern Cybersecurity:</strong> Dalam era ancaman siber moden, SOC Analyst bertindak sebagai barisan hadapan. Tanpa pemantauan berterusan, serangan siber (seperti ransomware) boleh tersembunyi dalam rangkaian organisasi tanpa disedari, menyebabkan kerugian data kritikal.</p>
+
+        <!-- SECTION B -->
+        <h2>📊 Section B: Personal Skills Assessment</h2>
+        <p>Berikut adalah penilaian jujur mengenai kemahiran semasa saya berbanding keperluan industri:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Industry Requirements (SOC Analyst)</th>
+                    <th>My Current Level</th>
+                    <th>Gap & Improvement Plan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Traffic Analysis (Wireshark)</strong></td>
+                    <td>Basic (Conceptual)</td>
+                    <td>Perlu lakukan lebih banyak latihan praktikal menganalisis fail .pcap dalam lab.</td>
+                </tr>
+                <tr>
+                    <td><strong>SIEM Management (Splunk)</strong></td>
+                    <td>None (No exposure)</td>
+                    <td>Merancang untuk mengambil kursus asas percuma Splunk Fundamentals.</td>
+                </tr>
+                <tr>
+                    <td><strong>Log Analysis (Linux/Windows)</strong></td>
+                    <td>Intermediate</td>
+                    <td>Perlu mendalami cara membaca penanda log yang menunjukkan aktiviti berniat jahat.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- SECTION C -->
+        <h2>🗺️ Section C: Career Development Plan</h2>
+        <p><strong>Alatan yang Dipelajari:</strong> Wireshark, Kali Linux (Command line/Bash), dan Python untuk automasi tapis fail log.</p>
+        <p><strong>Garis Masa & Sijil Profesional:</strong></p>
+        <ul>
+            <li><strong>Pelan Jangka Pendek (2 Tahun):</strong> Menyasar jawatan Junior SOC Analyst dan menduduki peperiksaan <strong>CompTIA Security+</strong> atau <strong>Cisco CCNA</strong> dalam masa setahun selepas graduasi.</li>
+            <li><strong>Pelan Jangka Panjang (5 Tahun):</strong> Meningkat naik ke jawatan Senior SOC Analyst / Incident Responder dan mengambil sijil lanjutan seperti <strong>Certified Ethical Hacker (CEH)</strong>.</li>
+        </ul>
+
+        <!-- SECTION D -->
+        <h2>🖼️ Section D: Evidence of Learning</h2>
+        <p>Bukti visual tugasan praktikal dan lab siber saya sepanjang kursus:</p>
+        <div class="evidence-box">
+            <div class="evidence-card">
+                <!-- Sila upload screenshot lab korang dan tukar nama fail 'lab1.png' ikut fail korang -->
+                <img src="lab1.png" alt="Lab Rangkaian" class="evidence-img">
+                <p><strong>Bukti 1:</strong> Analisis paket rangkaian dalam lab CSA30203.</p>
+            </div>
+            <div class="evidence-card">
+                <!-- Sila upload screenshot code korang dan tukar nama fail 'code1.png' ikut fail korang -->
+                <img src="code1.png" alt="Skrip Python" class="evidence-img">
+                <p><strong>Bukti 2:</strong> Skrip Python asas untuk penapisan data.</p>
+            </div>
+        </div>
+
+        <!-- SECTION E -->
+        <h2>🧠 Section E: Personal Reflection</h2>
+        <p><strong>Syarikat Impian:</strong> CyberSecurity Malaysia (CSM)</p>
+        <ul>
+            <li><strong>Why this company?</strong> CSM adalah agensi pakar keselamatan siber kebangsaan. Bekerja di sini memberi saya peluang menghadapi ancaman dunia sebenar pada skala nasional.</li>
+            <li><strong>Value I bring:</strong> Asas akademik IT yang segar, kepantasan belajar perkara baru, dan pemikiran analitikal.</li>
+            <li><strong>Why hire me?</strong> Kerana saya proaktif. Saya faham jurang kemahiran saya (Section B) dan saya sudah ada pelan tindakan yang jelas (Section C) untuk terus menyumbang kepada syarikat.</li>
+            <li><strong>Strengths & Weaknesses:</strong> Kekuatan saya adalah ketelitian tinggi (attention to detail) semasa analisis log. Kelemahan saya adalah kadangkala terlalu lama fokus pada satu masalah, namun saya mengatasinya dengan teknik pengurusan masa seperti Pomodoro.</li>
+        </ul>
+
+        <!-- BUTTON NAVIGATION -->
+        <div class="nav-buttons">
+            <a href="index.html" class="btn btn-back">← Kembali ke Utama</a>
+            <a href="#" class="btn btn-submit" onclick="alert('Tahniah! E-Portfolio anda sedia untuk dihantar ke pensyarah.')">Selesai Semakan</a>
+        </div>
+    </div>
+
+</body>
+</html>
