@@ -3,35 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Exploration & Skills - Aidaf</title>
+    <title>E-Portfolio - Career & Skills Slides</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
             color: #f8fafc;
             margin: 0;
-            padding: 40px 20px;
+            padding: 20px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
+
         .container {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(99, 102, 241, 0.3);
-            padding: 40px;
+            padding: 35px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            max-width: 900px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            max-width: 850px;
             width: 100%;
             box-sizing: border-box;
+            position: relative;
         }
-        h1, h2, h3 { color: #38bdf8; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 10px; }
-        h1 { font-size: 2.2rem; text-align: center; margin-bottom: 30px; }
-        h2 { font-size: 1.5rem; margin-top: 40px; color: #818cf8; }
-        p, li { line-height: 1.7; color: #e2e8f0; }
+
+        /* INDIKATOR BILANGAN SLAID */
+        .slide-indicator {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #38bdf8;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* SISTEM SLAID (SEMBUNYIKAN YANG TAK AKTIF) */
+        .slide {
+            display: none;
+            animation: slideIn 0.5s ease-in-out forwards;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        h2 {
+            color: #38bdf8;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 10px;
+            font-size: 1.6rem;
+            margin-top: 0;
+        }
+
+        h3 { color: #818cf8; font-size: 1.2rem; }
+        p, li { line-height: 1.6; color: #e2e8f0; }
         ul { padding-left: 20px; }
+
+        /* JADUAL SECTION B */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -39,71 +70,212 @@
             background: rgba(15, 23, 42, 0.6);
             border-radius: 8px;
             overflow: hidden;
+            font-size: 0.95rem;
         }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         th { background-color: #4f46e5; color: white; }
-        tr:hover { background-color: rgba(99, 102, 241, 0.1); }
-        .nav-buttons { display: flex; justify-content: space-between; margin-top: 40px; }
-        .btn { display: inline-block; color: white; padding: 10px 25px; font-weight: bold; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; }
-        .btn-back { background: #475569; }
-        .btn-back:hover { background: #64748b; }
-        .btn-next { background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%); box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); }
-        .btn-next:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6); }
+
+        /* GRID ALATAN SECTION C & D */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        @media (max-width: 600px) { .tools-grid { grid-template-columns: 1fr; } }
+        
+        .tool-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .tool-img {
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .evidence-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        /* NAVIGATION BUTTONS */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-prev { background: #475569; color: white; }
+        .btn-prev:hover { background: #64748b; }
+        
+        .btn-next {
+            background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        }
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Part 1: Exploration & Self-Assessment</h1>
+        <div class="slide-indicator" id="indicator">Slide 1 dari 4</div>
 
-        <!-- SECTION A -->
-        <h2>📂 Section A: Career Exploration (Understanding the Field)</h2>
-        <h3>Chosen Role: Security Operations Center (SOC) Analyst</h3>
-        <p><strong>Job Responsibilities:</strong></p>
-        <ul>
-            <li><strong>Continuous Monitoring:</strong> Memantau trafik rangkaian organisasi 24/7 menggunakan alatan SIEM (Security Information and Event Management) untuk mengesan sebarang aktiviti mencurigakan atau tanda pencerobohan siber.</li>
-            <li><strong>Alert Triaging & Analysis:</strong> Menganalisis dan menyiasat amaran keselamatan (security alerts), menentukan sama ada ia adalah ancaman sebenar (true positive) atau gangguan biasa (false positive).</li>
-            <li><strong>Incident Documentation:</strong> Menyediakan laporan terperinci mengenai setiap insiden keselamatan dan bekerjasama dengan pasukan Incident Response untuk mengekang serangan.</li>
-        </ul>
-        <p><strong>Required Skills:</strong> Pengurusan log sistem, analisis trafik menggunakan Wireshark, pemikiran kritikal, serta kebolehan berkomunikasi dengan jelas di bawah tekanan.</p>
-        <p><strong>Relevance to Modern Cybersecurity:</strong> Dalam era ancaman siber moden, SOC Analyst bertindak sebagai barisan hadapan. Tanpa pemantauan berterusan, serangan siber (seperti ransomware) boleh tersembunyi dalam rangkaian organisasi tanpa disedari, menyebabkan kerugian data kritikal.</p>
+        <!-- SLAID 1: SECTION A -->
+        <div class="slide active" id="slide1">
+            <h2>📂 Section A: Career Exploration</h2>
+            <h3>Target Role: Security Operations Center (SOC) Analyst</h3>
+            <p><strong>Job Responsibilities:</strong></p>
+            <ul>
+                <li><strong>Continuous Monitoring:</strong> Memantau trafik rangkaian organisasi 24/7 menggunakan alatan SIEM untuk mengesan sebarang sebarang pencerobohan siber.</li>
+                <li><strong>Alert Triaging:</strong> Menganalisis amaran keselamatan untuk membezakan ancaman sebenar atau gangguan biasa (false positive).</li>
+                <li><strong>Incident Documentation:</strong> Menyediakan laporan kes terperinci untuk tindakan susulan pasukan keselamatan siber.</li>
+            </ul>
+            <p><strong>Relevance:</strong> Menjadi benteng barisan hadapan yang kritikal untuk menghentikan serangan ransomware/malware sebelum merebak luas dalam pelayan organisasi.</p>
+        </div>
 
-        <!-- SECTION B -->
-        <h2>📊 Section B: Personal Skills Assessment</h2>
-        <p>Berikut adalah penilaian jujur mengenai kemahiran semasa saya berbanding keperluan industri:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Industry Requirements (SOC Analyst)</th>
-                    <th>My Current Level</th>
-                    <th>Gap & Improvement Plan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Traffic Analysis (Wireshark)</strong></td>
-                    <td>Basic (Conceptual)</td>
-                    <td>Perlu lakukan lebih banyak latihan praktikal menganalisis fail .pcap dalam lab.</td>
-                </tr>
-                <tr>
-                    <td><strong>SIEM Management (Splunk)</strong></td>
-                    <td>None (No exposure)</td>
-                    <td>Merancang untuk mengambil kursus asas percuma Splunk Fundamentals.</td>
-                </tr>
-                <tr>
-                    <td><strong>Log Analysis (Linux/Windows)</strong></td>
-                    <td>Intermediate</td>
-                    <td>Perlu mendalami cara membaca penanda log yang menunjukkan aktiviti berniat jahat.</td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- SLAID 2: SECTION B -->
+        <div class="slide" id="slide2">
+            <h2>📊 Section B: Personal Skills Assessment</h2>
+            <p>Penilaian jujur tahap kemahiran siber semasa saya berbanding keperluan standard industri:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Industry Requirements</th>
+                        <th>My Current Level</th>
+                        <th>Improvement Plan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Traffic & Network Analysis</strong></td>
+                        <td>Intermediate</td>
+                        <td>Menggunakan Wireshark dan Nmap/Zenmap untuk analisis paket aktif.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Digital Forensics</strong></td>
+                        <td>Basic-Intermediate</td>
+                        <td>Mendalami teknik pemulihan bahan bukti digital menggunakan Autopsy.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Network Simulation</strong></td>
+                        <td>Advanced</td>
+                        <td>Menguasai simulasi topologi selamat melalui Cisco Packet Tracer.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <!-- BUTTON NAVIGATION -->
+        <!-- SLAID 3: SECTION C & D (TOOLS & EVIDENCE) -->
+        <div class="slide" id="slide3">
+            <h2>🛠️ Section C & D: Cybersecurity Tools & Evidence</h2>
+            <p>Alatan bertaraf industri yang saya kuasai dan pasang terus di dalam sistem makmal saya:</p>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <img src="wireshark-icon.png" alt="Wireshark" class="tool-img">
+                    <p style="font-weight:bold; margin:5px 0;">Wireshark / Nmap</p>
+                    <p style="font-size:0.8rem; margin:0; color:#cbd5e1;">Analisis trafik data siber & pengimbasan keselamatan port.</p>
+                </div>
+                <div class="tool-card">
+                    <img src="autopsy-icon.png" alt="Autopsy" class="tool-img">
+                    <p style="font-weight:bold; margin:5px 0;">Autopsy Forensics</p>
+                    <p style="font-size:0.8rem; margin:0; color:#cbd5e1;">Menyiasat dan mengekstrak bahan bukti digital pasca-serangan.</p>
+                </div>
+                <div class="tool-card">
+                    <img src="lab1.png" alt="Lab Evidence" class="evidence-img">
+                    <p style="font-size:0.85rem; margin:0;"><strong>Bukti 1:</strong> Simulasi makmal rangkaian aktif via Packet Tracer & VirtualBox.</p>
+                </div>
+                <div class="tool-card">
+                    <img src="phishing-evidence.png" alt="Phishing Project" class="evidence-img">
+                    <p style="font-size:0.85rem; margin:0;"><strong>Bukti 2:</strong> Pembangunan projek sistem simulasi penipuan emel (Phishing).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLAID 4: SECTION E -->
+        <div class="slide" id="slide4">
+            <h2>🧠 Section E: Personal Reflection</h2>
+            <h3>Syarikat Impian Sasar: CyberSecurity Malaysia (CSM)</h3>
+            <ul>
+                <li><strong>Kenapa CSM?</strong> Merupakan agensi siber kebangsaan tertinggi di Malaysia. Bekerja di sini menawarkan pendedahan ancaman siber sebenar berskala negara.</li>
+                <li><strong>Nilai Tambah Saya:</strong> Memiliki kemahiran teknikal praktikal berasaskan pelbagai alatan industri keselamatan (Wireshark, Autopsy, Zenmap).</li>
+                <li><strong>Kekuatan & Kelemahan:</strong> Mempunyai ketelitian tinggi (*attention to detail*) semasa mengaudit fail log rangkaian. Kelemahan diselesaikan dengan pengurusan masa yang ketat.</li>
+            </ul>
+        </div>
+
+        <!-- BUTANG NAVIGASI SLAID -->
         <div class="nav-buttons">
-            <a href="index.html" class="btn btn-back">← Kembali ke Utama</a>
-            <a href="plan.html" class="btn btn-next">Next: Career Plan & Reflection →</a>
+            <button class="btn btn-prev" id="prevBtn" onclick="changeSlide(-1)">← Kembali</button>
+            <button class="btn btn-next" id="nextBtn" onclick="changeSlide(1)">Seterusnya →</button>
         </div>
     </div>
 
+    <!-- SCRIPT JAVASCRIPT UNTUK CONTROL SLAID INTERAKTIF -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 4;
+
+        function changeSlide(direction) {
+            // Sembunyikan slaid semasa
+            document.getElementById(`slide${currentSlide}`).classList.remove('active');
+            
+            currentSlide += direction;
+
+            // Logik kawalan butang hujung
+            if (currentSlide < 1) {
+                // Jika patah balik dari slaid 1, balik ke Home (index.html)
+                window.location.href = "index.html";
+                return;
+            }
+            
+            if (currentSlide > totalSlides) {
+                // Jika slaid habis, tunjuk alert tamat & balik muka depan
+                alert("Tahniah Aida! Anda telah selesai meneliti keseluruhan slide portfolio tugasan.");
+                window.location.href = "index.html";
+                return;
+            }
+
+            // Paparkan slaid baharu
+            document.getElementById(`slide${currentSlide}`).classList.add('active');
+            
+            // Kemaskini teks indikator slaid
+            document.getElementById('indicator').innerText = `Slide ${currentSlide} dari ${totalSlides}`;
+            
+            // Tukar teks butang jika berada di slaid terakhir
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentSlide === totalSlides) {
+                nextBtn.innerText = "Selesai Semakan ✨";
+            } else {
+                nextBtn.innerText = "Seterusnya →";
+            }
+        }
+    </script>
 </body>
 </html>
