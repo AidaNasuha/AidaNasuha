@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            background-color: #0b0f19;
             color: #f8fafc;
             margin: 0;
             padding: 20px;
@@ -15,11 +15,23 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ANIMASI BACKGROUND CANVAS MATRIKS */
+        #cyber-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15; /* Malap supaya teks di atas kekal jelas dibaca */
         }
 
         .container {
-            background: rgba(30, 41, 59, 0.75);
+            background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(99, 102, 241, 0.3);
             padding: 35px;
@@ -27,9 +39,17 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
             max-width: 850px;
             width: 100%;
+            max-height: 90vh; /* Hadkan tinggi kad supaya muat skrin laptop */
+            overflow-y: auto; /* Jika kandungan panjang, kad boleh skrol di dalam */
             box-sizing: border-box;
             position: relative;
+            z-index: 2; /* Berada di atas kanvas animasi */
         }
+
+        /* Rekabentuk Scrollbar dalam Kad */
+        .container::-webkit-scrollbar { width: 6px; }
+        .container::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        .container::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.4); border-radius: 4px; }
 
         /* INDIKATOR BILANGAN SLAID */
         .slide-indicator {
@@ -98,7 +118,7 @@
         }
         .evidence-img {
             width: 100%;
-            height: 180px;
+            height: 140px;
             object-fit: cover;
             border-radius: 8px;
             border: 2px solid #38bdf8;
@@ -143,6 +163,9 @@
     </style>
 </head>
 <body>
+
+    <!-- Canvas untuk Kod Matriks Berjalan -->
+    <canvas id="cyber-bg"></canvas>
 
     <div class="container">
         <div class="slide-indicator" id="indicator">Slide 1 dari 4</div>
@@ -192,29 +215,29 @@
             </table>
         </div>
 
-        <!-- SLAID 3: SECTION C & D (TOOLS & EVIDENCE) -->
+        <!-- SLAID 3: SECTION C & D -->
         <div class="slide" id="slide3">
             <h2>🛠️ Section C & D: Cybersecurity Tools & Evidence</h2>
             <p>Alatan bertaraf industri yang saya kuasai dan pasang terus di dalam sistem makmal saya:</p>
             
             <div class="tools-grid">
                 <div class="tool-card">
-                    <img src="wireshark-icon.png" alt="Wireshark" class="tool-img">
+                    <img src="wireshark-icon.png" alt="Wireshark" class="tool-img" onerror="this.src='https://img.icons8.com/color/96/wireshark.png'">
                     <p style="font-weight:bold; margin:5px 0;">Wireshark / Nmap</p>
-                    <p style="font-size:0.8rem; margin:0; color:#cbd5e1;">Analisis trafik data siber & pengimbasan keselamatan port.</p>
+                    <p style="font-size:0.8rem; margin:0; color:#cbd5e1;">Analisis trafik data siber & audit keselamatan port.</p>
                 </div>
                 <div class="tool-card">
-                    <img src="autopsy-icon.png" alt="Autopsy" class="tool-img">
+                    <img src="autopsy-icon.png" alt="Autopsy" class="tool-img" onerror="this.src='https://img.icons8.com/color/96/dog.png'">
                     <p style="font-weight:bold; margin:5px 0;">Autopsy Forensics</p>
-                    <p style="font-size:0.8rem; margin:0; color:#cbd5e1;">Menyiasat dan mengekstrak bahan bukti digital pasca-serangan.</p>
+                    <p style="font-size:0.8rem; margin:0; color:#cbd5e1;">Menyiasat bukti digital pasca-serangan siber.</p>
                 </div>
                 <div class="tool-card">
-                    <img src="lab1.png" alt="Lab Evidence" class="evidence-img">
-                    <p style="font-size:0.85rem; margin:0;"><strong>Bukti 1:</strong> Simulasi makmal rangkaian aktif via Packet Tracer & VirtualBox.</p>
+                    <img src="lab1.png" alt="Lab Evidence" class="evidence-img" onerror="this.style.display='none'">
+                    <p style="font-size:0.85rem; margin:0;"><strong>Bukti 1:</strong> Sesi simulasi makmal rangkaian aktif via Packet Tracer & VirtualBox.</p>
                 </div>
                 <div class="tool-card">
-                    <img src="phishing-evidence.png" alt="Phishing Project" class="evidence-img">
-                    <p style="font-size:0.85rem; margin:0;"><strong>Bukti 2:</strong> Pembangunan projek sistem simulasi penipuan emel (Phishing).</p>
+                    <img src="phishing-evidence.png" alt="Phishing Project" class="evidence-img" onerror="this.style.display='none'">
+                    <p style="font-size:0.85rem; margin:0;"><strong>Bukti 2:</strong> Projek pembangunan sistem simulasi penipuan emel (Phishing).</p>
                 </div>
             </div>
         </div>
@@ -237,38 +260,64 @@
         </div>
     </div>
 
-    <!-- SCRIPT JAVASCRIPT UNTUK CONTROL SLAID INTERAKTIF -->
+    <!-- SCRIPT JAVASCRIPT ANIMASI MATRIKS + NAVIGASI -->
     <script>
+        // --- CODE ANIMASI BACKGROUND ---
+        const canvas = document.getElementById('cyber-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const alphabet = "0101010101010101010101010101010101010101 SECURITY NETWORK CYBER CHIPS BUFFER";
+        const chars = alphabet.split("");
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+        for (let x = 0; x < columns; x++) { rainDrops[x] = 1; }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(11, 15, 25, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#6366f1'; 
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) { rainDrops[i] = 0; }
+                rainDrops[i]++;
+            }
+        };
+        setInterval(draw, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // --- CODE CONTROL SLAID ---
         let currentSlide = 1;
         const totalSlides = 4;
 
         function changeSlide(direction) {
-            // Sembunyikan slaid semasa
             document.getElementById(`slide${currentSlide}`).classList.remove('active');
-            
             currentSlide += direction;
 
-            // Logik kawalan butang hujung
             if (currentSlide < 1) {
-                // Jika patah balik dari slaid 1, balik ke Home (index.html)
                 window.location.href = "index.html";
                 return;
             }
-            
             if (currentSlide > totalSlides) {
-                // Jika slaid habis, tunjuk alert tamat & balik muka depan
-                alert("Tahniah Aida! Anda telah selesai meneliti keseluruhan slide portfolio tugasan.");
+                alert("Tahniah Aida! Anda telah selesai meneliti keseluruhan slide portfolio.");
                 window.location.href = "index.html";
                 return;
             }
 
-            // Paparkan slaid baharu
             document.getElementById(`slide${currentSlide}`).classList.add('active');
-            
-            // Kemaskini teks indikator slaid
             document.getElementById('indicator').innerText = `Slide ${currentSlide} dari ${totalSlides}`;
             
-            // Tukar teks butang jika berada di slaid terakhir
             const nextBtn = document.getElementById('nextBtn');
             if (currentSlide === totalSlides) {
                 nextBtn.innerText = "Selesai Semakan ✨";
