@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Portfolio-AIDA NASUHA BINTI MUHAMAD FADELI</title>
+    <title>E-Portfolio Network Security - Aida Nasuha</title>
     <style>
-        /* CSS UNTUK MENGEHIDUPKAN BACKGROUND & THEME */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); /* Background gradient gelap & hidup */
+            background-color: #0b0f19;
             color: #f8fafc;
             margin: 0;
             padding: 0;
@@ -16,36 +15,51 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ANIMASI BACKGROUND CANVAS MATRIKS */
+        #cyber-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15; /* Malap supaya teks di atas kekal jelas dibaca */
         }
 
         .portfolio-card {
-            background: rgba(30, 41, 59, 0.7); /* Kad lutsinar bergaya modern glassmorphism */
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.75); /* Dititipkan warna gelap premium */
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(99, 102, 241, 0.3);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            max-width: 650px;
             width: 90%;
             text-align: center;
+            z-index: 2; /* Di atas canvas animasi */
             animation: fadeIn 1s ease-in-out;
         }
 
-        /* BAHAGIAN GAMBAR PROFIL */
         .profile-img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 4px solid #6366f1; /* Border bercahaya */
+            border: 4px solid #6366f1;
             object-fit: cover;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
             margin-bottom: 20px;
         }
 
         h1 {
-            color: #38bdf8; /* Warna biru muda ala cyber */
+            color: #38bdf8;
             margin-bottom: 5px;
-            font-size: 2rem;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .subtitle {
@@ -57,21 +71,31 @@
         .bio-text {
             line-height: 1.6;
             color: #e2e8f0;
-            margin-bottom: 30px;
             text-align: justify;
         }
 
-        /* BUTANG INTERAKTIF NEXT PAGE */
-        .btn-next {
-            display: inline-block;
-            background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%);
-            color: white;
-            padding: 12px 30px;
+        /* SUSUNAN DUA BUTANG SEBARIS */
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
             font-weight: bold;
             text-decoration: none;
             border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
             transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-next {
+            background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
         }
 
         .btn-next:hover {
@@ -79,7 +103,20 @@
             box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
         }
 
-        /* Animasi masuk */
+        .btn-resume {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 2px solid #10b981;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-resume:hover {
+            background: #10b981;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -88,23 +125,74 @@
 </head>
 <body>
 
+    <!-- Canvas untuk Kod Matriks Berjalan -->
+    <canvas id="cyber-bg"></canvas>
+
     <div class="portfolio-card">
-        <!-- Letak gambar korang kat sini (tukar nama fail gambar nanti) -->
-        <img src="aidaf.png" alt="Gambar Profil aidaf" class="profile-img">
+        <img src="Aidaf.png" alt="Gambar Profil Aida Nasuha" class="profile-img">
         
-        <h1>AIDA NASUHA BINTI MUHAMAD FADELI</h1>
+        <h1>Aida Nasuha Binti Muhamad Fadeli</h1>
         <div class="subtitle">Future Network Security Specialist</div>
         
-    <p class="bio-text" style="text-align: center; font-weight: bold; color: #38bdf8;">
-       WELCOME TO MY E-PORTFOLIO.
-    </p>
-    <p class="bio-text">
-       Based on my background in the field of Computer Science / IT, this website is specially built to present strategic plans, skills assessment, as well as my preparation to position myself in today's network security industry.
-    </p>
+        <p class="bio-text" style="text-align: center; font-weight: bold; color: #38bdf8; margin-bottom: 15px;">
+            WELCOME TO MY E-PORTFOLIO.
+        </p>
+        
+        <p class="bio-text">
+            Based on my background in the field of Computer Science / IT, this website is specially built to present strategic plans, skills assessment, as well as my preparation to position myself in today's network security industry.
+        </p>
 
-        <!-- Pautan butang ke page kedua (Skills & Assignment Info) -->
-        <a href="skills.html" class="btn-next">Next: View Skills & Exploration →</a>
+        <!-- DUA BUTANG INTERAKTIF -->
+        <div class="btn-container">
+            <a href="resume.html" class="btn btn-resume">📄 View My Resume</a>
+            <a href="skills.html" class="btn btn-next">Next: View Skills & Exploration →</a>
+        </div>
     </div>
 
+    <!-- JAVASCRIPT UNTUK GERAKKAN ANIMASI MATRIKS SECURITY -->
+    <script>
+        const canvas = document.getElementById('cyber-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Karakter siber (Gabungan nombor binari & kod)
+        const alphabet = "0101010101010101010101010101010101010101 SECURITY NETWORK CYBER CHIPS BUFFER";
+        const chars = alphabet.split("");
+
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(11, 15, 25, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#6366f1'; // Warna biru indigo bercahaya ala siber
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 35); // Kelajuan pergerakan kod matriks
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
