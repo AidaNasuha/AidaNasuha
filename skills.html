@@ -9,7 +9,416 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0b0f19;
             color: #f8fafc;
+            margin: 0;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portfolio - Career & Skills Slides</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0f19;
+            color: #f8fafc;
             margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* CYBER MATRIX BACKGROUND ANIMATION */
+        #cyber-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.12;
+        }
+
+        .container {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container::-webkit-scrollbar { width: 6px; }
+        .container::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        .container::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.4); border-radius: 4px; }
+
+        .slide-indicator {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #38bdf8;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* SLIDE SYSTEM ANIMS */
+        .slide {
+            display: none;
+            animation: slideIn 0.5s ease-in-out forwards;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        /* SPLIT LAYOUT FOR TEXT & IMAGE */
+        .slide-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 25px;
+            align-items: center;
+        }
+
+        /* FULL GRID FOR EVIDENCE WORKSHOPS */
+        .evidence-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .evidence-grid-two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 800px) {
+            .slide-content, .evidence-grid-two { grid-template-columns: 1fr; }
+            .decor-img { display: none; }
+        }
+
+        h2 {
+            color: #38bdf8;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        h3 { color: #818cf8; font-size: 1.15rem; margin-top: 5px; }
+        p, li { line-height: 1.5; color: #cbd5e1; font-size: 0.95rem; }
+        ul { padding-left: 20px; }
+
+        /* CYBER ILLUSTRATION ART STYLE */
+        .decor-img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.3));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* LAB EVIDENCE SCREENSHOT STYLE */
+        .lab-screenshot {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+            max-height: 320px;
+            object-fit: contain;
+            background: #1e293b;
+        }
+        .lab-screenshot:hover {
+            transform: scale(1.02);
+            border-color: #38bdf8;
+        }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 0.85rem;
+        }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        th { background-color: #4f46e5; color: white; }
+
+        /* BUTTONS NAVIGATION */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-prev { background: #475569; color: white; }
+        .btn-prev:hover { background: #64748b; }
+        
+        .btn-next {
+            background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        }
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="cyber-bg"></canvas>
+
+    <div class="container">
+        <div class="slide-indicator" id="indicator">Slide 1 of 6</div>
+
+        <!-- SLIDE 1: SECTION A -->
+        <div class="slide active" id="slide1">
+            <div class="slide-content">
+                <div>
+                    <h2>📂 Section A: Career Exploration</h2>
+                    <h3>Target Role: Security Operations Center (SOC) Analyst</h3>
+                    <p><strong>Job Responsibilities:</strong></p>
+                    <ul>
+                        <li><strong>Continuous Monitoring:</strong> Overseeing organization network traffic 24/7 utilizing SIEM tools to detect potential malicious activities or cyber intrusions.</li>
+                        <li><strong>Alert Triaging:</strong> Reviewing and analyzing safety alerts to effectively distinguish actual threats from false positives.</li>
+                        <li><strong>Incident Documentation:</strong> Generating precise incident investigation logs to facilitate rapid mitigation by response teams.</li>
+                    </ul>
+                    <p><strong>Relevance:</strong> Acts as the vital frontline shield to contain ransomware and complex malware threats before they execute cross-network escalations.</p>
+                </div>
+                <!-- Local upload image reference for SOC Art -->
+                <img src="soc-art.png" alt="SOC Monitoring Art" class="decor-img" onerror="this.src='https://img.icons8.com/illustrations/external-pack-flat-icons-maxicons/512/external-cyber-security-insurance-pack-flat-icons-maxicons.png'">
+            </div>
+        </div>
+
+        <!-- SLIDE 2: SECTION B -->
+        <div class="slide" id="slide2">
+            <div class="slide-content">
+                <div>
+                    <h2>📊 Section B: Personal Skills Assessment</h2>
+                    <p>An honest evaluation mapping my current academic technical skillset against standard cybersecurity entry-level benchmarks:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Industry Core Competency</th>
+                                <th>My Current Level</th>
+                                <th>Strategic Remediation Plan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Traffic & Packet Inspection</strong></td>
+                                <td>Intermediate</td>
+                                <td>Deploying Wireshark and Zenmap CLI inside isolated environments.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Digital Forensics Artifacts</strong></td>
+                                <td>Basic-Intermediate</td>
+                                <td>Refining partition parsing and image investigation using Autopsy.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Secure Architecture Design</strong></td>
+                                <td>Advanced</td>
+                                <td>Executing deep ACL routing schemas via Cisco Packet Tracer.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <img src="https://img.icons8.com/illustrations/external-juicy-juicy/512/external-cyber-security-cyber-security-juicy-juicy-2.png" alt="Skills Analysis Art" class="decor-img">
+            </div>
+        </div>
+
+        <!-- SLIDE 3: SECTION C & D - LAB EVIDENCE (PART 1: NETWORKING) -->
+        <div class="slide" id="slide3">
+            <div class="evidence-layout">
+                <div>
+                    <h2>🛠️ Section C & D: Technical Lab Evidence (Network Architecture)</h2>
+                    <p><strong>Infrastructure Configuration & Validation:</strong> Hands-on implementation analyzing secure segmentations and local server environments.</p>
+                </div>
+                <div class="evidence-grid-two">
+                    <div>
+                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 1: VLAN Infrastructure Investigation</p>
+                        <img src="Screenshot 2025-04-16 124934.png" alt="Cisco Packet Tracer Lab" class="lab-screenshot">
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Investigating broadcast traffic domains, configuring inter-VLAN routing tables, and validating secure switches setups via Cisco Packet Tracer.</p>
+                    </div>
+                    <div>
+                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 2: Local Web Server Initialization</p>
+                        <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Environment Control" class="lab-screenshot">
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Deploying and managing standalone local stack services utilizing Apache and MySQL backend environment on XAMPP Control Panel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: SECTION C & D - LAB EVIDENCE (PART 2: PACKET ANALYSIS & WEB ATTACKS) -->
+        <div class="slide" id="slide4">
+            <div class="evidence-layout">
+                <div>
+                    <h2>🛠️ Technical Lab Evidence (Packet Analysis & Web Penetration)</h2>
+                    <p><strong>Threat Mitigation & Forensic Audits:</strong> Evaluating raw packet handshakes and performing structured database vulnerability parsing.</p>
+                </div>
+                <div class="evidence-grid-two">
+                    <div>
+                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 3: Deep Packet Inspection & Credential Audit</p>
+                        <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Traffic Audit" class="lab-screenshot">
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Analyzing a live raw network traffic capture `.pcap` trace within Wireshark, identifying unauthorized unencrypted HTTP text data parameters and exposed authorizations.</p>
+                    </div>
+                    <div>
+                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 4: SQL Injection Exploitation Framework</p>
+                        <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Exploitation Lab" class="lab-screenshot">
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Simulating backend application logic bypass manipulations inside WebGoat using structured string SQL input queries (`' or 1 = 1'`).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: SECTION C & D - LAB EVIDENCE (PART 3: OWASP & HARDWARE SECURITY) -->
+        <div class="slide" id="slide5">
+            <div class="evidence-layout">
+                <div>
+                    <h2>🛠️ Technical Lab Evidence (OWASP Top 10 Application & IoT Core)</h2>
+                    <p><strong>System Hardening & Perimeter Security:</strong> Inspecting endpoint application frameworks and sensory microcontrollers logic.</p>
+                </div>
+                <div class="evidence-grid-two">
+                    <div>
+                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 5: Application Security Testing Ecosystem</p>
+                        <img src="Screenshot 2025-12-18 204722.png" alt="OWASP Juice Shop Penetration Testing" class="lab-screenshot">
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Mapping attack surface and testing modern endpoint applications interfaces targeting OWASP vulnerabilities using an isolated Kali Linux virtual workstation instance.</p>
+                    </div>
+                    <div>
+                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 6: IoT Smart Embedded Architecture Code</p>
+                        <img src="Screenshot 2026-01-18 195846.png" alt="Tinkercad Arduino Simulation" class="lab-screenshot">
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Configuring embedded infrastructure using Arduino Uno microcontrollers, programming ultrasonic sensory metrics outputs mapped directly to an LCD telemetry screen via Tinkercad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: SECTION E -->
+        <div class="slide" id="slide6">
+            <div class="slide-content">
+                <div>
+                    <h2>🧠 Section E: Strategic Personal Reflection</h2>
+                    <h3>Target Corporation: CyberSecurity Malaysia (CSM)</h3>
+                    <ul>
+                        <li><strong>Why CSM?</strong> It represents the apex national cyber safety agency. Undertaking a role here provides unparalleled exposure to real-world threats targeting infrastructure.</li>
+                        <li><strong>Core Value Propositions:</strong> Armed with practical foundational insights, an adaptive agile mindset, and hands-on familiarity running tools (Wireshark, Cisco Packet Tracer, XAMPP, Kali Linux pentesting).</li>
+                        <li><strong>Strengths & Weaknesses:</strong> Commendable attention to detail during log file audits. Minor latency in complex error debugging, effectively minimized via rigid Pomodoro execution.</li>
+                    </ul>
+                </div>
+                <img src="https://img.icons8.com/illustrations/external-juicy-juicy/512/external-cyber-security-cyber-security-juicy-juicy.png" alt="Future Goal Art" class="decor-img">
+            </div>
+        </div>
+
+        <!-- INTERACTIVE NAVIGATION CONTROLS -->
+        <div class="nav-buttons">
+            <button class="btn btn-prev" id="prevBtn" onclick="changeSlide(-1)">← Back</button>
+            <button class="btn btn-next" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT: BACKGROUND MATRIX & CONTROLS -->
+    <script>
+        // BACKGROUND ANIMATION RUNNER
+        const canvas = document.getElementById('cyber-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const alphabet = "01010101010101010101010101010101 SECURITY NETWORK CYBER DATA INTRUSION ALERT";
+        const chars = alphabet.split("");
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+        for (let x = 0; x < columns; x++) { rainDrops[x] = 1; }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(11, 15, 25, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#6366f1'; 
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) { rainDrops[i] = 0; }
+                rainDrops[i]++;
+            }
+        };
+        setInterval(draw, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // SLIDE NAVIGATION CONTROLLER (UPDATED FOR 6 SLIDES)
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        function changeSlide(direction) {
+            document.getElementById(`slide${currentSlide}`).classList.remove('active');
+            currentSlide += direction;
+
+            if (currentSlide < 1) {
+                window.location.href = "index.html";
+                return;
+            }
+            if (currentSlide > totalSlides) {
+                alert("Review Completed! Returning to the main portal.");
+                window.location.href = "index.html";
+                return;
+            }
+
+            document.getElementById(`slide${currentSlide}`).classList.add('active');
+            document.getElementById('indicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentSlide === totalSlides) {
+                nextBtn.innerText = "Complete ✨";
+            } else {
+                nextBtn.innerText = "Next →";
+            }
+        }
+    </script>
+</body>
+</html>
             padding: 20px;
             display: flex;
             justify-content: center;
