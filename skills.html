@@ -123,9 +123,10 @@
             border: 2px solid rgba(56, 189, 248, 0.4);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease;
-            max-height: 320px;
-            object-fit: contain;
+            max-height: 220px;
+            object-fit: cover;
             background: #1e293b;
+            display: block;
         }
         .lab-screenshot:hover {
             transform: scale(1.02);
@@ -193,7 +194,7 @@
     <canvas id="cyber-bg"></canvas>
 
     <div class="container">
-        <div class="slide-indicator" id="indicator">Slide 1 of 6</div>
+        <div class="slide-indicator" id="indicator">Slide 1 of 7</div>
 
         <!-- SLIDE 1: SECTION A -->
         <div class="slide active" id="slide1">
@@ -209,7 +210,6 @@
                     </ul>
                     <p><strong>Relevance:</strong> Acts as the vital frontline shield to contain ransomware and complex malware threats before they execute cross-network escalations.</p>
                 </div>
-                <!-- Local upload image reference for SOC Art -->
                 <img src="soc-art.png" alt="SOC Monitoring Art" class="decor-img" onerror="this.src='https://img.icons8.com/illustrations/external-pack-flat-icons-maxicons/512/external-cyber-security-insurance-pack-flat-icons-maxicons.png'">
             </div>
         </div>
@@ -261,12 +261,12 @@
                 <div class="evidence-grid-two">
                     <div>
                         <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 1: VLAN Infrastructure Investigation</p>
-                        <img src="Screenshot 2025-04-16 124934.png" alt="Cisco Packet Tracer Lab" class="lab-screenshot">
+                        <img src="Screenshot 2025-04-16 124934.png" alt="Cisco Packet Tracer Lab" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Cisco+Packet+Tracer+Artifact'">
                         <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Investigating broadcast traffic domains, configuring inter-VLAN routing tables, and validating secure switches setups via Cisco Packet Tracer.</p>
                     </div>
                     <div>
                         <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 2: Local Web Server Initialization</p>
-                        <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Environment Control" class="lab-screenshot">
+                        <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Environment Control" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=XAMPP+Control+Artifact'">
                         <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Deploying and managing standalone local stack services utilizing Apache and MySQL backend environment on XAMPP Control Panel.</p>
                     </div>
                 </div>
@@ -283,12 +283,12 @@
                 <div class="evidence-grid-two">
                     <div>
                         <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 3: Deep Packet Inspection & Credential Audit</p>
-                        <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Traffic Audit" class="lab-screenshot">
+                        <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Traffic Audit" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Wireshark+Packet+Artifact'">
                         <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Analyzing a live raw network traffic capture `.pcap` trace within Wireshark, identifying unauthorized unencrypted HTTP text data parameters and exposed authorizations.</p>
                     </div>
                     <div>
                         <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 4: SQL Injection Exploitation Framework</p>
-                        <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Exploitation Lab" class="lab-screenshot">
+                        <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Exploitation Lab" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=WebGoat+SQLi+Artifact'">
                         <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Simulating backend application logic bypass manipulations inside WebGoat using structured string SQL input queries (`' or 1 = 1'`).</p>
                     </div>
                 </div>
@@ -305,27 +305,51 @@
                 <div class="evidence-grid-two">
                     <div>
                         <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 5: Application Security Testing Ecosystem</p>
-                        <img src="Screenshot 2025-12-18 204722.png" alt="OWASP Juice Shop Penetration Testing" class="lab-screenshot">
+                        <img src="Screenshot 2025-12-18 204722.png" alt="OWASP Juice Shop Penetration Testing" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=OWASP+JuiceShop+Artifact'">
                         <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Mapping attack surface and testing modern endpoint applications interfaces targeting OWASP vulnerabilities using an isolated Kali Linux virtual workstation instance.</p>
                     </div>
                     <div>
                         <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 6: IoT Smart Embedded Architecture Code</p>
-                        <img src="Screenshot 2026-01-18 195846.png" alt="Tinkercad Arduino Simulation" class="lab-screenshot">
+                        <img src="Screenshot 2026-01-18 195846.png" alt="Tinkercad Arduino Simulation" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Arduino+IoT+Artifact'">
                         <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Configuring embedded infrastructure using Arduino Uno microcontrollers, programming ultrasonic sensory metrics outputs mapped directly to an LCD telemetry screen via Tinkercad.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 6: SECTION E -->
+        <!-- SLIDE 6: OPEN SOURCE CONTRIBUTION & KAGGLE DATASET -->
         <div class="slide" id="slide6">
+            <div class="slide-content">
+                <div>
+                    <h2>🌐 Section D(ii): Open Source Community Contribution</h2>
+                    <h3>Data Engineering & Analytics: Kaggle Dataset Deployment</h3>
+                    <p><strong>Project Overview:</strong> Structured, cleaned, and successfully published an original cybersecurity/technical dataset onto the Kaggle global repository platform to assist open-source machine learning and threat-hunting model training.</p>
+                    <ul>
+                        <li><strong>Data Governance:</strong> Applied rigorous preprocessing, standardizing variables, and removing system noises to maximize analytical value.</li>
+                        <li><strong>Community Impact:</strong> Provided global data scientists with structured logs/metrics to build actionable security predictive frameworks.</li>
+                    </ul>
+                    <p style="margin-top: 15px;">
+                        <a href="https://www.kaggle.com" target="_blank" style="color: #06b6d4; font-weight: bold; text-decoration: underline;">
+                            🔗 View Live Dataset on Kaggle
+                        </a>
+                    </p>
+                </div>
+                <div>
+                    <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8; text-align: center;">Published Kaggle Environment</p>
+                    <img src="kaggle-dataset.png" alt="Kaggle Dataset Contribution" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Kaggle+Dataset+Artifact'">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: SECTION E -->
+        <div class="slide" id="slide7">
             <div class="slide-content">
                 <div>
                     <h2>🧠 Section E: Strategic Personal Reflection</h2>
                     <h3>Target Corporation: CyberSecurity Malaysia (CSM)</h3>
                     <ul>
                         <li><strong>Why CSM?</strong> It represents the apex national cyber safety agency. Undertaking a role here provides unparalleled exposure to real-world threats targeting infrastructure.</li>
-                        <li><strong>Core Value Propositions:</strong> Armed with practical foundational insights, an adaptive agile mindset, and hands-on familiarity running tools (Wireshark, Cisco Packet Tracer, XAMPP, Kali Linux pentesting).</li>
+                        <li><strong>Core Value Propositions:</strong> Armed with practical foundational insights, an adaptive agile mindset, hands-on familiarity running tools (Wireshark, Cisco Packet Tracer, Kali Linux), and data engineering experience via Kaggle.</li>
                         <li><strong>Strengths & Weaknesses:</strong> Commendable attention to detail during log file audits. Minor latency in complex error debugging, effectively minimized via rigid Pomodoro execution.</li>
                     </ul>
                 </div>
@@ -377,9 +401,9 @@
             canvas.height = window.innerHeight;
         });
 
-        // SLIDE NAVIGATION CONTROLLER (UPDATED FOR 6 SLIDES)
+        // SLIDE NAVIGATION CONTROLLER (7 SLIDES)
         let currentSlide = 1;
-        const totalSlides = 6;
+        const totalSlides = 7;
 
         function changeSlide(direction) {
             document.getElementById(`slide${currentSlide}`).classList.remove('active');
