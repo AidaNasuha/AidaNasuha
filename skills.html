@@ -30,107 +30,130 @@
             opacity: 0.12;
         }
 
+        /* LARGE ACCORDING SLIDE CONTAINER (1280px x 720px ASPECT) */
         .container {
             background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(99, 102, 241, 0.3);
-            padding: 35px;
+            padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            max-width: 1000px;
-            width: 100%;
+            width: 1280px;
+            max-width: 95vw;
+            height: 720px;
             max-height: 90vh;
-            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             box-sizing: border-box;
             position: relative;
             z-index: 2;
         }
-
-        .container::-webkit-scrollbar { width: 6px; }
-        .container::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
-        .container::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.4); border-radius: 4px; }
 
         .slide-indicator {
             text-align: right;
             font-size: 0.9rem;
             color: #38bdf8;
             font-weight: bold;
-            margin-bottom: 15px;
         }
 
         /* SLIDE SYSTEM ANIMS */
         .slide {
             display: none;
             animation: slideIn 0.5s ease-in-out forwards;
+            height: 100%;
         }
 
         .slide.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         /* SPLIT LAYOUT FOR TEXT & IMAGE */
         .slide-content {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 25px;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
             align-items: center;
         }
 
-        /* FULL GRID FOR EVIDENCE WORKSHOPS */
-        .evidence-layout {
+        /* QUAD ROW GRID (4 IMAGES IN 1 ROW) */
+        .quad-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        
-        .evidence-grid-two {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
-        @media (max-width: 800px) {
-            .slide-content, .evidence-grid-two { grid-template-columns: 1fr; }
-            .decor-img { display: none; }
+        /* TRIPLE ROW GRID (3 IMAGES IN 1 ROW) */
+        .triple-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .artifact-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .artifact-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-2px);
         }
 
         h2 {
             color: #38bdf8;
             border-bottom: 2px solid rgba(56, 189, 248, 0.2);
-            padding-bottom: 10px;
-            font-size: 1.5rem;
+            padding-bottom: 8px;
+            font-size: 1.6rem;
             margin-top: 0;
+            margin-bottom: 15px;
         }
 
-        h3 { color: #818cf8; font-size: 1.15rem; margin-top: 5px; }
-        p, li { line-height: 1.5; color: #cbd5e1; font-size: 0.95rem; }
-        ul { padding-left: 20px; }
+        h3 { color: #818cf8; font-size: 1.2rem; margin-top: 0; }
+        p, li { line-height: 1.5; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 8px; }
+        ul { padding-left: 20px; margin-top: 5px; }
 
-        /* CYBER ILLUSTRATION ART STYLE */
         .decor-img {
             width: 100%;
-            max-height: 250px;
+            max-height: 380px;
             object-fit: contain;
             filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.3));
-            animation: float 4s ease-in-out infinite;
         }
 
-        /* LAB EVIDENCE SCREENSHOT STYLE */
+        /* LAB SCREENSHOT SPECIFIC STYLE */
         .lab-screenshot {
             width: 100%;
-            border-radius: 10px;
-            border: 2px solid rgba(56, 189, 248, 0.4);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-            max-height: 220px;
+            height: 140px;
+            border-radius: 8px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
             object-fit: cover;
             background: #1e293b;
-            display: block;
+            margin-bottom: 8px;
         }
-        .lab-screenshot:hover {
-            transform: scale(1.02);
-            border-color: #38bdf8;
+
+        .card-title {
+            font-weight: bold;
+            color: #818cf8;
+            font-size: 0.85rem;
+            margin: 0 0 5px 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .card-desc {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.3;
+            text-align: left;
         }
 
         /* TABLES */
@@ -141,20 +164,20 @@
             background: rgba(15, 23, 42, 0.6);
             border-radius: 8px;
             overflow: hidden;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
-        th, td { padding: 10px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         th { background-color: #4f46e5; color: white; }
 
-        /* BUTTONS NAVIGATION */
+        /* NAVIGATION BUTTONS */
         .nav-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 35px;
+            margin-top: 20px;
         }
 
         .btn {
-            padding: 10px 25px;
+            padding: 10px 30px;
             font-weight: bold;
             text-decoration: none;
             border-radius: 30px;
@@ -181,12 +204,6 @@
             from { opacity: 0; transform: translateX(20px); }
             to { opacity: 1; transform: translateX(0); }
         }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
     </style>
 </head>
 <body>
@@ -194,155 +211,140 @@
     <canvas id="cyber-bg"></canvas>
 
     <div class="container">
-        <div class="slide-indicator" id="indicator">Slide 1 of 7</div>
+        <div class="slide-indicator" id="indicator">Slide 1 of 6</div>
 
-        <!-- SLIDE 1: SECTION A -->
+        <!-- SLIDE 1: WELCOME INTRO -->
         <div class="slide active" id="slide1">
+            <div class="slide-content">
+                <div>
+                    <h2>🚀 Welcome to Academic & Career Slides Portfolio</h2>
+                    <h3>Candidate: Nur Aida</h3>
+                    <p>This dynamic presentation system highlights structural academic capabilities, mapped industry proficiencies, and open-source cybersecurity core technical contributions.</p>
+                    <p style="color: #38bdf8; font-weight: bold; margin-top: 15px;">Navigate using the controller buttons below to evaluate laboratory artifacts.</p>
+                </div>
+                <img src="https://img.icons8.com/illustrations/external-juicy-juicy/512/external-cyber-security-cyber-security-juicy-juicy-3.png" alt="Intro Art" class="decor-img">
+            </div>
+        </div>
+
+        <!-- SLIDE 2: SECTION A -->
+        <div class="slide" id="slide2">
             <div class="slide-content">
                 <div>
                     <h2>📂 Section A: Career Exploration</h2>
                     <h3>Target Role: Security Operations Center (SOC) Analyst</h3>
-                    <p><strong>Job Responsibilities:</strong></p>
+                    <p><strong>Key Job Responsibilities:</strong></p>
                     <ul>
                         <li><strong>Continuous Monitoring:</strong> Overseeing organization network traffic 24/7 utilizing SIEM tools to detect potential malicious activities or cyber intrusions.</li>
                         <li><strong>Alert Triaging:</strong> Reviewing and analyzing safety alerts to effectively distinguish actual threats from false positives.</li>
                         <li><strong>Incident Documentation:</strong> Generating precise incident investigation logs to facilitate rapid mitigation by response teams.</li>
                     </ul>
-                    <p><strong>Relevance:</strong> Acts as the vital frontline shield to contain ransomware and complex malware threats before they execute cross-network escalations.</p>
+                    <p style="margin-top: 10px;"><strong>Relevance:</strong> Acts as the vital frontline shield to contain ransomware and complex malware threats before they execute cross-network escalations.</p>
                 </div>
                 <img src="soc-art.png" alt="SOC Monitoring Art" class="decor-img" onerror="this.src='https://img.icons8.com/illustrations/external-pack-flat-icons-maxicons/512/external-cyber-security-insurance-pack-flat-icons-maxicons.png'">
             </div>
         </div>
 
-        <!-- SLIDE 2: SECTION B -->
-        <div class="slide" id="slide2">
-            <div class="slide-content">
-                <div>
-                    <h2>📊 Section B: Personal Skills Assessment</h2>
-                    <p>An honest evaluation mapping my current academic technical skillset against standard cybersecurity entry-level benchmarks:</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Industry Core Competency</th>
-                                <th>My Current Level</th>
-                                <th>Strategic Remediation Plan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Traffic & Packet Inspection</strong></td>
-                                <td>Intermediate</td>
-                                <td>Deploying Wireshark and Zenmap CLI inside isolated environments.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Digital Forensics Artifacts</strong></td>
-                                <td>Basic-Intermediate</td>
-                                <td>Refining partition parsing and image investigation using Autopsy.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Secure Architecture Design</strong></td>
-                                <td>Advanced</td>
-                                <td>Executing deep ACL routing schemas via Cisco Packet Tracer.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <img src="https://img.icons8.com/illustrations/external-juicy-juicy/512/external-cyber-security-cyber-security-juicy-juicy-2.png" alt="Skills Analysis Art" class="decor-img">
-            </div>
-        </div>
-
-        <!-- SLIDE 3: SECTION C & D - LAB EVIDENCE (PART 1: NETWORKING) -->
+        <!-- SLIDE 3: SECTION B -->
         <div class="slide" id="slide3">
-            <div class="evidence-layout">
-                <div>
-                    <h2>🛠️ Section C & D: Technical Lab Evidence (Network Architecture)</h2>
-                    <p><strong>Infrastructure Configuration & Validation:</strong> Hands-on implementation analyzing secure segmentations and local server environments.</p>
-                </div>
-                <div class="evidence-grid-two">
-                    <div>
-                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 1: VLAN Infrastructure Investigation</p>
-                        <img src="Screenshot 2025-04-16 124934.png" alt="Cisco Packet Tracer Lab" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Cisco+Packet+Tracer+Artifact'">
-                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Investigating broadcast traffic domains, configuring inter-VLAN routing tables, and validating secure switches setups via Cisco Packet Tracer.</p>
-                    </div>
-                    <div>
-                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 2: Local Web Server Initialization</p>
-                        <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Environment Control" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=XAMPP+Control+Artifact'">
-                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Deploying and managing standalone local stack services utilizing Apache and MySQL backend environment on XAMPP Control Panel.</p>
-                    </div>
-                </div>
+            <div>
+                <h2>📊 Section B: Personal Skills Assessment</h2>
+                <p>An honest evaluation mapping my current academic technical skillset against standard cybersecurity entry-level benchmarks:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Industry Core Competency</th>
+                            <th>My Current Level</th>
+                            <th>Strategic Remediation Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Traffic & Packet Inspection</strong></td>
+                            <td>Intermediate</td>
+                            <td>Deploying Wireshark and Zenmap CLI inside isolated environments.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Digital Forensics Artifacts</strong></td>
+                            <td>Basic-Intermediate</td>
+                            <td>Refining partition parsing and image investigation using Autopsy.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Secure Architecture Design</strong></td>
+                            <td>Advanced</td>
+                            <td>Executing deep ACL routing schemas via Cisco Packet Tracer.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!-- SLIDE 4: SECTION C & D - LAB EVIDENCE (PART 2: PACKET ANALYSIS & WEB ATTACKS) -->
+        <!-- SLIDE 4: SECTION C & D - 4 IMAGES IN 1 ROW -->
         <div class="slide" id="slide4">
-            <div class="evidence-layout">
-                <div>
-                    <h2>🛠️ Technical Lab Evidence (Packet Analysis & Web Penetration)</h2>
-                    <p><strong>Threat Mitigation & Forensic Audits:</strong> Evaluating raw packet handshakes and performing structured database vulnerability parsing.</p>
-                </div>
-                <div class="evidence-grid-two">
-                    <div>
-                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 3: Deep Packet Inspection & Credential Audit</p>
-                        <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Traffic Audit" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Wireshark+Packet+Artifact'">
-                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Analyzing a live raw network traffic capture `.pcap` trace within Wireshark, identifying unauthorized unencrypted HTTP text data parameters and exposed authorizations.</p>
+            <div>
+                <h2>🛠️ Section C & D: Core Technical Lab Infrastructure (Network & Traffic)</h2>
+                <p style="margin: 0;">Hands-on implementation logs validating core routing setups, stack services, packet traces, and backend injections:</p>
+                
+                <div class="quad-grid">
+                    <!-- ARTIFACT 1 -->
+                    <div class="artifact-card">
+                        <p class="card-title">1. Cisco VLAN Setup</p>
+                        <img src="Screenshot 2025-04-16 124934.png" alt="Cisco Packet Tracer Lab" class="lab-screenshot" onerror="this.src='https://placehold.co/400x250/1e293b/38bdf8?text=Cisco+VLAN'">
+                        <p class="card-desc">Investigating broadcast traffic domains and configuring inter-VLAN routing tables via Packet Tracer.</p>
                     </div>
-                    <div>
-                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 4: SQL Injection Exploitation Framework</p>
-                        <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Exploitation Lab" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=WebGoat+SQLi+Artifact'">
-                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Simulating backend application logic bypass manipulations inside WebGoat using structured string SQL input queries (`' or 1 = 1'`).</p>
+                    <!-- ARTIFACT 2 -->
+                    <div class="artifact-card">
+                        <p class="card-title">2. XAMPP Environment</p>
+                        <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Control" class="lab-screenshot" onerror="this.src='https://placehold.co/400x250/1e293b/38bdf8?text=XAMPP+Stack'">
+                        <p class="card-desc">Deploying and managing standalone local stack web services utilizing Apache and MySQL backend environment.</p>
+                    </div>
+                    <!-- ARTIFACT 3 -->
+                    <div class="artifact-card">
+                        <p class="card-title">3. Wireshark Audit</p>
+                        <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Audit" class="lab-screenshot" onerror="this.src='https://placehold.co/400x250/1e293b/38bdf8?text=Wireshark+Trace'">
+                        <p class="card-desc">Analyzing live raw network capture .pcap trace within Wireshark to isolate unencrypted HTTP credentials.</p>
+                    </div>
+                    <!-- ARTIFACT 4 -->
+                    <div class="artifact-card">
+                        <p class="card-title">4. SQL Injection Lab</p>
+                        <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Lab" class="lab-screenshot" onerror="this.src='https://placehold.co/400x250/1e293b/38bdf8?text=SQL+Injection'">
+                        <p class="card-desc">Simulating backend database logic bypass manipulations inside WebGoat using structured string query input fields.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 5: SECTION C & D - LAB EVIDENCE (PART 3: OWASP & HARDWARE SECURITY) -->
+        <!-- SLIDE 5: SECTION C & D (PART 2) - 3 IMAGES IN 1 ROW -->
         <div class="slide" id="slide5">
-            <div class="evidence-layout">
-                <div>
-                    <h2>🛠️ Technical Lab Evidence (OWASP Top 10 Application & IoT Core)</h2>
-                    <p><strong>System Hardening & Perimeter Security:</strong> Inspecting endpoint application frameworks and sensory microcontrollers logic.</p>
-                </div>
-                <div class="evidence-grid-two">
-                    <div>
-                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 5: Application Security Testing Ecosystem</p>
-                        <img src="Screenshot 2025-12-18 204722.png" alt="OWASP Juice Shop Penetration Testing" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=OWASP+JuiceShop+Artifact'">
-                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Mapping attack surface and testing modern endpoint applications interfaces targeting OWASP vulnerabilities using an isolated Kali Linux virtual workstation instance.</p>
+            <div>
+                <h2>🛠️ Section D(ii): Web App Pentesting, IoT & Open Source Contribution</h2>
+                <p style="margin: 0;">Inspecting endpoint application vulnerability frameworks, sensory hardware logic, and data repository engineering:</p>
+                
+                <div class="triple-grid">
+                    <!-- ARTIFACT 5 -->
+                    <div class="artifact-card">
+                        <p class="card-title">5. OWASP Application Testing</p>
+                        <img src="Screenshot 2025-12-18 204722.png" alt="OWASP Juice Shop" class="lab-screenshot" onerror="this.src='https://placehold.co/400x250/1e293b/38bdf8?text=OWASP+Juice+Shop'">
+                        <p class="card-desc">Mapping attack surfaces and assessing target endpoints inside an isolated Kali Linux virtual environment workstation.</p>
                     </div>
-                    <div>
-                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8;">Artifact 6: IoT Smart Embedded Architecture Code</p>
-                        <img src="Screenshot 2026-01-18 195846.png" alt="Tinkercad Arduino Simulation" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Arduino+IoT+Artifact'">
-                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Configuring embedded infrastructure using Arduino Uno microcontrollers, programming ultrasonic sensory metrics outputs mapped directly to an LCD telemetry screen via Tinkercad.</p>
+                    <!-- ARTIFACT 6 -->
+                    <div class="artifact-card">
+                        <p class="card-title">6. Arduino IoT Logic</p>
+                        <img src="Screenshot 2026-01-18 195846.png" alt="Tinkercad Simulation" class="lab-screenshot" onerror="this.src='https://placehold.co/400x250/1e293b/38bdf8?text=Arduino+IoT'">
+                        <p class="card-desc">Configuring embedded infrastructure using Arduino Uno microcontrollers and programming ultrasonic sensory output metrics on Tinkercad.</p>
+                    </div>
+                    <!-- ARTIFACT 7 (KAGGLE DATASET) -->
+                    <div class="artifact-card">
+                        <p class="card-title" style="color: #06b6d4;">7. Malay Phishing Email Dataset</p>
+                        <img src="kaggle-dataset.png" alt="Kaggle Dataset" class="lab-screenshot" onerror="this.src='https://placehold.co/400x250/1e293b/38bdf8?text=Kaggle+Dataset'">
+                        <p class="card-desc">Published an original cybersecurity dataset on Kaggle to help train ML models and threat hunting parameters for Malay-based phishing.</p>
+                        <a href="https://www.kaggle.com" target="_blank" style="color: #06b6d4; font-size: 0.75rem; font-weight: bold; text-decoration: underline; display: block; margin-top: 2px;">View Kaggle Dataset →</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 6: OPEN SOURCE CONTRIBUTION & KAGGLE DATASET -->
+        <!-- SLIDE 6: SECTION E -->
         <div class="slide" id="slide6">
-            <div class="slide-content">
-                <div>
-                    <h2>🌐 Section D(ii): Open Source Community Contribution</h2>
-                    <h3>Data Engineering & Threat Intelligence: Malay Phishing Email Dataset</h3>
-                    <p><strong>Project Overview:</strong> Structured, categorized, and successfully published the <em>Malay Phishing Email Dataset</em> onto the Kaggle global repository platform to enhance localized open-source Threat Hunting and Machine Learning detection models.</p>
-                    <ul>
-                        <li><strong>Linguistic Cyber Security:</strong> Curated specific phishing keywords, email headers, and social engineering patterns targeted towards Malay-speaking demographics.</li>
-                        <li><strong>Analytical Application:</strong> Provided global threat researchers with structured logs to train Natural Language Processing (NLP) models for predicting and flagging regional malicious mail streams.</li>
-                    </ul>
-                    <p style="margin-top: 15px;">
-                        <a href="https://www.kaggle.com" target="_blank" style="color: #06b6d4; font-weight: bold; text-decoration: underline;">
-                            🔗 View Malay Phishing Email Dataset on Kaggle
-                        </a>
-                    </p>
-                </div>
-                <div>
-                    <p style="margin: 0 0 5px 0; font-weight: bold; color: #818cf8; text-align: center;">Published Kaggle Environment</p>
-                    <img src="kaggle-dataset.png" alt="Kaggle Dataset Contribution" class="lab-screenshot" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Kaggle+Dataset+Artifact'">
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 7: SECTION E -->
-        <div class="slide" id="slide7">
             <div class="slide-content">
                 <div>
                     <h2>🧠 Section E: Strategic Personal Reflection</h2>
@@ -401,9 +403,9 @@
             canvas.height = window.innerHeight;
         });
 
-        // SLIDE NAVIGATION CONTROLLER (7 SLIDES)
+        // SLIDE NAVIGATION CONTROLLER (6 SLIDES TOTAL)
         let currentSlide = 1;
-        const totalSlides = 7;
+        const totalSlides = 6;
 
         function changeSlide(direction) {
             document.getElementById(`slide${currentSlide}`).classList.remove('active');
