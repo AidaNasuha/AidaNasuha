@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Portfolio - Career & Skills Slides</title>
+    <title>Aida Nasuha - Cybersecurity E-Portfolio</title>
     <!-- FONT AWESOME ICONS CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: row; /* Menyusun sidebar di kiri & container di kanan */
+            flex-direction: row;
             min-height: 100vh;
             overflow: hidden;
             position: relative;
@@ -31,7 +31,7 @@
             opacity: 0.12;
         }
 
-        /* SIDEBAR STYLING (Macam dalam gambar ztul / edited-image.png) */
+        /* SIDEBAR STYLING */
         .sidebar {
             width: 80px;
             background: rgba(15, 23, 42, 0.9);
@@ -65,7 +65,6 @@
             background: rgba(56, 189, 248, 0.1);
         }
 
-        /* State Menu Aktif */
         .sidebar-item.active {
             color: #818cf8;
             background: rgba(79, 70, 229, 0.2);
@@ -73,7 +72,6 @@
             border-radius: 0 12px 12px 0;
         }
 
-        /* Tooltip Penerangan Menu */
         .sidebar-item::after {
             content: attr(data-tooltip);
             position: absolute;
@@ -145,7 +143,65 @@
             justify-content: center;
         }
 
-        /* SPLIT LAYOUT FOR TEXT & EXTENSION CARDS */
+        /* SLIDE 1 (WELCOME CARD) CUSTOM INTERFACE */
+        .welcome-card {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            border: 4px solid #4f46e5;
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.6);
+            overflow: hidden;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .welcome-card h1 {
+            color: #38bdf8;
+            font-size: 2.2rem;
+            margin: 10px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .welcome-card h3 {
+            color: #94a3b8;
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+
+        .welcome-card .welcome-title {
+            color: #818cf8;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .welcome-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+        }
+
+        .welcome-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        /* SLIDE LAYOUTS */
         .slide-content {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
@@ -153,14 +209,12 @@
             align-items: center;
         }
 
-        /* CLEAN TEXT ONLY LAYOUT FOR REFLECTION & TABLES */
         .text-layout {
             max-width: 900px;
             margin: 0 auto;
             width: 100%;
         }
 
-        /* 4 IMAGES IN 1 ROW GRID */
         .quad-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -168,7 +222,6 @@
             margin-top: 25px;
         }
 
-        /* 3 IMAGES IN 1 ROW GRID */
         .triple-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -203,7 +256,6 @@
         p, li { line-height: 1.6; color: #cbd5e1; font-size: 1rem; margin-bottom: 10px; }
         ul { padding-left: 20px; margin-top: 5px; }
 
-        /* ARTIFACT SCREENSHOT STYLE */
         .lab-screenshot {
             width: 100%;
             height: 160px;
@@ -214,20 +266,18 @@
             margin-bottom: 12px;
         }
 
-        .card-title {
-            font-weight: bold;
-            color: #38bdf8;
-            font-size: 0.95rem;
-            margin: 0 0 8px 0;
+        /* STYLE KHAS UNTUK ROADMAP BESAR */
+        .roadmap-large-display {
+            width: 100%;
+            height: 380px;
+            object-fit: contain;
+            border-radius: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            background: rgba(15, 23, 42, 0.5);
         }
 
-        .card-desc {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin: 0;
-            line-height: 1.4;
-            text-align: left;
-        }
+        .card-title { font-weight: bold; color: #38bdf8; font-size: 0.95rem; margin: 0 0 8px 0; }
+        .card-desc { font-size: 0.8rem; color: #94a3b8; margin: 0; line-height: 1.4; text-align: left; }
 
         /* TABLES */
         table {
@@ -257,6 +307,10 @@
             transition: all 0.3s ease;
             border: none;
             font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
         }
 
         .btn-prev { background: #475569; color: white; }
@@ -272,6 +326,25 @@
             box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
         }
 
+        .btn-resume {
+            background: transparent;
+            border: 2px solid #059669;
+            color: #10b981;
+        }
+        .btn-resume:hover {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-roadmap-trigger {
+            background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        .btn-roadmap-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(59, 130, 246, 0.5);
+        }
+
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(15px); }
             to { opacity: 1; transform: translateX(0); }
@@ -282,82 +355,87 @@
 
     <canvas id="cyber-bg"></canvas>
 
-    <!-- BAHAGIAN SIDEBAR BARU -->
+    <!-- SIDEBAR NAVIGATION (6 ITEMS) -->
     <div class="sidebar">
-        <div class="sidebar-item active" id="nav1" onclick="goToSlide(1)" data-tooltip="Career Exploration">
+        <div class="sidebar-item active" id="nav1" onclick="goToSlide(1)" data-tooltip="Welcome Gateway">
             <i class="fa-solid fa-house"></i>
         </div>
-        <div class="sidebar-item" id="nav2" onclick="goToSlide(2)" data-tooltip="Skills Assessment">
+        <div class="sidebar-item" id="nav2" onclick="goToSlide(2)" data-tooltip="Career Exploration & Roadmap">
+            <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+        <div class="sidebar-item" id="nav3" onclick="goToSlide(3)" data-tooltip="Skills Assessment">
             <i class="fa-solid fa-briefcase"></i>
         </div>
-        <div class="sidebar-item" id="nav3" onclick="goToSlide(3)" data-tooltip="Core Lab Evidence">
+        <div class="sidebar-item" id="nav4" onclick="goToSlide(4)" data-tooltip="Core Lab Evidence">
             <i class="fa-solid fa-layer-group"></i>
         </div>
-        <div class="sidebar-item" id="nav4" onclick="goToSlide(4)" data-tooltip="Web & IoT Security">
+        <div class="sidebar-item" id="nav5" onclick="goToSlide(5)" data-tooltip="Web & IoT Security">
             <i class="fa-solid fa-bullseye"></i>
         </div>
-        <div class="sidebar-item" id="nav5" onclick="goToSlide(5)" data-tooltip="Personal Reflection">
+        <div class="sidebar-item" id="nav6" onclick="goToSlide(6)" data-tooltip="Personal Reflection">
             <i class="fa-solid fa-folder-open"></i>
         </div>
     </div>
 
-    <!-- KANDUNGAN UTAMA (DIBALUT DENGAN MAIN-CONTENT) -->
     <div class="main-content">
         <div class="container">
-            <div class="slide-indicator" id="indicator">Slide 1 of 5</div>
+            <div class="slide-indicator" id="indicator">Slide 1 of 6</div>
 
-            <!-- SLIDE 1: SECTION A -->
+            <!-- SLIDE 1: WELCOME SCREEN (PROPOS DIRI + BUTTONS) -->
             <div class="slide active" id="slide1">
+                <div class="welcome-card">
+                    <div class="profile-img-container">
+                        <!-- Sila gantikan gambar profil anda di bawah jika mahu -->
+                        <img src="https://via.placeholder.com/150" alt="Aida Nasuha">
+                    </div>
+                    <h1>Aida Nasuha Binti Muhamad Fadeli</h1>
+                    <h3>Future Network Security Specialist</h3>
+                    
+                    <div class="welcome-title">Welcome to my E-Portfolio.</div>
+                    <p>Based on my background in the field of Computer Science / IT, this website is specially built to present strategic plans, skills assessment, as well as my preparation to position myself in today's network security industry.</p>
+                    
+                    <div class="welcome-buttons">
+                        <a href="resume.pdf" target="_blank" class="btn btn-resume">
+                            <i class="fa-solid fa-file-lines"></i> View My Resume
+                        </a>
+                        <button class="btn btn-roadmap-trigger" onclick="goToSlide(2)">
+                            <i class="fa-solid fa-route"></i> View Career Roadmap
+                        </button>
+                        <button class="btn btn-next" onclick="changeSlide(1)">
+                            Next: View Skills & Exploration →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: SECTION A (CAREER EXPLORATION + NEW ROADMAP IMAGE) -->
+            <div class="slide" id="slide2">
                 <div class="slide-content">
                     <div>
                         <h2>📂 Section A: Career Exploration</h2>
                         <h3>Target Role: Security Operations Center (SOC) Analyst</h3>
                         <p><strong>Key Job Responsibilities:</strong></p>
                         <ul>
-                            <li><strong>Continuous Monitoring:</strong> Overseeing organization network traffic 24/7 utilizing SIEM tools to detect potential malicious activities or cyber intrusions.</li>
-                            <li><strong>Alert Triaging:</strong> Reviewing and analyzing safety alerts to effectively distinguish actual threats from false positives.</li>
-                            <li><strong>Incident Documentation:</strong> Generating precise incident investigation logs to facilitate rapid mitigation by response teams.</li>
+                            <li><strong>Continuous Monitoring:</strong> Overseeing network traffic 24/7 utilizing SIEM tools to detect malicious activities.</li>
+                            <li><strong>Alert Triaging:</strong> Reviewing safety alerts to effectively distinguish actual threats from false positives.</li>
+                            <li><strong>Incident Documentation:</strong> Generating precise investigation logs for rapid threat mitigation.</li>
                         </ul>
-                        <p style="margin-top: 10px;"><strong>Relevance:</strong> Acts as the vital frontline shield to contain ransomware and complex malware threats before they execute cross-network escalations.</p>
+                        <p><strong>Strategic Growth Path:</strong> Focused progression building foundations up to national-scale cyber intelligence infrastructure.</p>
                     </div>
 
-                    <!-- RIGHT SIDE DYNAMIC CONTENT -->
-                    <div style="background: rgba(30, 41, 59, 0.4); border: 1px dashed rgba(56, 189, 248, 0.4); padding: 25px; border-radius: 15px;">
-                        <h4 style="color: #38bdf8; margin-top: 0; text-align: center; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 12px; font-size: 1.1rem;">
-                            <i class="fa-solid fa-microchip"></i> Required Technical Stack
+                    <!-- PAPARAN GAMBAR ROADMAP REALISTIK BARU ANDA -->
+                    <div>
+                        <h4 style="color: #38bdf8; margin-top: 0; font-size: 1rem; text-align: center; margin-bottom: 10px;">
+                            <i class="fa-solid fa-map"></i> My Cybersecurity Roadmap Blueprint
                         </h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;">
-                            <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
-                                <i class="fa-solid fa-magnifying-glass-chart" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
-                                SIEM (Splunk/ELK)
-                            </div>
-                            <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
-                                <i class="fa-solid fa-network-wired" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
-                                Packet Analysis
-                            </div>
-                            <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
-                                <i class="fa-solid fa-file-invoice" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
-                                Log Auditing
-                            </div>
-                            <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
-                                <i class="fa-solid fa-shield-virus" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
-                                Incident Response
-                            </div>
-                        </div>
-                        
-                        <div style="margin-top: 20px; background: rgba(79, 70, 229, 0.15); border: 1px solid rgba(79, 70, 229, 0.3); padding: 12px; border-radius: 8px; text-align: center;">
-                            <span style="font-size: 0.8rem; text-transform: uppercase; background: #4f46e5; padding: 2px 8px; border-radius: 12px; font-weight: bold; color: white;">Target Milestone</span>
-                            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 8px 0 0 0; font-weight: 500;">
-                                <i class="fa-solid fa-graduation-cap" style="color: #818cf8;"></i> CompTIA Security+ Certification
-                            </p>
-                            <p style="font-size: 0.75rem; color: #94a3b8; margin: 2px 0 0 0; font-style: italic;">(Currently in preparation)</p>
-                        </div>
+                        <!-- GANTIKAN NAMA FAIL DI BAWAH KEPADA GABMAR ROADMAP REAL ANDA -->
+                        <img src="watermarked_img_12262827937440988411.png" alt="Strategic Career Roadmap" class="roadmap-large-display">
                     </div>
                 </div>
             </div>
 
-            <!-- SLIDE 2: SECTION B -->
-            <div class="slide" id="slide2">
+            <!-- SLIDE 3: SECTION B -->
+            <div class="slide" id="slide3">
                 <div class="text-layout">
                     <h2>📊 Section B: Personal Skills Assessment</h2>
                     <p>An honest evaluation mapping my current academic technical skillset against standard cybersecurity entry-level benchmarks:</p>
@@ -390,8 +468,8 @@
                 </div>
             </div>
 
-            <!-- SLIDE 3: CORE TECHNICAL LABS -->
-            <div class="slide" id="slide3">
+            <!-- SLIDE 4: CORE TECHNICAL LABS -->
+            <div class="slide" id="slide4">
                 <div>
                     <h2>🛠️ Section C & D: Core Technical Lab Evidence</h2>
                     <p style="margin: 0;">Hands-on implementation logs validating infrastructure routing, packet tracing, and database testing:</p>
@@ -415,14 +493,14 @@
                         <div class="artifact-card">
                             <p class="card-title">4. SQL Injection Lab</p>
                             <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Lab" class="lab-screenshot">
-                            <p class="card-desc">Simulating backend database application logic bypass manipulations inside WebGoat using structured query string inputs.</p>
+                            <p class="card-desc">Simulating database application logic bypass manipulations inside WebGoat using structured query string inputs.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SLIDE 4: TECHNICAL LABS PART 2 & KAGGLE -->
-            <div class="slide" id="slide4">
+            <!-- SLIDE 5: TECHNICAL LABS PART 2 & KAGGLE -->
+            <div class="slide" id="slide5">
                 <div>
                     <h2>🌐 Section D(ii): Web Security, IoT & Open Source Contribution</h2>
                     <p style="margin: 0;">Evaluating modern endpoint application interfaces, microcontroller logic, and threat intelligence data platforms:</p>
@@ -450,8 +528,8 @@
                 </div>
             </div>
 
-            <!-- SLIDE 5: SECTION E -->
-            <div class="slide" id="slide5">
+            <!-- SLIDE 6: SECTION E -->
+            <div class="slide" id="slide6">
                 <div class="text-layout">
                     <h2>🧠 Section E: Strategic Personal Reflection</h2>
                     <h3>Target Corporation: CyberSecurity Malaysia (CSM)</h3>
@@ -471,7 +549,7 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT: BACKGROUND MATRIX & CONTROLS -->
+    <!-- JAVASCRIPT CONTROLLERS -->
     <script>
         // BACKGROUND ANIMATION RUNNER
         const canvas = document.getElementById('cyber-bg');
@@ -491,7 +569,7 @@
         const draw = () => {
             ctx.fillStyle = 'rgba(11, 15, 25, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#6366f1'; 
+            ctx.fillStyle = '#38bdf8'; 
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < rainDrops.length; i++) {
@@ -508,31 +586,27 @@
             canvas.height = window.innerHeight;
         });
 
-        // SLIDE NAVIGATION CONTROLLER (5 SLIDES TOTAL)
+        // SLIDE NAVIGATION CONTROLLER (6 SLIDES)
         let currentSlide = 1;
-        const totalSlides = 5;
+        const totalSlides = 6;
 
         function changeSlide(direction) {
             let targetSlide = currentSlide + direction;
-            if (targetSlide < 1) {
-                window.location.href = "index.html";
-                return;
-            }
+            if (targetSlide < 1) return;
             if (targetSlide > totalSlides) {
-                alert("Review Completed! Returning to the main portal.");
-                window.location.href = "index.html";
+                alert("Review Completed! Returning to the gateway.");
+                goToSlide(1);
                 return;
             }
             goToSlide(targetSlide);
         }
 
-        // FUNGSI KHAS UNTUK SIDEBAR DIRECT JUMP
         function goToSlide(slideNumber) {
-            // Hilangkan slide lama
+            // Hilangkan active lama
             document.getElementById(`slide${currentSlide}`).classList.remove('active');
             document.getElementById(`nav${currentSlide}`).classList.remove('active');
 
-            // Set slide baru
+            // Set active baru
             currentSlide = slideNumber;
             document.getElementById(`slide${currentSlide}`).classList.add('active');
             document.getElementById(`nav${currentSlide}`).classList.add('active');
@@ -540,7 +614,7 @@
             // Kemaskini teks info slide
             document.getElementById('indicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
             
-            // Kemaskini butang Next/Complete
+            // Urus butang teks untuk penamat
             const nextBtn = document.getElementById('nextBtn');
             if (currentSlide === totalSlides) {
                 nextBtn.innerText = "Complete ✨";
