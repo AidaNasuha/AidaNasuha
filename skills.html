@@ -12,10 +12,9 @@
             background-color: #0b0f19;
             color: #f8fafc;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: row; /* Menyusun sidebar di kiri & container di kanan */
             min-height: 100vh;
             overflow: hidden;
             position: relative;
@@ -32,7 +31,82 @@
             opacity: 0.12;
         }
 
-        /* ADJUSTED CONTAINER TO FIT 4 COLUMNS COMFORTABLY */
+        /* SIDEBAR STYLING (Macam dalam gambar ztul / edited-image.png) */
+        .sidebar {
+            width: 80px;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(99, 102, 241, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+            gap: 25px;
+            z-index: 3;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar-item {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            color: #64748b;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sidebar-item:hover {
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        /* State Menu Aktif */
+        .sidebar-item.active {
+            color: #818cf8;
+            background: rgba(79, 70, 229, 0.2);
+            border-left: 3px solid #818cf8;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Tooltip Penerangan Menu */
+        .sidebar-item::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 65px;
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.75rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .sidebar-item:hover::after {
+            opacity: 1;
+            visibility: visible;
+            left: 75px;
+        }
+
+        /* MAIN CONTENT AREA CONTAINER */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 2;
+        }
+
         .container {
             background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(12px);
@@ -41,7 +115,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
             width: 1350px;
-            max-width: 95vw;
+            max-width: 85vw;
             height: 750px;
             max-height: 92vh;
             display: flex;
@@ -49,7 +123,6 @@
             justify-content: space-between;
             box-sizing: border-box;
             position: relative;
-            z-index: 2;
         }
 
         .slide-indicator {
@@ -209,177 +282,192 @@
 
     <canvas id="cyber-bg"></canvas>
 
-    <div class="container">
-        <div class="slide-indicator" id="indicator">Slide 1 of 5</div>
+    <!-- BAHAGIAN SIDEBAR BARU -->
+    <div class="sidebar">
+        <div class="sidebar-item active" id="nav1" onclick="goToSlide(1)" data-tooltip="Career Exploration">
+            <i class="fa-solid fa-house"></i>
+        </div>
+        <div class="sidebar-item" id="nav2" onclick="goToSlide(2)" data-tooltip="Skills Assessment">
+            <i class="fa-solid fa-briefcase"></i>
+        </div>
+        <div class="sidebar-item" id="nav3" onclick="goToSlide(3)" data-tooltip="Core Lab Evidence">
+            <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div class="sidebar-item" id="nav4" onclick="goToSlide(4)" data-tooltip="Web & IoT Security">
+            <i class="fa-solid fa-bullseye"></i>
+        </div>
+        <div class="sidebar-item" id="nav5" onclick="goToSlide(5)" data-tooltip="Personal Reflection">
+            <i class="fa-solid fa-folder-open"></i>
+        </div>
+    </div>
 
-        <!-- SLIDE 1: SECTION A (CAREER EXPLORATION WITH RIGHTSIDE LIVE TECH STACK) -->
-        <div class="slide active" id="slide1">
-            <div class="slide-content">
+    <!-- KANDUNGAN UTAMA (DIBALUT DENGAN MAIN-CONTENT) -->
+    <div class="main-content">
+        <div class="container">
+            <div class="slide-indicator" id="indicator">Slide 1 of 5</div>
+
+            <!-- SLIDE 1: SECTION A -->
+            <div class="slide active" id="slide1">
+                <div class="slide-content">
+                    <div>
+                        <h2>📂 Section A: Career Exploration</h2>
+                        <h3>Target Role: Security Operations Center (SOC) Analyst</h3>
+                        <p><strong>Key Job Responsibilities:</strong></p>
+                        <ul>
+                            <li><strong>Continuous Monitoring:</strong> Overseeing organization network traffic 24/7 utilizing SIEM tools to detect potential malicious activities or cyber intrusions.</li>
+                            <li><strong>Alert Triaging:</strong> Reviewing and analyzing safety alerts to effectively distinguish actual threats from false positives.</li>
+                            <li><strong>Incident Documentation:</strong> Generating precise incident investigation logs to facilitate rapid mitigation by response teams.</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Relevance:</strong> Acts as the vital frontline shield to contain ransomware and complex malware threats before they execute cross-network escalations.</p>
+                    </div>
+
+                    <!-- RIGHT SIDE DYNAMIC CONTENT -->
+                    <div style="background: rgba(30, 41, 59, 0.4); border: 1px dashed rgba(56, 189, 248, 0.4); padding: 25px; border-radius: 15px;">
+                        <h4 style="color: #38bdf8; margin-top: 0; text-align: center; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 12px; font-size: 1.1rem;">
+                            <i class="fa-solid fa-microchip"></i> Required Technical Stack
+                        </h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;">
+                            <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+                                <i class="fa-solid fa-magnifying-glass-chart" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
+                                SIEM (Splunk/ELK)
+                            </div>
+                            <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+                                <i class="fa-solid fa-network-wired" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
+                                Packet Analysis
+                            </div>
+                            <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+                                <i class="fa-solid fa-file-invoice" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
+                                Log Auditing
+                            </div>
+                            <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+                                <i class="fa-solid fa-shield-virus" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
+                                Incident Response
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px; background: rgba(79, 70, 229, 0.15); border: 1px solid rgba(79, 70, 229, 0.3); padding: 12px; border-radius: 8px; text-align: center;">
+                            <span style="font-size: 0.8rem; text-transform: uppercase; background: #4f46e5; padding: 2px 8px; border-radius: 12px; font-weight: bold; color: white;">Target Milestone</span>
+                            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 8px 0 0 0; font-weight: 500;">
+                                <i class="fa-solid fa-graduation-cap" style="color: #818cf8;"></i> CompTIA Security+ Certification
+                            </p>
+                            <p style="font-size: 0.75rem; color: #94a3b8; margin: 2px 0 0 0; font-style: italic;">(Currently in preparation)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: SECTION B -->
+            <div class="slide" id="slide2">
+                <div class="text-layout">
+                    <h2>📊 Section B: Personal Skills Assessment</h2>
+                    <p>An honest evaluation mapping my current academic technical skillset against standard cybersecurity entry-level benchmarks:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Industry Core Competency</th>
+                                <th>My Current Level</th>
+                                <th>Strategic Remediation Plan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Traffic & Packet Inspection</strong></td>
+                                <td>Intermediate</td>
+                                <td>Deploying Wireshark and Zenmap CLI inside isolated environments.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Digital Forensics Artifacts</strong></td>
+                                <td>Basic-Intermediate</td>
+                                <td>Refining partition parsing and image investigation using Autopsy.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Secure Architecture Design</strong></td>
+                                <td>Advanced</td>
+                                <td>Executing deep ACL routing schemas via Cisco Packet Tracer.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: CORE TECHNICAL LABS -->
+            <div class="slide" id="slide3">
                 <div>
-                    <h2>📂 Section A: Career Exploration</h2>
-                    <h3>Target Role: Security Operations Center (SOC) Analyst</h3>
-                    <p><strong>Key Job Responsibilities:</strong></p>
-                    <ul>
-                        <li><strong>Continuous Monitoring:</strong> Overseeing organization network traffic 24/7 utilizing SIEM tools to detect potential malicious activities or cyber intrusions.</li>
-                        <li><strong>Alert Triaging:</strong> Reviewing and analyzing safety alerts to effectively distinguish actual threats from false positives.</li>
-                        <li><strong>Incident Documentation:</strong> Generating precise incident investigation logs to facilitate rapid mitigation by response teams.</li>
-                    </ul>
-                    <p style="margin-top: 10px;"><strong>Relevance:</strong> Acts as the vital frontline shield to contain ransomware and complex malware threats before they execute cross-network escalations.</p>
-                </div>
-
-                <!-- RIGHT SIDE DYNAMIC CONTENT: FILLING THE EMPTY SPACE -->
-                <div style="background: rgba(30, 41, 59, 0.4); border: 1px dashed rgba(56, 189, 248, 0.4); padding: 25px; border-radius: 15px;">
-                    <h4 style="color: #38bdf8; margin-top: 0; text-align: center; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 12px; font-size: 1.1rem;">
-                        <i class="fa-solid fa-microchip"></i> Required Technical Stack
-                    </h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;">
-                        <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
-                            <i class="fa-solid fa-magnifying-glass-chart" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
-                            SIEM (Splunk/ELK)
-                        </div>
-                        <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
-                            <i class="fa-solid fa-network-wired" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
-                            Packet Analysis
-                        </div>
-                        <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
-                            <i class="fa-solid fa-file-invoice" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
-                            Log Auditing
-                        </div>
-                        <div style="background: rgba(15, 23, 42, 0.7); padding: 12px; border-radius: 8px; text-align: center; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2);">
-                            <i class="fa-solid fa-shield-virus" style="color: #38bdf8; display: block; font-size: 1.6rem; margin-bottom: 6px;"></i>
-                            Incident Response
-                        </div>
-                    </div>
+                    <h2>🛠️ Section C & D: Core Technical Lab Evidence</h2>
+                    <p style="margin: 0;">Hands-on implementation logs validating infrastructure routing, packet tracing, and database testing:</p>
                     
-                    <div style="margin-top: 20px; background: rgba(79, 70, 229, 0.15); border: 1px solid rgba(79, 70, 229, 0.3); padding: 12px; border-radius: 8px; text-align: center;">
-                        <span style="font-size: 0.8rem; text-transform: uppercase; background: #4f46e5; padding: 2px 8px; border-radius: 12px; font-weight: bold; color: white;">Target Milestone</span>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 8px 0 0 0; font-weight: 500;">
-                            <i class="fa-solid fa-graduation-cap" style="color: #818cf8;"></i> CompTIA Security+ Certification
-                        </p>
-                        <p style="font-size: 0.75rem; color: #94a3b8; margin: 2px 0 0 0; font-style: italic;">(Currently in preparation)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 2: SECTION B (PERSONAL SKILLS ASSESSMENT) -->
-        <div class="slide" id="slide2">
-            <div class="text-layout">
-                <h2>📊 Section B: Personal Skills Assessment</h2>
-                <p>An honest evaluation mapping my current academic technical skillset against standard cybersecurity entry-level benchmarks:</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Industry Core Competency</th>
-                            <th>My Current Level</th>
-                            <th>Strategic Remediation Plan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Traffic & Packet Inspection</strong></td>
-                            <td>Intermediate</td>
-                            <td>Deploying Wireshark and Zenmap CLI inside isolated environments.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Digital Forensics Artifacts</strong></td>
-                            <td>Basic-Intermediate</td>
-                            <td>Refining partition parsing and image investigation using Autopsy.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Secure Architecture Design</strong></td>
-                            <td>Advanced</td>
-                            <td>Executing deep ACL routing schemas via Cisco Packet Tracer.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- SLIDE 3: CORE TECHNICAL LABS (4 IMAGES IN ONE ROW) -->
-        <div class="slide" id="slide3">
-            <div>
-                <h2>🛠️ Section C & D: Core Technical Lab Evidence</h2>
-                <p style="margin: 0;">Hands-on implementation logs validating infrastructure routing, packet tracing, and database testing:</p>
-                
-                <div class="quad-grid">
-                    <!-- ARTIFACT 1 -->
-                    <div class="artifact-card">
-                        <p class="card-title">1. Cisco VLAN Setup</p>
-                        <img src="Screenshot 2025-04-16 124934.png" alt="Cisco Packet Tracer Lab" class="lab-screenshot">
-                        <p class="card-desc">Investigating broadcast traffic domains, configuring inter-VLAN routing tables, and validating secure switches configurations.</p>
-                    </div>
-                    <!-- ARTIFACT 2 -->
-                    <div class="artifact-card">
-                        <p class="card-title">2. XAMPP Server</p>
-                        <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Control" class="lab-screenshot">
-                        <p class="card-desc">Deploying and managing standalone local stack services utilizing Apache and MySQL backend environment on XAMPP.</p>
-                    </div>
-                    <!-- ARTIFACT 3 -->
-                    <div class="artifact-card">
-                        <p class="card-title">3. Wireshark Audit</p>
-                        <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Audit" class="lab-screenshot">
-                        <p class="card-desc">Analyzing live raw network capture .pcap trace within Wireshark to isolate unencrypted HTTP text credentials.</p>
-                    </div>
-                    <!-- ARTIFACT 4 -->
-                    <div class="artifact-card">
-                        <p class="card-title">4. SQL Injection Lab</p>
-                        <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Lab" class="lab-screenshot">
-                        <p class="card-desc">Simulating backend database application logic bypass manipulations inside WebGoat using structured query string inputs.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 4: TECHNICAL LABS PART 2 & KAGGLE (3 IMAGES IN ONE ROW) -->
-        <div class="slide" id="slide4">
-            <div>
-                <h2>🌐 Section D(ii): Web Security, IoT & Open Source Contribution</h2>
-                <p style="margin: 0;">Evaluating modern endpoint application interfaces, microcontroller logic, and threat intelligence data platforms:</p>
-                
-                <div class="triple-grid">
-                    <!-- ARTIFACT 5 -->
-                    <div class="artifact-card">
-                        <p class="card-title">5. OWASP Application Testing</p>
-                        <img src="Screenshot 2025-12-18 204722.png" alt="OWASP Juice Shop" class="lab-screenshot">
-                        <p class="card-desc">Mapping attack surfaces and testing security vulnerabilities on web interfaces using an isolated Kali Linux virtual workstation environment.</p>
-                    </div>
-                    <!-- ARTIFACT 6 -->
-                    <div class="artifact-card">
-                        <p class="card-title">6. Arduino IoT Framework</p>
-                        <img src="Screenshot 2026-01-18 195846.png" alt="Tinkercad Simulation" class="lab-screenshot">
-                        <p class="card-desc">Configuring embedded hardware infrastructure via Arduino Uno, programming ultrasonic sensory metrics outputs directly to an LCD screen.</p>
-                    </div>
-                    <!-- ARTIFACT 7 -->
-                    <div class="artifact-card" style="border-color: rgba(6, 182, 212, 0.4); display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <p class="card-title" style="color: #06b6d4;">7. Malay Phishing Dataset</p>
-                            <img src="Screenshot 2025-12-02 170628.png" alt="Kaggle Dataset" class="lab-screenshot">
-                            <p class="card-desc">Published the Malay Phishing Email Dataset on Kaggle repository to help train Machine Learning models in detecting regional cyber threats.</p>
+                    <div class="quad-grid">
+                        <div class="artifact-card">
+                            <p class="card-title">1. Cisco VLAN Setup</p>
+                            <img src="Screenshot 2025-04-16 124934.png" alt="Cisco Packet Tracer Lab" class="lab-screenshot">
+                            <p class="card-desc">Investigating broadcast traffic domains, configuring inter-VLAN routing tables, and validating secure switches configurations.</p>
                         </div>
-                        <a href="https://www.kaggle.com/datasets/nasuhafadeli03/malay-phishing-email-dataset" target="_blank" style="color: #06b6d4; font-size: 0.8rem; font-weight: bold; text-decoration: underline; display: block; margin-top: 10px;">View Kaggle Dataset →</a>
+                        <div class="artifact-card">
+                            <p class="card-title">2. XAMPP Server</p>
+                            <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Control" class="lab-screenshot">
+                            <p class="card-desc">Deploying and managing standalone local stack services utilizing Apache and MySQL backend environment on XAMPP.</p>
+                        </div>
+                        <div class="artifact-card">
+                            <p class="card-title">3. Wireshark Audit</p>
+                            <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Audit" class="lab-screenshot">
+                            <p class="card-desc">Analyzing live raw network capture .pcap trace within Wireshark to isolate unencrypted HTTP text credentials.</p>
+                        </div>
+                        <div class="artifact-card">
+                            <p class="card-title">4. SQL Injection Lab</p>
+                            <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Lab" class="lab-screenshot">
+                            <p class="card-desc">Simulating backend database application logic bypass manipulations inside WebGoat using structured query string inputs.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- SLIDE 5: SECTION E (STRATEGIC PERSONAL REFLECTION) -->
-        <div class="slide" id="slide5">
-            <div class="text-layout">
-                <h2>🧠 Section E: Strategic Personal Reflection</h2>
-                <h3>Target Corporation: CyberSecurity Malaysia (CSM)</h3>
-                <ul>
-                    <li><strong>Why CSM?</strong> It is the highest apex national cybersecurity agency. Serving here yields remarkable exposure to real-world national threat telemetry.</li>
-                    <li><strong>Core Value Propositions:</strong> Possessing a robust foundational base in hands-on operations, an adaptive mindset, proficiency across security toolsets (Wireshark, Cisco Packet Tracer, Kali Linux), and direct intelligence dataset experience.</li>
-                    <li><strong>Strengths & Weaknesses:</strong> Meticulous during raw network packet log audits. Can sometimes take extra time tracing complex programmatic script errors, which is strategically offset via structured Pomodoro time management methods.</li>
-                </ul>
+            <!-- SLIDE 4: TECHNICAL LABS PART 2 & KAGGLE -->
+            <div class="slide" id="slide4">
+                <div>
+                    <h2>🌐 Section D(ii): Web Security, IoT & Open Source Contribution</h2>
+                    <p style="margin: 0;">Evaluating modern endpoint application interfaces, microcontroller logic, and threat intelligence data platforms:</p>
+                    
+                    <div class="triple-grid">
+                        <div class="artifact-card">
+                            <p class="card-title">5. OWASP Application Testing</p>
+                            <img src="Screenshot 2025-12-18 204722.png" alt="OWASP Juice Shop" class="lab-screenshot">
+                            <p class="card-desc">Mapping attack surfaces and testing security vulnerabilities on web interfaces using an isolated Kali Linux virtual workstation environment.</p>
+                        </div>
+                        <div class="artifact-card">
+                            <p class="card-title">6. Arduino IoT Framework</p>
+                            <img src="Screenshot 2026-01-18 195846.png" alt="Tinkercad Simulation" class="lab-screenshot">
+                            <p class="card-desc">Configuring embedded hardware infrastructure via Arduino Uno, programming ultrasonic sensory metrics outputs directly to an LCD screen.</p>
+                        </div>
+                        <div class="artifact-card" style="border-color: rgba(6, 182, 212, 0.4); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <p class="card-title" style="color: #06b6d4;">7. Malay Phishing Dataset</p>
+                                <img src="Screenshot 2025-12-02 170628.png" alt="Kaggle Dataset" class="lab-screenshot">
+                                <p class="card-desc">Published the Malay Phishing Email Dataset on Kaggle repository to help train Machine Learning models in detecting regional cyber threats.</p>
+                            </div>
+                            <a href="https://www.kaggle.com/datasets/nasuhafadeli03/malay-phishing-email-dataset" target="_blank" style="color: #06b6d4; font-size: 0.8rem; font-weight: bold; text-decoration: underline; display: block; margin-top: 10px;">View Kaggle Dataset →</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- INTERACTIVE NAVIGATION CONTROLS -->
-        <div class="nav-buttons">
-            <button class="btn btn-prev" id="prevBtn" onclick="changeSlide(-1)">← Back</button>
-            <button class="btn btn-next" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+            <!-- SLIDE 5: SECTION E -->
+            <div class="slide" id="slide5">
+                <div class="text-layout">
+                    <h2>🧠 Section E: Strategic Personal Reflection</h2>
+                    <h3>Target Corporation: CyberSecurity Malaysia (CSM)</h3>
+                    <ul>
+                        <li><strong>Why CSM?</strong> It is the highest apex national cybersecurity agency. Serving here yields remarkable exposure to real-world national threat telemetry.</li>
+                        <li><strong>Core Value Propositions:</strong> Possessing a robust foundational base in hands-on operations, an adaptive mindset, proficiency across security toolsets (Wireshark, Cisco Packet Tracer, Kali Linux), and direct intelligence dataset experience.</li>
+                        <li><strong>Strengths & Weaknesses:</strong> Meticulous during raw network packet log audits. Can sometimes take extra time tracing complex programmatic script errors, which is strategically offset via structured Pomodoro time management methods.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE NAVIGATION CONTROLS -->
+            <div class="nav-buttons">
+                <button class="btn btn-prev" id="prevBtn" onclick="changeSlide(-1)">← Back</button>
+                <button class="btn btn-next" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+            </div>
         </div>
     </div>
 
@@ -425,22 +513,34 @@
         const totalSlides = 5;
 
         function changeSlide(direction) {
-            document.getElementById(`slide${currentSlide}`).classList.remove('active');
-            currentSlide += direction;
-
-            if (currentSlide < 1) {
+            let targetSlide = currentSlide + direction;
+            if (targetSlide < 1) {
                 window.location.href = "index.html";
                 return;
             }
-            if (currentSlide > totalSlides) {
+            if (targetSlide > totalSlides) {
                 alert("Review Completed! Returning to the main portal.");
                 window.location.href = "index.html";
                 return;
             }
+            goToSlide(targetSlide);
+        }
 
+        // FUNGSI KHAS UNTUK SIDEBAR DIRECT JUMP
+        function goToSlide(slideNumber) {
+            // Hilangkan slide lama
+            document.getElementById(`slide${currentSlide}`).classList.remove('active');
+            document.getElementById(`nav${currentSlide}`).classList.remove('active');
+
+            // Set slide baru
+            currentSlide = slideNumber;
             document.getElementById(`slide${currentSlide}`).classList.add('active');
+            document.getElementById(`nav${currentSlide}`).classList.add('active');
+
+            // Kemaskini teks info slide
             document.getElementById('indicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
             
+            // Kemaskini butang Next/Complete
             const nextBtn = document.getElementById('nextBtn');
             if (currentSlide === totalSlides) {
                 nextBtn.innerText = "Complete ✨";
