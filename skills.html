@@ -135,19 +135,29 @@
             display: none;
             animation: slideIn 0.4s ease-in-out forwards;
             height: 100%;
+            overflow-y: auto; /* Membenarkan skrol jika teks panjang pada skrin kecil */
+            padding-right: 10px;
+        }
+
+        /* Custom Scrollbar untuk Slide */
+        .slide::-webkit-scrollbar {
+            width: 6px;
+        }
+        .slide::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 10px;
         }
 
         .slide.active {
             display: flex;
             flex-direction: column;
-            justify-content: center;
         }
 
-        /* SLIDE 1 (WELCOME CARD) CUSTOM INTERFACE */
+        /* WELCOME SCREEN INTERFACE */
         .welcome-card {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto;
+            margin: auto;
         }
 
         .profile-img-container {
@@ -155,8 +165,8 @@
             height: 150px;
             border-radius: 50%;
             margin: 0 auto 20px auto;
-            border: 4px solid #4f46e5;
-            box-shadow: 0 0 20px rgba(79, 70, 229, 0.6);
+            border: 4px solid #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
             overflow: hidden;
         }
 
@@ -201,16 +211,31 @@
             margin-top: 30px;
         }
 
-        /* SLIDE LAYOUTS */
-        .slide-content {
+        /* ROADMAP DYNAMIC GRID SPLIT */
+        .roadmap-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 35px;
-            align-items: center;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 30px;
+            align-items: start;
+            margin-top: 10px;
+        }
+
+        .scrollable-timeline {
+            max-height: 480px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+
+        .scrollable-timeline::-webkit-scrollbar {
+            width: 4px;
+        }
+        .scrollable-timeline::-webkit-scrollbar-thumb {
+            background: rgba(129, 140, 248, 0.3);
+            border-radius: 10px;
         }
 
         .text-layout {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
             width: 100%;
         }
@@ -252,8 +277,8 @@
             margin-bottom: 15px;
         }
 
-        h3 { color: #818cf8; font-size: 1.3rem; margin-top: 0; }
-        p, li { line-height: 1.6; color: #cbd5e1; font-size: 1rem; margin-bottom: 10px; }
+        h3 { color: #818cf8; font-size: 1.2rem; margin-top: 15px; margin-bottom: 8px; }
+        p, li { line-height: 1.6; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 8px; }
         ul { padding-left: 20px; margin-top: 5px; }
 
         .lab-screenshot {
@@ -266,14 +291,16 @@
             margin-bottom: 12px;
         }
 
-        /* STYLE KHAS UNTUK ROADMAP BESAR */
+        /* STRATEGIC ROADMAP IMAGE DISPLAY */
         .roadmap-large-display {
             width: 100%;
-            height: 380px;
+            height: auto;
+            max-height: 450px;
             object-fit: contain;
-            border-radius: 10px;
+            border-radius: 12px;
             border: 1px solid rgba(56, 189, 248, 0.4);
-            background: rgba(15, 23, 42, 0.5);
+            background: rgba(15, 23, 42, 0.6);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
         }
 
         .card-title { font-weight: bold; color: #38bdf8; font-size: 0.95rem; margin: 0 0 8px 0; }
@@ -296,7 +323,8 @@
         .nav-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 15px;
+            margin-top: auto;
+            padding-top: 15px;
         }
 
         .btn {
@@ -331,18 +359,16 @@
             border: 2px solid #059669;
             color: #10b981;
         }
-        .btn-resume:hover {
-            background: rgba(16, 185, 129, 0.1);
-        }
+        .btn-resume:hover { background: rgba(16, 185, 129, 0.1); }
 
         .btn-roadmap-trigger {
-            background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+            background: linear-gradient(90deg, #1d4ed8 0%, #0284c7 100%);
             color: white;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
         }
         .btn-roadmap-trigger:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.5);
         }
 
         @keyframes slideIn {
@@ -355,12 +381,12 @@
 
     <canvas id="cyber-bg"></canvas>
 
-    <!-- SIDEBAR NAVIGATION (6 ITEMS) -->
+    <!-- SIDEBAR NAVIGATION -->
     <div class="sidebar">
         <div class="sidebar-item active" id="nav1" onclick="goToSlide(1)" data-tooltip="Welcome Gateway">
             <i class="fa-solid fa-house"></i>
         </div>
-        <div class="sidebar-item" id="nav2" onclick="goToSlide(2)" data-tooltip="Career Exploration & Roadmap">
+        <div class="sidebar-item" id="nav2" onclick="goToSlide(2)" data-tooltip="Strategic Roadmap">
             <i class="fa-solid fa-map-location-dot"></i>
         </div>
         <div class="sidebar-item" id="nav3" onclick="goToSlide(3)" data-tooltip="Skills Assessment">
@@ -385,14 +411,13 @@
             <div class="slide active" id="slide1">
                 <div class="welcome-card">
                     <div class="profile-img-container">
-                        <!-- Sila gantikan gambar profil anda di bawah jika mahu -->
                         <img src="https://via.placeholder.com/150" alt="Aida Nasuha">
                     </div>
                     <h1>Aida Nasuha Binti Muhamad Fadeli</h1>
                     <h3>Future Network Security Specialist</h3>
                     
                     <div class="welcome-title">Welcome to my E-Portfolio.</div>
-                    <p>Based on my background in the field of Computer Science / IT, this website is specially built to present strategic plans, skills assessment, as well as my preparation to position myself in today's network security industry.</p>
+                    <p>Leveraging a solid foundation in Computer Science and IT, this e-portfolio demonstrates my strategic framework, validated technical skills, and proactive readiness to defend critical infrastructures against modern cyber threats in today's network security landscape.</p>
                     
                     <div class="welcome-buttons">
                         <a href="resume.pdf" target="_blank" class="btn btn-resume">
@@ -402,35 +427,43 @@
                             <i class="fa-solid fa-route"></i> View Career Roadmap
                         </button>
                         <button class="btn btn-next" onclick="changeSlide(1)">
-                            Next: View Skills & Exploration →
+                            Next: View Strategic Roadmap →
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- SLIDE 2: SECTION A (CAREER EXPLORATION + NEW ROADMAP IMAGE) -->
+            <!-- SLIDE 2: STRATEGIC CAREER DEVELOPMENT PLAN (UPGRADED VERSION) -->
             <div class="slide" id="slide2">
-                <div class="slide-content">
-                    <div>
-                        <h2>📂 Section A: Career Exploration</h2>
-                        <h3>Target Role: Security Operations Center (SOC) Analyst</h3>
-                        <p><strong>Key Job Responsibilities:</strong></p>
+                <h2>🎯 Career Development Plan & Vision Blueprint</h2>
+                <div class="roadmap-grid">
+                    
+                    <!-- Kiri: Kandungan teks yang premium & boleh skrol -->
+                    <div class="scrollable-timeline">
+                        <h3>🚀 Career Vision & Mission</h3>
+                        <p>My ultimate professional objective is to scale into a high-caliber <strong>Cybersecurity Specialist</strong>, initially anchoring my expertise as a <strong>SOC Analyst</strong>. I am committed to orchestrating proactive defense mechanisms, securing enterprise networks, mitigating advanced persistent threats (APTs), and engineering resilient infrastructure protections.</p>
+                        
+                        <h3>📅 Tactical Career Timeline</h3>
                         <ul>
-                            <li><strong>Continuous Monitoring:</strong> Overseeing network traffic 24/7 utilizing SIEM tools to detect malicious activities.</li>
-                            <li><strong>Alert Triaging:</strong> Reviewing safety alerts to effectively distinguish actual threats from false positives.</li>
-                            <li><strong>Incident Documentation:</strong> Generating precise investigation logs for rapid threat mitigation.</li>
+                            <li><strong>🎓 2026 — Academic Milestone & Foundation:</strong> Graduate with a Bachelor of Computer Science (Computer Network Security) degree, converting theoretical schemas into solid practical networking and threat vector analysis.</li>
+                            <li><strong>📚 2026–2027 — Certification & Portfolio Engineering:</strong> Secure the Cisco CCNA and CompTIA Security+ credentials. Simultaneously expand open-source contributions and design complex virtualization labs.</li>
+                            <li><strong>💼 2027–2029 — Enterprise Operations & SOC Tier-1:</strong> Transition into an enterprise Security Operations Center (SOC). Gain intensive mileage in 24/7 network telemetry monitoring, high-fidelity alert triaging, and incident handling.</li>
+                            <li><strong>🛡️ 2030+ — Apex Specialization & National Defense:</strong> Advance into elite tiers such as Senior Network Security Analyst or Security Architect at national agencies like <strong>CyberSecurity Malaysia (CSM)</strong>.</li>
                         </ul>
-                        <p><strong>Strategic Growth Path:</strong> Focused progression building foundations up to national-scale cyber intelligence infrastructure.</p>
+
+                        <h3>💡 Continuous Threat Intelligence Strategy</h3>
+                        <p>To maintain an edge against modern adversarial tactics, techniques, and procedures (TTPs), I commit to active threat hunting research, executing continuous hands-on validation inside isolated sandbox laboratory environments.</p>
                     </div>
 
-                    <!-- PAPARAN GAMBAR ROADMAP REALISTIK BARU ANDA -->
-                    <div>
-                        <h4 style="color: #38bdf8; margin-top: 0; font-size: 1rem; text-align: center; margin-bottom: 10px;">
-                            <i class="fa-solid fa-map"></i> My Cybersecurity Roadmap Blueprint
+                    <!-- Kanan: Paparan gambar roadmap all-blue realistik -->
+                    <div style="text-align: center;">
+                        <h4 style="color: #38bdf8; margin-top: 0; font-size: 0.95rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            <i class="fa-solid fa-map-marked-alt"></i> Visual Roadmap Alignment
                         </h4>
-                        <!-- GANTIKAN NAMA FAIL DI BAWAH KEPADA GABMAR ROADMAP REAL ANDA -->
-                        <img src="watermarked_img_12262827937440988411.png" alt="Strategic Career Roadmap" class="roadmap-large-display">
+                        <!-- GANTIKAN NAMA FAIL DI BAWAH KEPADA NAMA GAMBAR ROADMAP REAL ANDA -->
+                        <img src="watermarked_img_12262827937440988411.png" alt="Strategic All-Blue Roadmap Blueprint" class="roadmap-large-display">
                     </div>
+
                 </div>
             </div>
 
