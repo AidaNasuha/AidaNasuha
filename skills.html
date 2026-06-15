@@ -118,13 +118,15 @@
             max-height: 92vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center; /* Dipusatkan secara menegak tanpa navigasi bawah bertindih */
             box-sizing: border-box;
             position: relative;
         }
 
         .slide-indicator {
-            text-align: right;
+            position: absolute;
+            top: 30px;
+            right: 35px;
             font-size: 0.9rem;
             color: #38bdf8;
             font-weight: bold;
@@ -135,11 +137,12 @@
             display: none;
             animation: slideIn 0.4s ease-in-out forwards;
             height: 100%;
-            overflow-y: auto; /* Membenarkan skrol jika teks panjang pada skrin kecil */
+            overflow-y: auto;
             padding-right: 10px;
+            justify-content: center;
+            flex-direction: column;
         }
 
-        /* Custom Scrollbar untuk Slide */
         .slide::-webkit-scrollbar {
             width: 6px;
         }
@@ -150,7 +153,6 @@
 
         .slide.active {
             display: flex;
-            flex-direction: column;
         }
 
         /* WELCOME SCREEN INTERFACE */
@@ -161,13 +163,17 @@
         }
 
         .profile-img-container {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            margin: 0 auto 20px auto;
-            border: 4px solid #38bdf8;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+            margin: 0 auto 25px auto;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
             overflow: hidden;
+            background: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .profile-img-container img {
@@ -199,16 +205,17 @@
         }
 
         .welcome-card p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.7;
             color: #cbd5e1;
+            margin-bottom: 35px;
         }
 
         .welcome-buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 10px;
         }
 
         /* ROADMAP DYNAMIC GRID SPLIT */
@@ -319,14 +326,7 @@
         th, td { padding: 14px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         th { background-color: #4f46e5; color: white; }
 
-        /* BUTTONS */
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: auto;
-            padding-top: 15px;
-        }
-
+        /* BUTTONS DESIGN */
         .btn {
             padding: 12px 35px;
             font-weight: bold;
@@ -340,9 +340,6 @@
             gap: 10px;
             text-decoration: none;
         }
-
-        .btn-prev { background: #475569; color: white; }
-        .btn-prev:hover { background: #64748b; }
         
         .btn-next {
             background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%);
@@ -355,21 +352,26 @@
         }
 
         .btn-resume {
-            background: transparent;
-            border: 2px solid #059669;
+            background: rgba(16, 185, 129, 0.05);
+            border: 2px solid #10b981;
             color: #10b981;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
         }
-        .btn-resume:hover { background: rgba(16, 185, 129, 0.1); }
-
-        .btn-roadmap-trigger {
-            background: linear-gradient(90deg, #1d4ed8 0%, #0284c7 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
-        }
-        .btn-roadmap-trigger:hover {
+        .btn-resume:hover { 
+            background: rgba(16, 185, 129, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.5);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
         }
+
+        /* Tambahan untuk susunan butang navigasi pada slide dalaman */
+        .slide-nav-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+        .btn-prev { background: #475569; color: white; }
+        .btn-prev:hover { background: #64748b; }
 
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(15px); }
@@ -407,57 +409,51 @@
         <div class="container">
             <div class="slide-indicator" id="indicator">Slide 1 of 6</div>
 
-            <!-- SLIDE 1: WELCOME SCREEN (HANYA BUTTON RESUME) -->
-<div class="slide active" id="slide1">
-    <div class="welcome-card">
-        <div class="profile-img-container">
-            <img src="gambar-aida.jpg" alt="Aida Nasuha">
-        </div>
-        <h1>Aida Nasuha Binti Muhamad Fadeli</h1>
-        <h3>Future Network Security Specialist</h3>
-        
-        <div class="welcome-title">Welcome to my E-Portfolio.</div>
-        <p>Leveraging a solid foundation in Computer Science and IT, this e-portfolio demonstrates my strategic framework, validated technical skills, and proactive readiness to defend critical infrastructures against modern cyber threats in today's network security landscape.</p>
-        
-        <div class="welcome-buttons">
-            <a href="resume.pdf" target="_blank" class="btn btn-resume">
-                <i class="fa-solid fa-file-lines"></i> View My Resume
-            </a>
-        </div>
-    </div>
-</div>
+            <!-- SLIDE 1: WELCOME SCREEN (IKUT IMAGE_01AAFF.PNG) -->
+            <div class="slide active" id="slide1">
+                <div class="welcome-card">
+                    <div class="profile-img-container">
+                        <!-- Letak nama fail gambar anda di sini -->
+                        <img src="aidaf.png" alt="Aida Nasuha" onerror="this.src='https://via.placeholder.com/160/1e293b/38bdf8?text=Aida+Nasuha'">
+                    </div>
+                    <h1>Aida Nasuha Binti Muhamad Fadeli</h1>
+                    <h3>Future Network Security Specialist</h3>
+                    
+                    <div class="welcome-title">Welcome to my E-Portfolio.</div>
+                    <p>Based on my background in the field of Computer Science / IT, this website is specially built to present strategic plans, skills assessment, as well as my preparation to position myself in today's network security industry.</p>
+                    
+                    <div class="welcome-buttons">
+                        <a href="resume.pdf" target="_blank" class="btn btn-resume">
+                            <i class="fa-solid fa-file-lines"></i> View My Resume
+                        </a>
+                        <button class="btn btn-next" onclick="changeSlide(1)">
+                            Next: View Skills & Exploration →
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-            <!-- SLIDE 2: STRATEGIC CAREER DEVELOPMENT PLAN (UPGRADED VERSION) -->
+            <!-- SLIDE 2: STRATEGIC CAREER DEVELOPMENT PLAN -->
             <div class="slide" id="slide2">
                 <h2>🎯 Career Development Plan & Vision Blueprint</h2>
                 <div class="roadmap-grid">
-                    
-                    <!-- Kiri: Kandungan teks yang premium & boleh skrol -->
                     <div class="scrollable-timeline">
                         <h3>🚀 Career Vision & Mission</h3>
-                        <p>My ultimate professional objective is to scale into a high-caliber <strong>Cybersecurity Specialist</strong>, initially anchoring my expertise as a <strong>SOC Analyst</strong>. I am committed to orchestrating proactive defense mechanisms, securing enterprise networks, mitigating advanced persistent threats (APTs), and engineering resilient infrastructure protections.</p>
-                        
+                        <p>My ultimate professional objective is to scale into a high-caliber <strong>Cybersecurity Specialist</strong>, initially anchoring my expertise as a <strong>SOC Analyst</strong>.</p>
                         <h3>📅 Tactical Career Timeline</h3>
                         <ul>
-                            <li><strong>🎓 2026 — Academic Milestone & Foundation:</strong> Graduate with a Bachelor of Computer Science (Computer Network Security) degree, converting theoretical schemas into solid practical networking and threat vector analysis.</li>
-                            <li><strong>📚 2026–2027 — Certification & Portfolio Engineering:</strong> Secure the Cisco CCNA and CompTIA Security+ credentials. Simultaneously expand open-source contributions and design complex virtualization labs.</li>
-                            <li><strong>💼 2027–2029 — Enterprise Operations & SOC Tier-1:</strong> Transition into an enterprise Security Operations Center (SOC). Gain intensive mileage in 24/7 network telemetry monitoring, high-fidelity alert triaging, and incident handling.</li>
-                            <li><strong>🛡️ 2030+ — Apex Specialization & National Defense:</strong> Advance into elite tiers such as Senior Network Security Analyst or Security Architect at national agencies like <strong>CyberSecurity Malaysia (CSM)</strong>.</li>
+                            <li><strong>🎓 2026 — Academic Milestone:</strong> Graduate with a Bachelor of Computer Science (Computer Network Security).</li>
+                            <li><strong>📚 2026–2027 — Certifications:</strong> Secure Cisco CCNA and CompTIA Security+.</li>
+                            <li><strong>💼 2027–2029 — SOC Tier-1 Operations:</strong> Transition into an enterprise Security Operations Center.</li>
                         </ul>
-
-                        <h3>💡 Continuous Threat Intelligence Strategy</h3>
-                        <p>To maintain an edge against modern adversarial tactics, techniques, and procedures (TTPs), I commit to active threat hunting research, executing continuous hands-on validation inside isolated sandbox laboratory environments.</p>
                     </div>
-
-                    <!-- Kanan: Paparan gambar roadmap all-blue realistik -->
                     <div style="text-align: center;">
-                        <h4 style="color: #38bdf8; margin-top: 0; font-size: 0.95rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
-                            <i class="fa-solid fa-map-marked-alt"></i> Visual Roadmap Alignment
-                        </h4>
-                        <!-- GANTIKAN NAMA FAIL DI BAWAH KEPADA NAMA GAMBAR ROADMAP REAL ANDA -->
-                        <img src="watermarked_img_12262827937440988411.png" alt="Strategic All-Blue Roadmap Blueprint" class="roadmap-large-display">
+                        <img src="watermarked_img_12262827937440988411.png" alt="Strategic Roadmap Blueprint" class="roadmap-large-display">
                     </div>
-
+                </div>
+                <div class="slide-nav-container">
+                    <button class="btn btn-prev" onclick="changeSlide(-1)">← Back</button>
+                    <button class="btn btn-next" onclick="changeSlide(1)">Next →</button>
                 </div>
             </div>
 
@@ -465,7 +461,6 @@
             <div class="slide" id="slide3">
                 <div class="text-layout">
                     <h2>📊 Section B: Personal Skills Assessment</h2>
-                    <p>An honest evaluation mapping my current academic technical skillset against standard cybersecurity entry-level benchmarks:</p>
                     <table>
                         <thead>
                             <tr>
@@ -475,83 +470,64 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><strong>Traffic & Packet Inspection</strong></td>
-                                <td>Intermediate</td>
-                                <td>Deploying Wireshark and Zenmap CLI inside isolated environments.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Digital Forensics Artifacts</strong></td>
-                                <td>Basic-Intermediate</td>
-                                <td>Refining partition parsing and image investigation using Autopsy.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Secure Architecture Design</strong></td>
-                                <td>Advanced</td>
-                                <td>Executing deep ACL routing schemas via Cisco Packet Tracer.</td>
-                            </tr>
+                            <tr><td><strong>Traffic & Packet Inspection</strong></td><td>Intermediate</td><td>Deploying Wireshark.</td></tr>
+                            <tr><td><strong>Secure Architecture Design</strong></td><td>Advanced</td><td>Executing ACL schemas via Cisco.</td></tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="slide-nav-container">
+                    <button class="btn btn-prev" onclick="changeSlide(-1)">← Back</button>
+                    <button class="btn btn-next" onclick="changeSlide(1)">Next →</button>
                 </div>
             </div>
 
             <!-- SLIDE 4: CORE TECHNICAL LABS -->
             <div class="slide" id="slide4">
-                <div>
-                    <h2>🛠️ Section C & D: Core Technical Lab Evidence</h2>
-                    <p style="margin: 0;">Hands-on implementation logs validating infrastructure routing, packet tracing, and database testing:</p>
-                    
-                    <div class="quad-grid">
-                        <div class="artifact-card">
-                            <p class="card-title">1. Cisco VLAN Setup</p>
-                            <img src="Screenshot 2025-04-16 124934.png" alt="Cisco Packet Tracer Lab" class="lab-screenshot">
-                            <p class="card-desc">Investigating broadcast traffic domains, configuring inter-VLAN routing tables, and validating secure switches configurations.</p>
-                        </div>
-                        <div class="artifact-card">
-                            <p class="card-title">2. XAMPP Server</p>
-                            <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Control" class="lab-screenshot">
-                            <p class="card-desc">Deploying and managing standalone local stack services utilizing Apache and MySQL backend environment on XAMPP.</p>
-                        </div>
-                        <div class="artifact-card">
-                            <p class="card-title">3. Wireshark Audit</p>
-                            <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Audit" class="lab-screenshot">
-                            <p class="card-desc">Analyzing live raw network capture .pcap trace within Wireshark to isolate unencrypted HTTP text credentials.</p>
-                        </div>
-                        <div class="artifact-card">
-                            <p class="card-title">4. SQL Injection Lab</p>
-                            <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Lab" class="lab-screenshot">
-                            <p class="card-desc">Simulating database application logic bypass manipulations inside WebGoat using structured query string inputs.</p>
-                        </div>
+                <h2>🛠️ Section C & D: Core Technical Lab Evidence</h2>
+                <div class="quad-grid">
+                    <div class="artifact-card">
+                        <p class="card-title">1. Cisco VLAN Setup</p>
+                        <img src="Screenshot 2025-04-16 124934.png" class="lab-screenshot">
                     </div>
+                    <div class="artifact-card">
+                        <p class="card-title">2. XAMPP Server</p>
+                        <img src="Screenshot 2024-10-06 111126.png" class="lab-screenshot">
+                    </div>
+                    <div class="artifact-card">
+                        <p class="card-title">3. Wireshark Audit</p>
+                        <img src="Screenshot 2025-12-02 170628.png" class="lab-screenshot">
+                    </div>
+                    <div class="artifact-card">
+                        <p class="card-title">4. SQL Injection Lab</p>
+                        <img src="Screenshot 2025-12-07 200509.png" class="lab-screenshot">
+                    </div>
+                </div>
+                <div class="slide-nav-container">
+                    <button class="btn btn-prev" onclick="changeSlide(-1)">← Back</button>
+                    <button class="btn btn-next" onclick="changeSlide(1)">Next →</button>
                 </div>
             </div>
 
-            <!-- SLIDE 5: TECHNICAL LABS PART 2 & KAGGLE -->
+            <!-- SLIDE 5: WEB & IOT SECURITY -->
             <div class="slide" id="slide5">
-                <div>
-                    <h2>🌐 Section D(ii): Web Security, IoT & Open Source Contribution</h2>
-                    <p style="margin: 0;">Evaluating modern endpoint application interfaces, microcontroller logic, and threat intelligence data platforms:</p>
-                    
-                    <div class="triple-grid">
-                        <div class="artifact-card">
-                            <p class="card-title">5. OWASP Application Testing</p>
-                            <img src="Screenshot 2025-12-18 204722.png" alt="OWASP Juice Shop" class="lab-screenshot">
-                            <p class="card-desc">Mapping attack surfaces and testing security vulnerabilities on web interfaces using an isolated Kali Linux virtual workstation environment.</p>
-                        </div>
-                        <div class="artifact-card">
-                            <p class="card-title">6. Arduino IoT Framework</p>
-                            <img src="Screenshot 2026-01-18 195846.png" alt="Tinkercad Simulation" class="lab-screenshot">
-                            <p class="card-desc">Configuring embedded hardware infrastructure via Arduino Uno, programming ultrasonic sensory metrics outputs directly to an LCD screen.</p>
-                        </div>
-                        <div class="artifact-card" style="border-color: rgba(6, 182, 212, 0.4); display: flex; flex-direction: column; justify-content: space-between;">
-                            <div>
-                                <p class="card-title" style="color: #06b6d4;">7. Malay Phishing Dataset</p>
-                                <img src="Screenshot 2025-12-02 170628.png" alt="Kaggle Dataset" class="lab-screenshot">
-                                <p class="card-desc">Published the Malay Phishing Email Dataset on Kaggle repository to help train Machine Learning models in detecting regional cyber threats.</p>
-                            </div>
-                            <a href="https://www.kaggle.com/datasets/nasuhafadeli03/malay-phishing-email-dataset" target="_blank" style="color: #06b6d4; font-size: 0.8rem; font-weight: bold; text-decoration: underline; display: block; margin-top: 10px;">View Kaggle Dataset →</a>
-                        </div>
+                <h2>🌐 Section D(ii): Web Security & Open Source</h2>
+                <div class="triple-grid">
+                    <div class="artifact-card">
+                        <p class="card-title">5. OWASP Testing</p>
+                        <img src="Screenshot 2025-12-18 204722.png" class="lab-screenshot">
                     </div>
+                    <div class="artifact-card">
+                        <p class="card-title">6. Arduino IoT</p>
+                        <img src="Screenshot 2026-01-18 195846.png" class="lab-screenshot">
+                    </div>
+                    <div class="artifact-card">
+                        <p class="card-title">7. Kaggle Dataset</p>
+                        <img src="Screenshot 2025-12-02 170628.png" class="lab-screenshot">
+                    </div>
+                </div>
+                <div class="slide-nav-container">
+                    <button class="btn btn-prev" onclick="changeSlide(-1)">← Back</button>
+                    <button class="btn btn-next" onclick="changeSlide(1)">Next →</button>
                 </div>
             </div>
 
@@ -560,19 +536,14 @@
                 <div class="text-layout">
                     <h2>🧠 Section E: Strategic Personal Reflection</h2>
                     <h3>Target Corporation: CyberSecurity Malaysia (CSM)</h3>
-                    <ul>
-                        <li><strong>Why CSM?</strong> It is the highest apex national cybersecurity agency. Serving here yields remarkable exposure to real-world national threat telemetry.</li>
-                        <li><strong>Core Value Propositions:</strong> Possessing a robust foundational base in hands-on operations, an adaptive mindset, proficiency across security toolsets (Wireshark, Cisco Packet Tracer, Kali Linux), and direct intelligence dataset experience.</li>
-                        <li><strong>Strengths & Weaknesses:</strong> Meticulous during raw network packet log audits. Can sometimes take extra time tracing complex programmatic script errors, which is strategically offset via structured Pomodoro time management methods.</li>
-                    </ul>
+                    <p>Possessing a robust foundational base in hands-on network operations, adaptive mindset, and threat telemetry dataset research mapping.</p>
+                </div>
+                <div class="slide-nav-container">
+                    <button class="btn btn-prev" onclick="changeSlide(-1)">← Back</button>
+                    <button class="btn btn-next" onclick="changeSlide(1)">Complete ✨</button>
                 </div>
             </div>
 
-            <!-- INTERACTIVE NAVIGATION CONTROLS -->
-            <div class="nav-buttons">
-                <button class="btn btn-prev" id="prevBtn" onclick="changeSlide(-1)">← Back</button>
-                <button class="btn btn-next" id="nextBtn" onclick="changeSlide(1)">Next →</button>
-            </div>
         </div>
     </div>
 
@@ -581,15 +552,13 @@
         // BACKGROUND ANIMATION RUNNER
         const canvas = document.getElementById('cyber-bg');
         const ctx = canvas.getContext('2d');
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const alphabet = "01010101010101010101010101010101 SECURITY NETWORK CYBER DATA INTRUSION ALERT";
+        const alphabet = "0101010101 SYSTEM ALERT SECURITY";
         const chars = alphabet.split("");
         const fontSize = 14;
         const columns = canvas.width / fontSize;
-
         const rainDrops = [];
         for (let x = 0; x < columns; x++) { rainDrops[x] = 1; }
 
@@ -598,7 +567,6 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#38bdf8'; 
             ctx.font = fontSize + 'px monospace';
-
             for (let i = 0; i < rainDrops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
                 ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
@@ -608,11 +576,6 @@
         };
         setInterval(draw, 35);
 
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
         // SLIDE NAVIGATION CONTROLLER (6 SLIDES)
         let currentSlide = 1;
         const totalSlides = 6;
@@ -621,7 +584,7 @@
             let targetSlide = currentSlide + direction;
             if (targetSlide < 1) return;
             if (targetSlide > totalSlides) {
-                alert("Review Completed! Returning to the gateway.");
+                alert("Review Completed! Returning to home.");
                 goToSlide(1);
                 return;
             }
@@ -629,25 +592,14 @@
         }
 
         function goToSlide(slideNumber) {
-            // Hilangkan active lama
             document.getElementById(`slide${currentSlide}`).classList.remove('active');
             document.getElementById(`nav${currentSlide}`).classList.remove('active');
 
-            // Set active baru
             currentSlide = slideNumber;
             document.getElementById(`slide${currentSlide}`).classList.add('active');
             document.getElementById(`nav${currentSlide}`).classList.add('active');
 
-            // Kemaskini teks info slide
             document.getElementById('indicator').innerText = `Slide ${currentSlide} of ${totalSlides}`;
-            
-            // Urus butang teks untuk penamat
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentSlide === totalSlides) {
-                nextBtn.innerText = "Complete ✨";
-            } else {
-                nextBtn.innerText = "Next →";
-            }
         }
     </script>
 </body>
