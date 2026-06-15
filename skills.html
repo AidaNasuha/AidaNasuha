@@ -105,8 +105,9 @@
             z-index: 2;
         }
 
+        /* */
         .container {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.82);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(56, 189, 248, 0.3);
             padding: 35px;
@@ -121,6 +122,69 @@
             justify-content: center;
             box-sizing: border-box;
             position: relative;
+            overflow: hidden; /* Menghalang limpahan watermark */
+        }
+        /* WATERMARK - DIAGONAL TEXT BACKGROUND LAYER */
+        .diagonal-watermark {
+            position: absolute;
+            top: 25%;
+            left: -5%;
+            font-size: 5rem;
+            font-weight: 900;
+            color: rgba(56, 189, 248, 0.015);
+            transform: rotate(-18deg);
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            user-select: none;
+        }
+
+        /* WATERMARK - CYBER DEFENSE HUGE LOGO BACKGROUND */
+        .emblem-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-5deg);
+            font-size: 28rem;
+            color: rgba(56, 189, 248, 0.012);
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+        }
+
+        /* WATERMARK - CORNER FINGERPRINT IDENTITY STAMP */
+        .system-stamp-watermark {
+            position: absolute;
+            bottom: 25px;
+            right: 35px;
+            font-family: monospace;
+            font-size: 0.68rem;
+            color: rgba(56, 189, 248, 0.18);
+            letter-spacing: 1.5px;
+            pointer-events: none;
+            z-index: 1;
+            text-transform: uppercase;
+            border: 1px solid rgba(56, 189, 248, 0.12);
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(15, 23, 42, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .system-stamp-watermark i {
+            color: #10b981;
+            font-size: 0.75rem;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
         }
 
         .slide-indicator {
@@ -130,6 +194,7 @@
             font-size: 0.9rem;
             color: #38bdf8;
             font-weight: bold;
+            z-index: 2;
         }
 
         /* SLIDE SYSTEM */
@@ -141,7 +206,10 @@
             padding-right: 10px;
             justify-content: center;
             flex-direction: column;
+            position: relative;
+            z-index: 1; /* Di atas watermark */
         }
+        
 
         .slide::-webkit-scrollbar {
             width: 6px;
