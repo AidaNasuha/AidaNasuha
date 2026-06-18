@@ -3,160 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secured Repository - Aida Nasuha</title>
+    <title>Career Development Plan & Secured Repository - Aida Nasuha</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Gaya asas tambahan jika tiada dalam fail CSS utama anda */
+        /* CSS RESET & CORE VARIABLES */
+        :root {
+            --bg-primary: #090d16;
+            --bg-surface: rgba(15, 23, 42, 0.6);
+            --text-main: #cbd5e1;
+            --text-heading: #f8fafc;
+            --cyan-glow: #38bdf8;
+            --emerald-glow: #10b981;
+            --amber-glow: #facc15;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* MATRIX CYBER BACKGROUND */
+        #cyber-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* GLOBAL CONTAINER */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            padding: 20px 0;
+        }
+
+        /* BADGE CARD STYLE */
+        .badge-sijil-card {
+            background: var(--bg-surface);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .badge-sijil-card:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+        }
+        .badge-thumb {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .badge-info .badge-name {
+            display: block;
+            color: var(--text-heading);
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        .badge-info .badge-meta {
+            font-size: 0.75rem;
+            color: var(--cyan-glow);
+        }
+
+        /* CAREER DEVELOPMENT SYSTEM PANEL */
+        .career-panel {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        @media (max-width: 900px) {
+            .career-panel { grid-template-columns: 1fr; }
+        }
+
+        .timeline-container {
+            border-left: 2px dashed rgba(56, 189, 248, 0.3);
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--cyan-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--cyan-glow);
+        }
+
+        /* ARTIFACTS / LOGS GRID SYSTEM */
         .artifacts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
             margin-bottom: 40px;
+            margin-top: 20px;
         }
         .artifact-card {
             padding: 12px;
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.2s ease;
+            background: var(--bg-surface);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .artifact-card:hover {
             transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         .lab-img {
             width: 100%;
             height: 240px;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: opacity 0.2s;
         }
+        .lab-img:hover { opacity: 0.9; }
+
+        /* LIGHTBOX SYSTEM */
         .lightbox {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(4, 7, 13, 0.95);
             z-index: 9999;
             justify-content: center;
             align-items: center;
         }
         .lightbox-content img {
             max-width: 90%;
-            max-height: 90vh;
+            max-height: 85vh;
+            border: 2px solid rgba(255,255,255,0.1);
             border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
         }
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 25px; right: 35px;
             color: #fff;
-            font-size: 40px;
+            font-size: 35px;
             cursor: pointer;
+            transition: color 0.2s;
         }
-        #cyber-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
+        .lightbox-close:hover { color: var(--cyan-glow); }
     </style>
 </head>
 <body>
 
     <canvas id="cyber-bg"></canvas>
 
-    <div class="badge-sijil-card" onclick="openLightbox('Kaggle Community Member.png')" style="cursor: pointer;">
-        <img src="Kaggle Community Member.png" class="badge-thumb" alt="Community Member" onerror="this.src='https://placehold.co/50x50/151f32/38bdf8?text=Member'">
-        <div class="badge-info">
-            <span class="badge-name">Community Member</span>
-            <span class="badge-meta">Verified Member</span>
+    <div class="main-wrapper">
+
+        <div class="badge-sijil-card" onclick="openLightbox('Kaggle Community Member.png')">
+            <img src="Kaggle Community Member.png" class="badge-thumb" alt="Community Member" onerror="this.src='https://placehold.co/50x50/151f32/38bdf8?text=Member'">
+            <div class="badge-info">
+                <span class="badge-name">Community Member</span>
+                <span class="badge-meta">Verified Member</span>
+            </div>
         </div>
+
+        <section id="career-plan">
+            <h2 style="font-size: 1.8rem; color: var(--text-heading); margin-bottom: 25px; letter-spacing: 1px; text-transform: uppercase;">
+                <i class="fas fa-map-signs" style="color: var(--cyan-glow);"></i> Career Development Plan
+            </h2>
+            
+            <div class="career-panel">
+                <div>
+                    <h4 style="color: var(--cyan-glow); font-size: 1.15rem; margin-bottom: 12px;">
+                        <i class="fas fa-bullseye"></i> Long-Term Professional Mission
+                    </h4>
+                    <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 25px; line-height: 1.7;">
+                        My mission is to become a highly skilled Network Security and SOC Specialist. I am dedicated to safeguarding enterprise infrastructures, monitoring threat intelligence and proactively mitigating digital risks to protect organizational assets.
+                    </p>
+
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <strong style="color: var(--cyan-glow);">2026 — Academic Milestone</strong>
+                            <p style="font-size: 0.88rem; margin-top: 5px;">Graduate with a Bachelor of Computer Science (Computer Network Security), bridging the gap between academic theory and practical defense skills.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong style="color: var(--emerald-glow);">2026-2027 — Professional Certifications</strong>
+                            <p style="font-size: 0.88rem; margin-top: 5px;">Acquire industry-recognized credentials including Cisco CCNA and CompTIA Security+ to reinforce technical credibility.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong style="color: var(--amber-glow);">2027-2029 — Enterprise Operations (SOC Tier-1)</strong>
+                            <p style="font-size: 0.88rem; margin-top: 5px;">Transition into a Security Operations Center (SOC) environment, specializing in active threat detection, alert triaging, and real-world incident response.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                    <span style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; letter-spacing: 1px; margin-bottom: 15px; font-weight: bold;">
+                        <i class="fas fa-network-wired"></i> System Structural Roadmap Architecture
+                    </span>
+                    <div style="width: 100%; border: 1px dashed rgba(56, 189, 248, 0.2); padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.2);">
+                        <img src="strategic plan.png" alt="Strategic Architecture Plan" style="width: 100%; height: auto; border-radius: 6px; cursor: pointer;" onclick="openLightbox(this.src)" onerror="handleRoadmapError(this)">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="commitment">
+            <h2 style="font-size: 1.8rem; color: var(--text-heading); margin-bottom: 25px; letter-spacing: 1px; text-transform: uppercase;">
+                <i class="fas fa-certificate"></i> Credentials & Strategic Vision
+            </h2>
+            
+            <div class="commitment-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                <div class="commit-card" style="border: 1px dashed rgba(234, 179, 8, 0.45); background: rgba(234, 179, 8, 0.02); padding: 25px; border-radius: 10px;">
+                    <h5 style="color: var(--amber-glow); font-size: 1.05rem;"><i class="fas fa-graduation-cap"></i> Technical Certifications (In-Progress)</h5>
+                    <p style="font-size:0.88rem; color:#cbd5e1; line-height: 1.6; margin-top: 10px;">
+                        Currently reinforcing enterprise-grade validation pathways. Actively undergoing preparation tracks for global standards: 
+                        <strong style="color: var(--amber-glow);">CompTIA Security+</strong> and foundational <strong style="color: var(--cyan-glow);">Cisco Network Engineering Validations</strong>.
+                    </p>
+                </div>
+                
+                <div class="commit-card" style="border: 1px dashed rgba(16, 185, 129, 0.45); background: rgba(16, 185, 129, 0.02); padding: 25px; border-radius: 10px;">
+                    <h5 style="color: var(--emerald-glow); font-size: 1.05rem;"><i class="fas fa-medal"></i> APM & Kor SISPA Operational Leadership</h5>
+                    <p style="font-size:0.88rem; color:#cbd5e1; line-height: 1.6; margin-top: 10px;">
+                        Backed by rigorous training regimes in the civil defense uniformed body. Holds multiple state-level and training camp certifications demonstrating extreme tactical discipline, command hierarchy structure, and structured group operations.
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.1rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">
+                <i class="fas fa-folder-open"></i> Verified Uniformed Body Logs:
+            </h3>
+            
+            <div class="artifacts-grid">
+                
+                <div class="artifact-card">
+                    <img src="kursus metodologi.png" class="lab-img" alt="Kursus Metodologi Latihan APM" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus metodologi')">
+                    <h4 style="font-size: 0.92rem; margin-top: 10px; color: var(--text-heading);">Kursus Metodologi Latihan (Gred A-)</h4>
+                    <p style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">PULAPA Jengka // 2025</p>
+                </div>
+
+                <div class="artifact-card">
+                    <img src="kursus pusat.png" class="lab-img" alt="Kursus Pengurusan Pusat Pemindahan" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus pusat')">
+                    <h4 style="font-size: 0.92rem; margin-top: 10px; color: var(--text-heading);">Pengurusan Pusat Pemindahan (Gred C+)</h4>
+                    <p style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">PULAPA Jengka // 2024</p>
+                </div>
+
+                <div class="artifact-card">
+                    <img src="kursus bakal.png" class="lab-img" alt="Kursus Bakal Pegawai Siri Kor SISPA" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus bakal')">
+                    <h4 style="font-size: 0.92rem; margin-top: 10px; color: var(--text-heading);">Kursus Bakal Pegawai Kor SISPA (Gred B)</h4>
+                    <p style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">PULAPA Jengka // 2026</p>
+                </div>
+
+                <div class="artifact-card">
+                    <img src="kursus asas.png" class="lab-img" alt="Kursus Asas Pertahanan Awam" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus asas')">
+                    <h4 style="font-size: 0.92rem; margin-top: 10px; color: var(--text-heading);">Kursus Asas Pertahanan Awam PISPA</h4>
+                    <p style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">UniSZA Kampus Besut // 2024</p>
+                </div>
+
+                <div class="artifact-card">
+                    <img src="kursus first.png" class="lab-img" alt="First Responder Life Support Level 1" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus first')">
+                    <h4 style="font-size: 0.92rem; margin-top: 10px; color: var(--text-heading);">First Responder Life Support (FRLS)</h4>
+                    <p style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">ALPHA UniSZA // 2025</p>
+                </div>
+
+            </div>
+
+            <div class="commitment-box" style="margin-top: 25px; background: rgba(15, 23, 42, 0.4); padding: 25px; border-radius: 10px; border: 1px solid rgba(16, 185, 129, 0.25);">
+                <h4 style="color: var(--emerald-glow); font-size: 1.2rem; margin-bottom: 12px;"><i class="fas fa-landmark"></i> CyberSecurity Malaysia (CSM) & National Strategic Synergy</h4>
+                <p style="font-size:0.92rem; color:#cbd5e1; line-height: 1.7;">
+                    My technical capabilities in network traffic inspection and analytical data script execution are deeply augmented by a rock-solid operational discipline. Having navigated core leadership frameworks inside military civil defense organizations, I bring a unique hybrid advantage to mission-critical security operation centers (SOC): unbreakable professional ethics, agile operational readiness, and high resilience under high-pressure parameters.
+                </p>
+            </div>
+        </section>
+        
+        <footer style="margin-top: 40px; padding: 20px 0; text-align: center; color: #64748b; font-size: 0.82rem; border-top: 1px solid rgba(255,255,255,0.05);">
+            <p>© 2026 Aida Nasuha. SECURED REPOSITORY PLATFORM // ALL LAB METRICS COMPLIANT WITH INDUSTRY ACADEMIC STANDARD BENCHMARKS.</p>
+        </footer>
+
     </div>
-
-    <section id="commitment" style="padding: 40px 20px; max-width: 1200px; margin: auto;">
-        <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 25px; color: #f8fafc;">
-            <i class="fas fa-certificate"></i> Credentials & Strategic Vision
-        </h2>
-        
-        <div class="commitment-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px;">
-            <div class="commit-card" style="border: 1px dashed rgba(234, 179, 8, 0.45); background: rgba(234, 179, 8, 0.02); padding: 25px; border-radius: 10px;">
-                <h5 style="font-size: 1.1rem; margin: 0; color: #fff;"><i class="fas fa-graduation-cap" style="color: #facc15;"></i> Technical Certifications (In-Progress)</h5>
-                <p style="font-size:0.88rem; color:#cbd5e1; line-height: 1.6; margin-top: 10px;">
-                    Currently reinforcing enterprise-grade validation pathways. Actively undergoing preparation tracks for global standards: 
-                    <strong style="color: #facc15;">CompTIA Security+</strong> and foundational <strong style="color: #38bdf8;">Cisco Network Engineering Validations</strong>.
-                </p>
-            </div>
-            
-            <div class="commit-card" style="border: 1px dashed rgba(16, 185, 129, 0.45); background: rgba(16, 185, 129, 0.02); padding: 25px; border-radius: 10px;">
-                <h5 style="font-size: 1.1rem; margin: 0; color: #fff;"><i class="fas fa-medal" style="color: #10b981;"></i> APM & Kor SISPA Operational Leadership</h5>
-                <p style="font-size:0.88rem; color:#cbd5e1; line-height: 1.6; margin-top: 10px;">
-                    Backed by rigorous training regimes in the civil defense uniformed body. Holds multiple state-level and training camp certifications demonstrating extreme tactical discipline, command hierarchy structure, and structured group operations.
-                </p>
-            </div>
-        </div>
-
-        <h3 style="font-size: 1.1rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px;">
-            <i class="fas fa-folder-open"></i> Verified Uniformed Body Logs:
-        </h3>
-        
-        <div class="artifacts-grid">
-            
-            <div class="artifact-card">
-                <img src="kursus method.png" class="lab-img" alt="Kursus Metodologi Latihan APM" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus metodologi')">
-                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">Kursus Metodologi Latihan (Gred A-)</h4>
-                <p style="font-size: 0.75rem; color: #64748b;">PULAPA Jengka // 2025</p>
-            </div>
-
-            <div class="artifact-card">
-                <img src="kursus pusat.png" class="lab-img" alt="Kursus Pengurusan Pusat Pemindahan" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus pusat')">
-                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">Pengurusan Pusat Pemindahan (Gred C+)</h4>
-                <p style="font-size: 0.75rem; color: #64748b;">PULAPA Jengka // 2024</p>
-            </div>
-
-            <div class="artifact-card">
-                <img src="kursus bakal.png" class="lab-img" alt="Kursus Bakal Pegawai Siri Kor SISPA" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus bakal')">
-                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">Kursus Bakal Pegawai Kor SISPA (Gred B)</h4>
-                <p style="font-size: 0.75rem; color: #64748b;">PULAPA Jengka // 2026</p>
-            </div>
-
-            <div class="artifact-card">
-                <img src="kursus asas.png" class="lab-img" alt="Kursus Asas Pertahanan Awam" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus asas')">
-                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">Kursus Asas Pertahanan Awam PISPA</h4>
-                <p style="font-size: 0.75rem; color: #64748b;">UniSZA Kampus Besut // 2024</p>
-            </div>
-
-            <div class="artifact-card">
-                <img src="kursus pemindahan.png" class="lab-img" alt="First Responder Life Support Level 1" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus first')">
-                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">First Responder Life Support (FRLS)</h4>
-                <p style="font-size: 0.75rem; color: #64748b;">ALPHA UniSZA // 2025</p>
-            </div>
-
-        </div>
-
-        <div class="commitment-box" style="margin-top: 20px; background: rgba(15, 23, 42, 0.4); padding: 20px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.2);">
-            <h4 style="color: #10b981; font-size: 1.2rem; margin-bottom: 10px; margin-top: 0;"><i class="fas fa-landmark"></i> CyberSecurity Malaysia (CSM) & National Strategic Synergy</h4>
-            <p style="font-size:0.92rem; color:#cbd5e1; line-height: 1.7; margin: 0;">
-                My technical capabilities in network traffic inspection and analytical data script execution are deeply augmented by a rock-solid operational discipline. Having navigated core leadership frameworks inside military civil defense organizations, I bring a unique hybrid advantage to mission-critical security operation centers (SOC): unbreakable professional ethics, agile operational readiness, and high resilience under high-pressure parameters.
-            </p>
-        </div>
-    </section>
-    
-    <footer style="padding: 20px; text-align: center; color: #64748b; font-size: 0.85rem;">
-        <p>© 2026 Aida Nasuha. SECURED REPOSITORY PLATFORM // ALL LAB METRICS COMPLIANT WITH INDUSTRY ACADEMIC STANDARD BENCHMARKS.</p>
-    </footer>
 
     <div class="lightbox" id="image-lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <div class="lightbox-content">
-            <img src="" id="lightbox-img" alt="Zoomed Screenshot">
+            <img src="" id="lightbox-img" alt="Zoomed View">
         </div>
     </div>
 
     <script>
-        // Matrix Cyber Backdrop Animation
+        // Matrix Cyber Backdrop Animation Engine
         const canvas = document.getElementById('cyber-bg');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
         const matrixStrings = "010101010011010101010100111".split("");
         const fontSize = 16;
         const columns = canvas.width / fontSize;
@@ -176,12 +355,12 @@
         }
         setInterval(drawMatrix, 33);
 
-        // Smart Fallback Error Handler for Roadmap Img
+        // Smart Fallback Error Handler for Roadmap Img Blueprint
         function handleRoadmapError(img) {
             img.src = "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=500";
         }
 
-        // Lightbox Functions for Zoom View
+        // Interactive Lightbox Control System
         function openLightbox(src) {
             const lightbox = document.getElementById('image-lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
@@ -193,55 +372,57 @@
             document.getElementById('image-lightbox').style.display = 'none';
         }
 
-        // APM Fallback Handler (If images fail to load, generate sleek badges)
+        // Fix Spacing Error & Generator Fallback CSS Digital Badge System
         function handleApmImageError(img, baseName) {
             const alternates = {
-                'kursus metodologi': ['kursus%20metodologi.png', 'kursus metodologi.png'],
-                'kursus pusat': ['kursus%20pusat.png', 'kursus pusat.png'],
-                'kursus bakal': ['kursus%20bakal.png', 'kursus bakal.png'],
-                'kursus asas': ['kursus%20asas.png', 'kursus asas.png'],
-                'kursus first': ['kursus%20pemindahan.png', 'kursus pemindahan.png', 'kursus%20first.png', 'kursus first.png']
+                'kursus metodologi': ['kursus metodologi.png', 'kursus_metodologi.png'],
+                'kursus pusat': ['kursus pusat.png', 'kursus_pusat.png'],
+                'kursus bakal': ['kursus bakal.png', 'kursus_bakal.png'],
+                'kursus asas': ['kursus asas.png', 'kursus_asas.png'],
+                'kursus first': ['kursus first.png', 'kursus_first.png']
             };
             
             if (!img.dataset.attemptIndex) {
                 img.dataset.attemptIndex = "0";
             }
             let idx = parseInt(img.dataset.attemptIndex);
-            let list = alternates[baseName] || [baseName + '.png', baseName + '.jpg'];
+            let list = alternates[baseName] || [baseName + '.png'];
             
             if (idx < list.length) {
                 let nextSrc = list[idx];
                 img.dataset.attemptIndex = (idx + 1).toString();
                 img.src = nextSrc;
             } else {
+                // Eksekusi Sekiranya Fail Imej Rosak/Tiada: Ganti dengan Kad CSS Cyber Sleek
                 const parent = img.parentElement;
                 const container = document.createElement('div');
-                container.className = 'lab-img fallback-cert';
                 container.style.display = 'flex';
                 container.style.flexDirection = 'column';
                 container.style.alignItems = 'center';
                 container.style.justifyContent = 'center';
                 container.style.background = 'linear-gradient(135deg, #090d16 0%, #151f32 100%)';
-                container.style.border = '1px solid rgba(56, 189, 24px, 0.25)';
-                container.style.borderRadius = '10px';
+                container.style.border = '1px solid rgba(56, 189, 248, 0.25)';
+                container.style.borderRadius = '8px';
                 container.style.height = '240px';
                 container.style.width = '100%';
                 container.style.position = 'relative';
                 container.style.padding = '15px';
                 container.style.textAlign = 'center';
-                container.style.marginBottom = '15px';
+                container.style.boxSizing = 'border-box';
+                container.style.marginBottom = '10px';
                 
                 container.innerHTML = `
-                    <i class="fas fa-certificate" style="color: #eab308; font-size: 2.2rem; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(234,179,8,0.35));"></i>
-                    <span style="font-size: 0.78rem; font-weight: bold; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.5px; display: block; max-height: 45px; overflow: hidden; line-height:1.3;">${baseName.replace('kursus ', 'Kursus ')}</span>
-                    <span style="font-size: 0.6rem; color: #10b981; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight:bold;"><i class="fas fa-shield-alt"></i> VERIFIED MEMBER</span>
+                    <i class="fas fa-certificate" style="color: #eab308; font-size: 2.2rem; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(234,179,8,0.35));"></i>
+                    <span style="font-size: 0.78rem; font-weight: bold; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.5px; display: block; max-height: 45px; overflow: hidden; line-height:1.4;">${baseName.replace('kursus ', 'Kursus ')}</span>
+                    <span style="font-size: 0.6rem; color: #10b981; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight:bold;"><i class="fas fa-shield-alt"></i> VERIFIED LOG</span>
                     <div style="position: absolute; bottom: 8px; right: 10px; font-size: 8px; font-family: monospace; color: #38bdf8; font-weight: bold;">APM // Kor SISPA</div>
                 `;
-                parent.replaceChild(container, img);
+                parent.insertBefore(container, parent.firstChild);
+                img.style.display = 'none';
             }
         }
 
-        // Active Navigation Scrolling Highlight Tracker
+        // Active Navigation Scrolling Tracker Logic
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
         window.addEventListener('scroll', () => {
@@ -254,12 +435,11 @@
             });
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
+                if (link.getAttribute('href') && link.getAttribute('href').includes(current)) {
                     link.classList.add('active');
                 }
             });
         });
-        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
     </script>
 </body>
 </html>
