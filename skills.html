@@ -1,449 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aida Nasuha | Cybersecurity & Data Portfolio</title>
-    <!-- Font Awesome Icons -->
+    <title>Secured Repository - Aida Nasuha</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* BASE THEME & RESET */
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #070d16;
-            color: #f8fafc;
-            line-height: 1.6;
-            overflow-x: hidden;
+        /* Gaya asas tambahan jika tiada dalam fail CSS utama anda */
+        .artifacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
         }
-
-        /* CYBER BACKGROUND GRAPHIC */
-        #cyber-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.08; pointer-events: none; }
-
-        /* PREMIUM NAVIGATION BAR */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .artifact-card {
+            padding: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.2s ease;
+        }
+        .artifact-card:hover {
+            transform: translateY(-5px);
+        }
+        .lab-img {
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 15px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            height: 240px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
         }
-        .logo { font-size: 1.25rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 10px; }
-        .logo i { animation: pulse 2s infinite; }
-        nav { display: flex; gap: 30px; }
-        nav a { color: #94a3b8; text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
-        nav a:hover, nav a.active { color: #38bdf8; text-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
-       
-        /* HEADER RESUME BUTTON */
-       .btn-header-resume {
-        border: 1px solid #10b981;
-        padding: 8px 18px;
-        font-size: 0.85rem;
-        color: #10b981 !important;
-        border-radius: 6px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
-    }
-    .btn-header-resume:hover {
-        background: rgba(16, 185, 129, 0.15);
-        color: #ffffff !important;
-        box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-        transform: translateY(-1px);
-    }
-        /* CONTAINER LAYOUT */
-        section { padding: 120px 8% 60px 8%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; border-bottom: 1px solid rgba(255,255,255,0.03); }
-        .section-title { font-size: 2.2rem; color: #38bdf8; border-bottom: 2px solid rgba(56, 189, 248, 0.2); padding-bottom: 12px; margin-bottom: 35px; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 12px; }
-
-        /* HERO SECTION */
-        .hero { background: radial-gradient(circle at 70% 30%, rgba(30, 41, 59, 0.5) 0%, rgba(9, 13, 22, 1) 70%); text-align: left; }
-        .hero-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
-        .hero-text h1 { font-size: 3.5rem; color: #f8fafc; line-height: 1.2; font-weight: 800; }
-        .hero-text h1 span { color: #38bdf8; text-shadow: 0 0 20px rgba(56, 189, 248, 0.2); }
-        .hero-text h3 { color: #64748b; font-size: 1.5rem; font-weight: 400; margin: 15px 0 25px 0; letter-spacing: 1px; }
-        .hero-text p { font-size: 1.1rem; color: #cbd5e1; max-width: 650px; margin-bottom: 35px; }
-        
-        /* FIXED HERO AVATAR (aidaf.png dengan fallback) */
-        .hero-avatar { width: 320px; height: 320px; border-radius: 30px; border: 3px solid #38bdf8; box-shadow: 0 0 40px rgba(56, 189, 248, 0.25); overflow: hidden; transform: rotate(3deg); transition: all 0.5s ease; justify-self: center; background: #1e293b; }
-        .hero-avatar:hover { transform: rotate(0deg) scale(1.03); box-shadow: 0 0 50px rgba(56, 189, 248, 0.4); }
-        .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* BUTTONS */
-        .btn { padding: 12px 30px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; border: none; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-primary { background: linear-gradient(90deg, #1d4ed8 0%, #38bdf8 100%); color: white; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5); }
-        .btn-secondary { background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; }
-        .btn-secondary:hover { background: rgba(56, 189, 248, 0.1); transform: translateY(-2px); }
-        .btn-resume { background: rgba(16, 185, 129, 0.05); border: 1.5px solid #10b981; color: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
-        .btn-resume:hover { background: rgba(16, 185, 129, 0.15); transform: translateY(-2px); box-shadow: 0 0 25px rgba(16, 185, 129, 0.45); color: #fff; }
-
-        /* GRID SYSTEM & MATRICES */
-        .roadmap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .blueprint-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 16px; padding: 25px; height: 100%; }
-        
-        /* SKILLS MATRIX STYLING */
-        .skills-container { display: flex; flex-direction: column; gap: 20px; }
-        .skill-card { background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 14px; padding: 20px; transition: all 0.3s ease; }
-        .skill-card:hover { border-color: #38bdf8; background: rgba(30, 41, 59, 0.7); transform: translateY(-2px); }
-        .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .skill-title-group { display: flex; align-items: center; gap: 12px; font-weight: bold; font-size: 1.05rem; }
-        .badge { font-size: 0.7rem; padding: 4px 12px; border-radius: 20px; font-weight: bold; text-transform: uppercase; border: 1px solid; }
-        .badge-adv { background: rgba(6, 182, 212, 0.1); color: #22d3ee; border-color: rgba(6, 182, 212, 0.3); }
-        .badge-int { background: rgba(234, 179, 8, 0.1); color: #facc15; border-color: rgba(234, 179, 8, 0.3); }
-        .badge-basic { background: rgba(129, 140, 248, 0.1); color: #a5b4fc; border-color: rgba(129, 140, 248, 0.3); }
-        .bar-outer { background: rgba(15, 23, 42, 0.8); height: 8px; border-radius: 10px; overflow: hidden; margin: 10px 0; border: 1px solid rgba(255,255,255,0.05); }
-        .bar-inner { height: 100%; background: linear-gradient(90deg, #4f46e5 0%, #38bdf8 100%); border-radius: 10px; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
-        .remediation { background: rgba(16, 185, 129, 0.05); border-left: 3px solid #10b981; padding: 10px; border-radius: 0 8px 8px 0; font-size: 0.85rem; color: #a7f3d0; margin-top: 10px; display: flex; align-items: center; gap: 10px; }
-
-        /* ARTIFACTS INTERACTIVE GRID */
-        .artifacts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .artifact-card { background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 16px; padding: 20px; transition: all 0.3s ease; display: flex; flex-direction: column; cursor: pointer; }
-        .artifact-card:hover { border-color: #38bdf8; transform: translateY(-5px); background: rgba(30, 41, 59, 0.7); box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15); }
-        .lab-img { width: 100%; height: 165px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2); object-fit: cover; margin-bottom: 15px; background: #151f32; transition: transform 0.3s ease; }
-        .artifact-card:hover .lab-img { transform: scale(1.02); }
-        .artifact-card h4 { font-size: 1.1rem; color: #38bdf8; margin-bottom: 8px; }
-        .artifact-card p { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; }
-
-        /* EXCLUSIVE KAGGLE ACHIEVEMENT HUB */
-        .kaggle-hub { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(32, 190, 255, 0.2); padding: 35px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
-        .kaggle-profile-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; border-right: 1px solid rgba(255,255,255,0.05); padding-right: 40px; }
-        .kaggle-badge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        
-        /* BADGE SIJIL CARD DENGAN GAMBAR ASAL */
-        .badge-sijil-card { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 15px; transition: all 0.3s ease; cursor: pointer; position: relative; overflow: hidden; }
-        .badge-sijil-card:hover { transform: scale(1.03); border-color: #38bdf8; box-shadow: 0 5px 15px rgba(56, 189, 248, 0.15); }
-        .badge-thumb { width: 50px; height: 50px; border-radius: 8px; object-fit: contain; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
-        .badge-info { display: flex; flex-direction: column; }
-        .badge-name { font-size: 0.9rem; font-weight: bold; color: #f8fafc; }
-        .badge-meta { font-size: 0.65rem; color: #64748b; text-transform: uppercase; margin-top: 2px; }
-
-        /* STRATEGIC COMMITMENT BLOCK */
-        .commitment-box { background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%); border: 1px solid rgba(16, 185, 129, 0.2); padding: 35px; border-radius: 20px; border-left: 5px solid #10b981; }
-        .commitment-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 25px; }
-        .commit-card { background: rgba(9, 13, 22, 0.6); border: 1px solid rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; }
-        .commit-card h5 { color: #10b981; font-size: 1.05rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-
-        /* LIGHTBOX SYSTEM FOR FULL-SCREEN VIEW */
-        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(9, 13, 22, 0.95); z-index: 1000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(8px); }
-        .lightbox-content { max-width: 85%; max-height: 85%; border: 3px solid #38bdf8; border-radius: 16px; box-shadow: 0 0 50px rgba(56, 189, 248, 0.3); overflow: hidden; position: relative; }
-        .lightbox-content img { width: 100%; height: 100%; object-fit: contain; display: block; }
-        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: #f8fafc; cursor: pointer; transition: color 0.3s ease; }
-        .lightbox-close:hover { color: #e11d48; }
-
-        /* WATERMARK FOOTER */
-        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.03); color: #475569; font-size: 0.85rem; font-family: monospace; }
-        
-        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-content img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        #cyber-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
 
-    <!-- LIVE MATRIX ANIMATION BACKDROP -->
     <canvas id="cyber-bg"></canvas>
 
-    <!-- TOP NAVIGATION MANAGEMENT PANEL -->
-    <header>
-        <div class="logo">
-            <i class="fas fa-user-shield"></i> ANF // CYBERSECURITY
+    <div class="badge-sijil-card" onclick="openLightbox('Kaggle Community Member.png')" style="cursor: pointer;">
+        <img src="Kaggle Community Member.png" class="badge-thumb" alt="Community Member" onerror="this.src='https://placehold.co/50x50/151f32/38bdf8?text=Member'">
+        <div class="badge-info">
+            <span class="badge-name">Community Member</span>
+            <span class="badge-meta">Verified Member</span>
         </div>
-        <nav>
-            <a href="#home" class="nav-link active">Home</a>
-            <a href="#plan" class="nav-link">Plan</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#labs" class="nav-link">Core Labs</a>
-            <a href="#kaggle" class="nav-link">Kaggle Awards</a>
-            <a href="#commitment" class="nav-link">Commitment</a>
-        </nav>
-    </header>
+    </div>
 
-    <!-- SECTION 1: HERO PORTAL -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-text">
-                <h1>HELO, I am <br><span>AIDA NASUHA BINTI MUHAMAD FADELI</span></h1>
-                <h3>Future Network Security Specialist</h3>
-                <p>Welcome to my Professional E-Portfolio. In this e-portfolio, you will find a detailed plan of my journey in network security and data intelligence. From various aspects to building machine learning datasets on Kaggle, this space reflects my readiness to tackle real corporate cyber threats. Explore my process and let's build the future together.</p>
-                <div style="display:flex; gap:15px;">
-                    <a href="#blueprint" class="btn btn-primary">Explore Blueprint <i class="fas fa-arrow-down"></i></a>
-                    <a href="#kaggle" class="btn btn-secondary"><i class="fab fa-kaggle"></i> View Kaggle Badges</a>
-                </div>
-            </div>
-            <!-- FIXED PROFILE IMAGE WITH LOCAL PATH -->
-            <div class="hero-avatar">
-                <img src="aidaf.png" alt="Aida Nasuha" onerror="this.src='https://placehold.co/320x320/1e293b/38bdf8?text=Aida+Nasuha'">
-            </div>
-        </div>
-    </section>
-
-   <!-- SECTION 2: VISION & PLAN -->
-    <section id="plan">
-        <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Career Development Plan</h2>
-        <div class="roadmap-grid">
-            <div class="blueprint-card">
-                <p class="card-title" style="font-weight: bold; color: #38bdf8; margin-bottom: 15px; font-size:1.1rem;"><i class="fas fa-bullseye"></i> Long-Term Professional Mission</p>
-                <p style="color:#cbd5e1; margin-bottom: 25px; font-size: 0.95rem;">My mission is to become a highly skilled Network Security and SOC Specialist. I am dedicated to safeguarding enterprise infrastructures, monitoring threat intelligence and proactively mitigating digital risks to protect organizational assets.</p>
-                
-                <div style="border-left: 2px dashed rgba(56, 189, 248, 0.4); padding-left: 20px; display:flex; flex-direction:column; gap:20px;">
-                    <div>
-                        <strong style="color:#38bdf8; font-size:0.95rem;">🎓 2026 — Academic Milestone</strong>
-                        <p style="font-size:0.88rem; color:#94a3b8; margin-top: 4px;">Graduate with a Bachelor of Computer Science (Computer Network Security), bridging the gap between academic theory and practical defense skills.</p>
-                    </div>
-                    <div>
-                        <strong style="color:#38bdf8; font-size:0.95rem;">📚 2026-2027 — Professional Certifications</strong>
-                        <p style="font-size:0.88rem; color:#94a3b8; margin-top: 4px;">Acquire industry-recognized credentials including Cisco CCNA and CompTIA Security+ to reinforce technical credibility.</p>
-                    </div>
-                    <div>
-                        <strong style="color:#38bdf8; font-size:0.95rem;">💼 2027-2029 — Enterprise Operations (SOC Tier-1)</strong>
-                        <p style="font-size:0.88rem; color:#94a3b8; margin-top: 4px;">Transition into a Security Operations Center (SOC) environment, specializing in active threat detection, alert triaging, and real-world incident response.</p>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center;">
-                <p style="color:#94a3b8; font-size:0.85rem; text-transform:uppercase; margin-bottom:10px; letter-spacing:1px;"><i class="fas fa-project-diagram"></i> System Structural Roadmap Architecture</p>
-                <img src="strategic%20plan.png" class="roadmap-large-display" alt="Strategic Architecture Plan" style="width:100%; max-height:380px; object-fit:contain; border-radius:12px; border:1px solid rgba(56, 189, 248, 0.2);">
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: SKILLS MATRIX & AUDIT CONSOLE -->
-    <section id="skills">
-        <h2 class="section-title"><i class="fas fa-shield-alt"></i> Technical Skills Assessment</h2>
-        <div class="skills-container">
-            
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-title-group"><i class="fas fa-network-wired" style="color:#38bdf8;"></i> Network Infrastructure Design (Cisco Packet Tracer)</div>
-                    <span class="badge badge-int" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee; border-color: rgba(34, 211, 238, 0.3);">Intermediate-Advanced</span>
-                </div>
-                <div class="bar-outer"><div class="bar-inner" style="width: 50%;"></div></div>
-                <div class="remediation"><i class="fas fa-tools"></i> <span><strong>Continuous Learning:</strong> Practicing complex inter-VLAN routing, subnetting architectures, and basic Access Control Lists (ACL) deployment.</span></div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-title-group"><i class="fas fa-search-plus" style="color:#38bdf8;"></i> Packet Analysis & Traffic Auditing (Wireshark)</div>
-                    <span class="badge badge-int">Intermediate</span>
-                </div>
-                <div class="bar-outer"><div class="bar-inner" style="width: 70%;"></div></div>
-                <div class="remediation"><i class="fas fa-tools"></i> <span><strong>Continuous Learning:</strong> Enhancing skills in capturing live host traffic, filtering protocols, and identifying unencrypted plaintext credentials.</span></div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-header">
-                    <div class="skill-title-group"><i class="fas fa-fingerprint" style="color:#38bdf8;"></i> Digital Forensics & Artifact Extraction (Autopsy)</div>
-                    <span class="badge badge-basic">Basic-Intermediate</span>
-                </div>
-                <div class="bar-outer"><div class="bar-inner" style="width: 50%;"></div></div>
-                <div class="remediation"><i class="fas fa-tools"></i> <span><strong>Continuous Learning:</strong> Exploring filesystem structures, metadata extraction, and standard data carving methodologies in lab environments.</span></div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION 4: CORE LAB EVIDENCE (MAPPED TO REAL SCREENSHOTS) -->
-    <section id="labs">
-        <h2 class="section-title"><i class="fas fa-cubes"></i> Core Infrastructure & Penetration Logs</h2>
-        <div class="artifacts-grid">
-            
-            <!-- LAB 1: CISCO VLAN Setup -->
-            <div class="artifact-card" onclick="openLightbox('Screenshot 2025-04-16 124934.png')">
-                <img src="Screenshot 2025-04-16 124934.png" class="lab-img" alt="Cisco VLAN Lab" onerror="this.src='https://placehold.co/280x165/151f32/38bdf8?text=Cisco+VLAN+Setup'">
-                <h4>1. Cisco VLAN Configuration</h4>
-                <p>Isolating network broadcast zones, deploying dynamic inter-VLAN routing tables, and applying port-security limits on virtual edge hardware switches.</p>
-            </div>
-
-            <!-- LAB 2: XAMPP Server -->
-            <div class="artifact-card" onclick="openLightbox('Screenshot 2024-10-06 111126.png')">
-                <img src="Screenshot 2024-10-06 111126.png" class="lab-img" alt="XAMPP Environment" onerror="this.src='https://placehold.co/280x165/151f32/38bdf8?text=XAMPP+Server'">
-                <h4>2. Local Stack Staging</h4>
-                <p>Provisioning secure local staging instances executing independent Apache modules integrated directly with MySQL database backends via XAMPP.</p>
-            </div>
-
-            <!-- LAB 3: Wireshark Audit -->
-            <div class="artifact-card" onclick="openLightbox('Screenshot 2025-12-02 170628.png')">
-                <img src="Screenshot 2025-12-02 170628.png" class="lab-img" alt="Wireshark Capture" onerror="this.src='https://placehold.co/280x165/151f32/38bdf8?text=Wireshark+Packet+Audit'">
-                <h4>3. Wireshark Telemetry Audit</h4>
-                <p>Capturing raw live host egress data traffic, conducting frame disassembly, and tracing unencrypted plaintext credentials hidden inside network streams.</p>
-            </div>
-
-            <!-- LAB 4: SQL Injection Lab -->
-            <div class="artifact-card" onclick="openLightbox('Screenshot 2025-12-07 200509.png')">
-                <img src="Screenshot 2025-12-07 200509.png" class="lab-img" alt="WebGoat Injection" onerror="this.src='https://placehold.co/280x165/151f32/38bdf8?text=SQL+Injection+WebGoat'">
-                <h4>4. OWASP SQL Injection Mitigation</h4>
-                <p>Simulating deep input logic manipulation vulnerabilities within WebGoat sandbox to understand and protect databases against unauthorized manipulation queries.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION 5: KAGGLE DATA HUB WITH VERIFIED BADGE IMAGES -->
-    <section id="kaggle">
-        <h2 class="section-title"><i class="fab fa-kaggle" style="color:#20beff;"></i> Kaggle Open-Source Hub & Verification Center</h2>
-        <div class="kaggle-hub">
-            
-            <!-- Profil Kaggle Kiri -->
-            <div class="kaggle-profile-box">
-                <i class="fab fa-kaggle" style="font-size: 3.5rem; color: #20beff; margin-bottom: 15px;"></i>
-                <h4 style="font-size:1.3rem; margin-bottom:5px;">Malay Phishing Email Dataset</h4>
-                <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:20px; text-align:center;">Built and published an open-source dataset repository on Kaggle to assist machine learning algorithms in analyzing and mitigating localized cyber threats.</p>
-                <img src="kaggle.png" alt="Kaggle Profile Dashboard" onerror="this.src='https://placehold.co/280x120/151f32/38bdf8?text=Kaggle+Telemetry+Screen'" style="width:100%; border-radius:10px; border:1px solid rgba(32,190,255,0.3); margin-bottom:20px; max-height:120px; object-fit:cover; cursor:pointer;" onclick="openLightbox(this.src)">
-                <a href="https://www.kaggle.com/datasets/nasuhafadeli03/malay-phishing-email-dataset" target="_blank" class="btn btn-primary" style="background:rgba(32,190,255,0.1); border:1px solid #20beff; color:#20beff; font-size:0.85rem; width:100%; justify-content:center;">
-                    <i class="fab fa-kaggle"></i> External Kaggle Dataset
-                </a>
-            </div>
-
-            <!-- VERIFIED BADGES GRID USING ASSET IMAGE FILENAMES -->
-            <div>
-                <p style="font-size: 0.85rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; font-weight: bold;">
-                    <i class="fas fa-certificate" style="color:#eab308;"></i> Verified Kaggle Badge Credentials (6 Earned):
-                </p>
-                <div class="kaggle-badge-grid">
-                    
-                    <!-- Badge 1: Python Coder -->
-                    <div class="badge-sijil-card" onclick="openLightbox('Python Coder.png')">
-                        <img src="Python Coder.png" class="badge-thumb" alt="Python Coder" onerror="this.src='https://placehold.co/50x50/151f32/38bdf8?text=Python'">
-                        <div class="badge-info">
-                            <span class="badge-name">Python Coder</span>
-                            <span class="badge-meta">Verified Badge</span>
-                        </div>
-                    </div>
-
-                    <!-- Badge 2: Dataset Creator -->
-                    <div class="badge-sijil-card" onclick="openLightbox('Dataset Creator.png')">
-                        <img src="Dataset Creator.png" class="badge-thumb" alt="Dataset Creator" onerror="this.src='https://placehold.co/50x50/151f32/38bdf8?text=Creator'">
-                        <div class="badge-info">
-                            <span class="badge-name">Dataset Creator</span>
-                            <span class="badge-meta">Verified Badge</span>
-                        </div>
-                    </div>
-
-                    <!-- Badge 3: Dataset Documenter -->
-                    <div class="badge-sijil-card" onclick="openLightbox('Dataset Documenter.png')">
-                        <img src="Dataset Documenter.png" class="badge-thumb" alt="Dataset Documenter" onerror="this.src='https://placehold.co/50x50/151f32/38bdf8?text=Doc'">
-                        <div class="badge-info">
-                            <span class="badge-name">Dataset Documenter</span>
-                            <span class="badge-meta">Verified Badge</span>
-                        </div>
-                    </div>
-
-                    <!-- Badge 4: Dataset Tagger -->
-                    <div class="badge-sijil-card" onclick="openLightbox('Dataset Tagger.png')">
-                        <img src="Dataset Tagger.png" class="badge-thumb" alt="Dataset Tagger" onerror="this.src='https://placehold.co/50x50/151f32/38bdf8?text=Tagger'">
-                        <div class="badge-info">
-                            <span class="badge-name">Dataset Tagger</span>
-                            <span class="badge-meta">Verified Badge</span>
-                        </div>
-                    </div>
-
-                    <!-- Badge 5: Collector -->
-                    <div class="badge-sijil-card" onclick="openLightbox('Collector.png')">
-                        <img src="Collector.png" class="badge-thumb" alt="Collector" onerror="this.src='https://placehold.co/50x50/151f32/38bdf8?text=Collector'">
-                        <div class="badge-info">
-                            <span class="badge-name">Collector</span>
-                            <span class="badge-meta">Verified Badge</span>
-                        </div>
-                    </div>
-
-                    <!-- Badge 6: Community Member -->
-                    <div class="badge-sijil-card" onclick="openLightbox('Kaggle Community Member.png')">
-                        <img src="Kaggle Community Member.png" class="badge-thumb" alt="Community Member" onerror="this.src='https://placehold.co/50x50/151f32/38bdf8?text=Member'">
-                        <div class="badge-info">
-                            <span class="badge-name">Community Member</span>
-                            <span class="badge-meta">Verified Member</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-  <!-- SECTION 6: CREDENTIAL VALIDATION & STRATEGIC VISION -->
-    <section id="commitment">
-        <h2 class="section-title"><i class="fas fa-certificate"></i> Credentials & Strategic Vision</h2>
+    <section id="commitment" style="padding: 40px 20px; max-width: 1200px; margin: auto;">
+        <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 25px; color: #f8fafc;">
+            <i class="fas fa-certificate"></i> Credentials & Strategic Vision
+        </h2>
         
-        <!-- LIVE PERSERTIFIKATAN TRAJECTORY MATRIX -->
         <div class="commitment-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px;">
-            <div class="commit-card" style="border: 1px dashed rgba(234, 179, 8, 0.45); background: rgba(234, 179, 8, 0.02); padding: 25px;">
-                <h5><i class="fas fa-graduation-cap" style="color: #facc15;"></i> Technical Certifications (In-Progress)</h5>
+            <div class="commit-card" style="border: 1px dashed rgba(234, 179, 8, 0.45); background: rgba(234, 179, 8, 0.02); padding: 25px; border-radius: 10px;">
+                <h5 style="font-size: 1.1rem; margin: 0; color: #fff;"><i class="fas fa-graduation-cap" style="color: #facc15;"></i> Technical Certifications (In-Progress)</h5>
                 <p style="font-size:0.88rem; color:#cbd5e1; line-height: 1.6; margin-top: 10px;">
                     Currently reinforcing enterprise-grade validation pathways. Actively undergoing preparation tracks for global standards: 
                     <strong style="color: #facc15;">CompTIA Security+</strong> and foundational <strong style="color: #38bdf8;">Cisco Network Engineering Validations</strong>.
                 </p>
             </div>
             
-            <div class="commit-card" style="border: 1px dashed rgba(16, 185, 129, 0.45); background: rgba(16, 185, 129, 0.02); padding: 25px;">
-                <h5><i class="fas fa-medal" style="color: #10b981;"></i> APM & Kor SISPA Operational Leadership</h5>
+            <div class="commit-card" style="border: 1px dashed rgba(16, 185, 129, 0.45); background: rgba(16, 185, 129, 0.02); padding: 25px; border-radius: 10px;">
+                <h5 style="font-size: 1.1rem; margin: 0; color: #fff;"><i class="fas fa-medal" style="color: #10b981;"></i> APM & Kor SISPA Operational Leadership</h5>
                 <p style="font-size:0.88rem; color:#cbd5e1; line-height: 1.6; margin-top: 10px;">
                     Backed by rigorous training regimes in the civil defense uniformed body. Holds multiple state-level and training camp certifications demonstrating extreme tactical discipline, command hierarchy structure, and structured group operations.
                 </p>
             </div>
         </div>
 
-        <!-- NEW VISUAL PROOF SHOWCASE GRID -->
         <h3 style="font-size: 1.1rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px;">
             <i class="fas fa-folder-open"></i> Verified Uniformed Body Logs:
         </h3>
-        <div class="artifacts-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 40px;">
+        
+        <div class="artifacts-grid">
             
-            <div class="artifact-card" style="padding: 12px; background: rgba(15, 23, 42, 0.6);">
-                <img src="kursus method.png" class="lab-img" alt="Kursus Metodologi Latihan APM" style="height: 240px; cursor: pointer;" onclick="openLightbox(this.src)">
-                <h4 style="font-size: 0.95rem; margin-top: 5px;">Kursus Metodologi Latihan (Gred A-)</h4>
+            <div class="artifact-card">
+                <img src="kursus method.png" class="lab-img" alt="Kursus Metodologi Latihan APM" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus metodologi')">
+                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">Kursus Metodologi Latihan (Gred A-)</h4>
                 <p style="font-size: 0.75rem; color: #64748b;">PULAPA Jengka // 2025</p>
             </div>
 
-            <div class="artifact-card" style="padding: 12px; background: rgba(15, 23, 42, 0.6);">
-                <img src="kursus pusat.png" class="lab-img" alt="Kursus Pengurusan Pusat Pemindahan" style="height: 240px; cursor: pointer;" onclick="openLightbox(this.src)">
-                <h4 style="font-size: 0.95rem; margin-top: 5px;">Pengurusan Pusat Pemindahan (Gred C+)</h4>
+            <div class="artifact-card">
+                <img src="kursus pusat.png" class="lab-img" alt="Kursus Pengurusan Pusat Pemindahan" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus pusat')">
+                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">Pengurusan Pusat Pemindahan (Gred C+)</h4>
                 <p style="font-size: 0.75rem; color: #64748b;">PULAPA Jengka // 2024</p>
             </div>
 
-            <div class="artifact-card" style="padding: 12px; background: rgba(15, 23, 42, 0.6);">
-                <img src="kursus bakal.png" class="lab-img" alt="Kursus Bakal Pegawai Siri Kor SISPA" style="height: 240px; cursor: pointer;" onclick="openLightbox(this.src)">
-                <h4 style="font-size: 0.95rem; margin-top: 5px;">Kursus Bakal Pegawai Kor SISPA (Gred B)</h4>
+            <div class="artifact-card">
+                <img src="kursus bakal.png" class="lab-img" alt="Kursus Bakal Pegawai Siri Kor SISPA" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus bakal')">
+                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">Kursus Bakal Pegawai Kor SISPA (Gred B)</h4>
                 <p style="font-size: 0.75rem; color: #64748b;">PULAPA Jengka // 2026</p>
             </div>
 
-            <div class="artifact-card" style="padding: 12px; background: rgba(15, 23, 42, 0.6);">
-                <img src="kursus asas.png" class="lab-img" alt="Kursus Asas Pertahanan Awam" style="height: 240px; cursor: pointer;" onclick="openLightbox(this.src)">
-                <h4 style="font-size: 0.95rem; margin-top: 5px;">Kursus Asas Pertahanan Awam PISPA</h4>
+            <div class="artifact-card">
+                <img src="kursus asas.png" class="lab-img" alt="Kursus Asas Pertahanan Awam" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus asas')">
+                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">Kursus Asas Pertahanan Awam PISPA</h4>
                 <p style="font-size: 0.75rem; color: #64748b;">UniSZA Kampus Besut // 2024</p>
             </div>
 
-            <div class="artifact-card" style="padding: 12px; background: rgba(15, 23, 42, 0.6);">
-                <img src="kursus pemindahan.png" class="lab-img" alt="First Responder Life Support Level 1" style="height: 240px; cursor: pointer;" onclick="openLightbox(this.src)">
-                <h4 style="font-size: 0.95rem; margin-top: 5px;">First Responder Life Support (FRLS)</h4>
+            <div class="artifact-card">
+                <img src="kursus pemindahan.png" class="lab-img" alt="First Responder Life Support Level 1" onclick="openLightbox(this.src)" onerror="handleApmImageError(this, 'kursus first')">
+                <h4 style="font-size: 0.95rem; margin-top: 8px; color: #f8fafc;">First Responder Life Support (FRLS)</h4>
                 <p style="font-size: 0.75rem; color: #64748b;">ALPHA UniSZA // 2025</p>
             </div>
 
         </div>
 
-        <!-- MALAYSIAN DEFENSE ALIGNMENT PANEL -->
-        <div class="commitment-box" style="margin-top: 20px;">
-            <h4 style="color: #10b981; font-size: 1.2rem; margin-bottom: 10px;"><i class="fas fa-landmark"></i> CyberSecurity Malaysia (CSM) & National Strategic Synergy</h4>
-            <p style="font-size:0.92rem; color:#cbd5e1; line-height: 1.7;">
+        <div class="commitment-box" style="margin-top: 20px; background: rgba(15, 23, 42, 0.4); padding: 20px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.2);">
+            <h4 style="color: #10b981; font-size: 1.2rem; margin-bottom: 10px; margin-top: 0;"><i class="fas fa-landmark"></i> CyberSecurity Malaysia (CSM) & National Strategic Synergy</h4>
+            <p style="font-size:0.92rem; color:#cbd5e1; line-height: 1.7; margin: 0;">
                 My technical capabilities in network traffic inspection and analytical data script execution are deeply augmented by a rock-solid operational discipline. Having navigated core leadership frameworks inside military civil defense organizations, I bring a unique hybrid advantage to mission-critical security operation centers (SOC): unbreakable professional ethics, agile operational readiness, and high resilience under high-pressure parameters.
             </p>
         </div>
     </section>
     
-    <!-- SECURED COMPLIANCE FOOTER SYSTEM -->
-    <footer>
+    <footer style="padding: 20px; text-align: center; color: #64748b; font-size: 0.85rem;">
         <p>© 2026 Aida Nasuha. SECURED REPOSITORY PLATFORM // ALL LAB METRICS COMPLIANT WITH INDUSTRY ACADEMIC STANDARD BENCHMARKS.</p>
     </footer>
 
-    <!-- INTERACTIVE LIGHTBOX SYSTEM FOR FULL-SCREEN IMAGE VIEW -->
     <div class="lightbox" id="image-lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <div class="lightbox-content">
@@ -451,7 +151,6 @@
         </div>
     </div>
 
-    <!-- INTERACTIVE MENU HIGHLIGHT & CYBER FX ENGINE -->
     <script>
         // Matrix Cyber Backdrop Animation
         const canvas = document.getElementById('cyber-bg');
@@ -493,53 +192,55 @@
         function closeLightbox() {
             document.getElementById('image-lightbox').style.display = 'none';
         }
+
         // APM Fallback Handler (If images fail to load, generate sleek badges)
         function handleApmImageError(img, baseName) {
-         const alternates = {
-    'kursus metodologi': ['kursus%20metodologi.png', 'kursus metodologi.png'],
-    'kursus pusat': ['kursus%20pusat.png', 'kursus pusat.png'],
-    'kursus bakal': ['kursus%20bakal.png', 'kursus bakal.png'],
-    'kursus asas': ['kursus%20asas.png', 'kursus asas.png'],
-    'kursus first': ['kursus%20first.png', 'kursus first.png']
-        };
-        
-        if (!img.dataset.attemptIndex) {
-            img.dataset.attemptIndex = "0";
-        }
-        let idx = parseInt(img.dataset.attemptIndex);
-        let list = alternates[baseName] || [baseName + '.png', baseName + '.jpg'];
-        
-        if (idx < list.length) {
-            let nextSrc = list[idx];
-            img.dataset.attemptIndex = (idx + 1).toString();
-            img.src = nextSrc;
-        } else {
-            const parent = img.parentElement;
-            const container = document.createElement('div');
-            container.className = 'lab-img fallback-cert';
-            container.style.display = 'flex';
-            container.style.flexDirection = 'column';
-            container.style.alignItems = 'center';
-            container.style.justifyContent = 'center';
-            container.style.background = 'linear-gradient(135deg, #090d16 0%, #151f32 100%)';
-            container.style.border = '1px solid rgba(56, 189, 248, 0.25)';
-            container.style.borderRadius = '10px';
-            container.style.height = '240px';
-            container.style.width = '100%';
-            container.style.position = 'relative';
-            container.style.padding = '15px';
-            container.style.textAlign = 'center';
-            container.style.marginBottom = '15px';
+            const alternates = {
+                'kursus metodologi': ['kursus%20metodologi.png', 'kursus metodologi.png'],
+                'kursus pusat': ['kursus%20pusat.png', 'kursus pusat.png'],
+                'kursus bakal': ['kursus%20bakal.png', 'kursus bakal.png'],
+                'kursus asas': ['kursus%20asas.png', 'kursus asas.png'],
+                'kursus first': ['kursus%20pemindahan.png', 'kursus pemindahan.png', 'kursus%20first.png', 'kursus first.png']
+            };
             
-            container.innerHTML = `
-                <i class="fas fa-certificate" style="color: #eab308; font-size: 2.2rem; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(234,179,8,0.35));"></i>
-                <span style="font-size: 0.78rem; font-weight: bold; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.5px; display: block; max-height: 45px; overflow: hidden; line-height:1.3;">${baseName.replace('kursus ', 'Kursus ')}</span>
-                <span style="font-size: 0.6rem; color: #10b981; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight:bold;"><i class="fas fa-shield-alt"></i> VERIFIED MEMBER</span>
-                <div style="position: absolute; bottom: 8px; right: 10px; font-size: 8px; font-family: monospace; color: #38bdf8; font-weight: bold;">APM // Kor SISPA</div>
-            `;
-            parent.replaceChild(container, img);
+            if (!img.dataset.attemptIndex) {
+                img.dataset.attemptIndex = "0";
+            }
+            let idx = parseInt(img.dataset.attemptIndex);
+            let list = alternates[baseName] || [baseName + '.png', baseName + '.jpg'];
+            
+            if (idx < list.length) {
+                let nextSrc = list[idx];
+                img.dataset.attemptIndex = (idx + 1).toString();
+                img.src = nextSrc;
+            } else {
+                const parent = img.parentElement;
+                const container = document.createElement('div');
+                container.className = 'lab-img fallback-cert';
+                container.style.display = 'flex';
+                container.style.flexDirection = 'column';
+                container.style.alignItems = 'center';
+                container.style.justifyContent = 'center';
+                container.style.background = 'linear-gradient(135deg, #090d16 0%, #151f32 100%)';
+                container.style.border = '1px solid rgba(56, 189, 24px, 0.25)';
+                container.style.borderRadius = '10px';
+                container.style.height = '240px';
+                container.style.width = '100%';
+                container.style.position = 'relative';
+                container.style.padding = '15px';
+                container.style.textAlign = 'center';
+                container.style.marginBottom = '15px';
+                
+                container.innerHTML = `
+                    <i class="fas fa-certificate" style="color: #eab308; font-size: 2.2rem; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(234,179,8,0.35));"></i>
+                    <span style="font-size: 0.78rem; font-weight: bold; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.5px; display: block; max-height: 45px; overflow: hidden; line-height:1.3;">${baseName.replace('kursus ', 'Kursus ')}</span>
+                    <span style="font-size: 0.6rem; color: #10b981; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight:bold;"><i class="fas fa-shield-alt"></i> VERIFIED MEMBER</span>
+                    <div style="position: absolute; bottom: 8px; right: 10px; font-size: 8px; font-family: monospace; color: #38bdf8; font-weight: bold;">APM // Kor SISPA</div>
+                `;
+                parent.replaceChild(container, img);
+            }
         }
-    }
+
         // Active Navigation Scrolling Highlight Tracker
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
