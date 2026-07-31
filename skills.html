@@ -8,156 +8,155 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* BASE STYLING */
+        /* BASE & RESET STYLING */
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            background-color: #090d16;
+            /* Latar belakang gelap pekat yang bersih & tenang pada mata */
+            background-color: #070a12;
             color: #f8fafc;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* CANVAS MATRIX BACKGROUND */
-        #cyber-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
+        /* CONTAINER UTAMA */
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        /* UTILITY CLASSES */
+        /* TAJUK SECTION (CLEAN & MODERAT) */
         .section-title {
-            font-size: 2rem;
+            font-size: 1.25rem;
             color: #38bdf8;
-            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
-            padding-bottom: 12px;
-            margin-bottom: 35px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
-        /* HOVER EFFECTS */
-        .artifact-card:hover, .badge-sijil-card:hover, .cisco-card:hover {
-            transform: translateY(-5px);
-            border-color: #38bdf8 !important;
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
+        /* CARD CONTAINERS (GELAP PEKAT AGAR KEMAS) */
+        .clean-card {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            transition: all 0.2s ease-in-out;
+        }
+        .clean-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
         }
 
         /* TECH BADGE PILLS */
         .tech-badge {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
             color: #38bdf8;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s ease;
-        }
-        .tech-badge:hover {
-            background: #38bdf8;
-            color: #090d16;
         }
 
-        /* FLOATING ACTION CV BUTTON */
+        /* FLOATING ACTION CV & CONTACT BUTTONS */
         .floating-action-bar {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 20px;
+            right: 20px;
             z-index: 999;
             display: flex;
-            gap: 12px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
         .fab-btn {
-            background: #38bdf8;
-            color: #090d16;
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.85rem;
+            background: #0f172a;
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
             text-decoration: none;
-            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
+            gap: 6px;
+            transition: all 0.2s ease;
         }
         .fab-btn:hover {
-            transform: scale(1.05);
-            background: #ffffff;
+            background: #38bdf8;
+            color: #070a12;
         }
 
         /* FOOTER */
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             font-size: 0.75rem;
             color: #64748b;
             border-top: 1px solid rgba(255,255,255,0.05);
-            background: rgba(15, 23, 42, 0.8);
+            background: #090d16;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
-    <!-- CANVAS CYBER BACKGROUND -->
-    <canvas id="cyber-bg"></canvas>
-
-    <!-- CONTAINER UTAMA -->
-    <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+    <div class="main-container">
 
         <!-- ========================================== -->
-        <!-- NEW SECTION: TERMINAL & LIVE METRICS HUB -->
+        <!-- TERMINAL & QUICK STATS HERO                -->
         <!-- ========================================== -->
-        <section id="cyber-hero" style="margin-bottom: 60px;">
+        <section id="cyber-hero" style="margin-bottom: 45px;">
             
-            <!-- INTERACTIVE TERMINAL GIMMICK -->
-            <div class="terminal-box" style="background: rgba(2, 6, 23, 0.85); border: 1px solid #38bdf8; border-radius: 12px; padding: 20px; font-family: monospace; color: #38bdf8; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 30px; word-break: break-word;">
-    <div style="border-bottom: 1px solid rgba(56,189,248,0.2); padding-bottom: 8px; margin-bottom: 15px; font-size: 0.8rem; color: #64748b; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
-        <span><i class="fas fa-terminal"></i> GUEST@AIDA-NASUHA-SECURITY-NODE:~</span>
-        <span><i class="fas fa-signal" style="color: #10b981;"></i> ONLINE // 2026 BENCHMARK</span>
-    </div>
-    <p style="margin:0 0 5px 0; color: #94a3b8;">$ whoami</p>
-    <p style="margin:0 0 12px 0; color: #f8fafc; font-size: 1rem; line-height: 1.5;">> <strong>Aida Nasuha</strong> | Cybersecurity Analyst & Data Security Researcher</p>
-    <p style="margin:0 0 5px 0; color: #94a3b8;">$ cat core_focus.txt</p>
-    <p style="margin:0; color: #10b981; line-height: 1.5;">> Threat Intelligence • Telemetry Analysis • Network Defense • Localized Phishing Dataset Research</p>
-</div>
+            <!-- TERMINAL BOX (WRAP TEXT SUPAYA TAK TERPOTONG) -->
+            <div class="clean-card" style="padding: 18px; font-family: monospace; color: #38bdf8; margin-bottom: 20px; word-break: break-word;">
+                <div style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px; margin-bottom: 12px; font-size: 0.75rem; color: #64748b; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                    <span><i class="fas fa-terminal"></i> GUEST@AIDA-NASUHA-SECURITY-NODE:~</span>
+                    <span><i class="fas fa-circle" style="color: #10b981; font-size: 0.6rem;"></i> ONLINE // SOC NODE</span>
+                </div>
+                <p style="margin:0 0 4px 0; color: #94a3b8; font-size: 0.85rem;">$ whoami</p>
+                <p style="margin:0 0 10px 0; color: #f8fafc; font-size: 0.95rem; line-height: 1.4;">> <strong>Aida Nasuha</strong> | Cybersecurity Analyst & Data Security Researcher</p>
+                <p style="margin:0 0 4px 0; color: #94a3b8; font-size: 0.85rem;">$ cat core_focus.txt</p>
+                <p style="margin:0; color: #10b981; font-size: 0.85rem; line-height: 1.4;">> Threat Intelligence • Telemetry Analysis • Network Defense • Localized Phishing Dataset Research</p>
+            </div>
 
-            <!-- LIVE STATS COUNTER GRID -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 20px; text-align: center;">
-                    <h3 style="font-size: 2.2rem; color: #38bdf8; margin-bottom: 4px;">6</h3>
-                    <p style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Kaggle Verified Badges</p>
+            <!-- LIVE STATS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                <div class="clean-card" style="padding: 15px; text-align: center;">
+                    <h3 style="font-size: 1.8rem; color: #38bdf8; margin-bottom: 2px;">6</h3>
+                    <p style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Kaggle Badges</p>
                 </div>
-                <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 20px; text-align: center;">
-                    <h3 style="font-size: 2.2rem; color: #10b981; margin-bottom: 4px;">4 Track</h3>
-                    <p style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Cisco & CompTIA Cyber</p>
+                <div class="clean-card" style="padding: 15px; text-align: center;">
+                    <h3 style="font-size: 1.8rem; color: #10b981; margin-bottom: 2px;">4 Track</h3>
+                    <p style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Cisco & CompTIA</p>
                 </div>
-                <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(234, 179, 8, 0.2); border-radius: 12px; padding: 20px; text-align: center;">
-                    <h3 style="font-size: 2.2rem; color: #eab308; margin-bottom: 4px;">100%</h3>
-                    <p style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Open-Source Dataset</p>
+                <div class="clean-card" style="padding: 15px; text-align: center;">
+                    <h3 style="font-size: 1.8rem; color: #eab308; margin-bottom: 2px;">100%</h3>
+                    <p style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Open-Source Dataset</p>
                 </div>
-                <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 12px; padding: 20px; text-align: center;">
-                    <h3 style="font-size: 2.2rem; color: #a855f7; margin-bottom: 4px;">5 Logs</h3>
-                    <p style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Kor SISPA / APM Certified</p>
+                <div class="clean-card" style="padding: 15px; text-align: center;">
+                    <h3 style="font-size: 1.8rem; color: #a855f7; margin-bottom: 2px;">5 Logs</h3>
+                    <p style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Kor SISPA / APM</p>
                 </div>
             </div>
 
-            <!-- TECH MATRIX PILL BADGES -->
-            <div style="margin-top: 30px; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;">
-                <p style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; font-weight: bold;">
-                    <i class="fas fa-microchip" style="color:#38bdf8;"></i> Core Technical Stack & Security Tooling:
+            <!-- TECH STACK BADGES -->
+            <div class="clean-card" style="margin-top: 15px; padding: 15px;">
+                <p style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; font-weight: 600;">
+                    <i class="fas fa-microchip" style="color:#38bdf8;"></i> Technical Tooling:
                 </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                     <span class="tech-badge"><i class="fab fa-python"></i> Python ML</span>
                     <span class="tech-badge"><i class="fas fa-network-wired"></i> Wireshark</span>
                     <span class="tech-badge"><i class="fas fa-database"></i> SQL Injection / WebGoat</span>
@@ -171,111 +170,111 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- LAB ARTIFACTS SECTION (EXISTING IMPROVED) -->
+        <!-- LAB ARTIFACTS SECTION                      -->
         <!-- ========================================== -->
-        <section id="labs" style="margin-bottom: 60px;">
+        <section id="labs" style="margin-bottom: 45px;">
             <h2 class="section-title">
-                <i class="fas fa-laptop-code"></i> Hands-On Tactical Telemetry & Security Labs
+                <i class="fas fa-laptop-code"></i> Tactical Telemetry & Security Labs
             </h2>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px;">
                 <!-- LAB 2 -->
-                <div class="artifact-card" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; cursor: pointer; transition: transform 0.3s;" onclick="openLightbox('Screenshot 2024-10-06 111126.png')">
-                    <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Environment" style="width: 100%; height: 165px; object-fit: cover; border-radius: 8px; display: block; margin-bottom: 15px;" onerror="this.src='https://placehold.co/280x165/151f32/38bdf8?text=XAMPP+Server'">
-                    <h4 style="color: #ffffff; margin-bottom: 8px; font-size: 1.1rem;">2. Local Stack Staging</h4>
-                    <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.5;">Provisioning secure local staging instances executing independent Apache modules integrated directly with MySQL database backends via XAMPP.</p>
+                <div class="clean-card" style="padding: 12px; cursor: pointer;" onclick="openLightbox('Screenshot 2024-10-06 111126.png')">
+                    <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Environment" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; display: block; margin-bottom: 10px;" onerror="this.src='https://placehold.co/280x140/0f172a/38bdf8?text=XAMPP+Server'">
+                    <h4 style="color: #ffffff; margin-bottom: 6px; font-size: 0.95rem;">2. Local Stack Staging</h4>
+                    <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.4;">Provisioning secure local staging instances executing independent Apache modules integrated directly with MySQL backends.</p>
                 </div>
 
                 <!-- LAB 3 -->
-                <div class="artifact-card" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; cursor: pointer; transition: transform 0.3s;" onclick="openLightbox('Screenshot 2025-12-02 170628.png')">
-                    <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Capture" style="width: 100%; height: 165px; object-fit: cover; border-radius: 8px; display: block; margin-bottom: 15px;" onerror="this.src='https://placehold.co/280x165/151f32/38bdf8?text=Wireshark+Packet+Audit'">
-                    <h4 style="color: #ffffff; margin-bottom: 8px; font-size: 1.1rem;">3. Wireshark Telemetry Audit</h4>
-                    <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.5;">Capturing raw live host egress data traffic, conducting frame disassembly, and tracing unencrypted plaintext credentials hidden inside network streams.</p>
+                <div class="clean-card" style="padding: 12px; cursor: pointer;" onclick="openLightbox('Screenshot 2025-12-02 170628.png')">
+                    <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Capture" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; display: block; margin-bottom: 10px;" onerror="this.src='https://placehold.co/280x140/0f172a/38bdf8?text=Wireshark+Packet+Audit'">
+                    <h4 style="color: #ffffff; margin-bottom: 6px; font-size: 0.95rem;">3. Wireshark Telemetry Audit</h4>
+                    <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.4;">Capturing live egress traffic, conducting frame disassembly, and tracing unencrypted plaintext credentials in network streams.</p>
                 </div>
 
                 <!-- LAB 4 -->
-                <div class="artifact-card" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; cursor: pointer; transition: transform 0.3s;" onclick="openLightbox('Screenshot 2025-12-07 200509.png')">
-                    <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Injection" style="width: 100%; height: 165px; object-fit: cover; border-radius: 8px; display: block; margin-bottom: 15px;" onerror="this.src='https://placehold.co/280x165/151f32/38bdf8?text=SQL+Injection+WebGoat'">
-                    <h4 style="color: #ffffff; margin-bottom: 8px; font-size: 1.1rem;">4. OWASP SQL Injection Mitigation</h4>
-                    <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.5;">Simulating deep input logic manipulation vulnerabilities within WebGoat sandbox to understand and protect databases against unauthorized manipulation queries.</p>
+                <div class="clean-card" style="padding: 12px; cursor: pointer;" onclick="openLightbox('Screenshot 2025-12-07 200509.png')">
+                    <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Injection" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; display: block; margin-bottom: 10px;" onerror="this.src='https://placehold.co/280x140/0f172a/38bdf8?text=SQL+Injection+WebGoat'">
+                    <h4 style="color: #ffffff; margin-bottom: 6px; font-size: 0.95rem;">4. OWASP SQL Injection Mitigation</h4>
+                    <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.4;">Simulating input logic manipulation vulnerabilities within WebGoat sandbox to protect databases against unauthorized queries.</p>
                 </div>
             </div>
         </section>
 
         <!-- ========================================== -->
-        <!-- SECTION 5: KAGGLE CREDENTIAL HUB -->
+        <!-- KAGGLE HUB SECTION                         -->
         <!-- ========================================== -->
-        <section id="kaggle" style="margin-bottom: 60px;">
-            <h2 class="section-title" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.2);">
-                <i class="fab fa-kaggle" style="color:#20beff;"></i> Kaggle Open-Source Hub & Verification Center
+        <section id="kaggle" style="margin-bottom: 45px;">
+            <h2 class="section-title">
+                <i class="fab fa-kaggle" style="color:#20beff;"></i> Kaggle Hub & Verified Badges
             </h2>
             
-            <div class="kaggle-hub" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(32, 190, 255, 0.2); padding: 35px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); align-items: start;">
+            <div class="clean-card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 25px; align-items: start;">
                 
-                <div class="kaggle-profile-box" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px;">
-                    <i class="fab fa-kaggle" style="font-size: 3.5rem; color: #20beff; margin-bottom: 15px;"></i>
-                    <h4 style="font-size:1.3rem; margin-bottom:8px; color: #f8fafc;">Malay Phishing Email Dataset</h4>
-                    <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:20px; text-align:center; line-height: 1.5;">Built and published an open-source dataset repository on Kaggle to assist machine learning algorithms in analyzing and mitigating localized cyber threats.</p>
+                <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                    <i class="fab fa-kaggle" style="font-size: 2.8rem; color: #20beff; margin-bottom: 10px;"></i>
+                    <h4 style="font-size:1.1rem; margin-bottom:6px; color: #f8fafc;">Malay Phishing Email Dataset</h4>
+                    <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:15px; line-height: 1.4;">Built and published an open-source dataset repository on Kaggle to assist machine learning algorithms in analyzing localized cyber threats.</p>
                     
-                    <img src="kaggle.png" alt="Kaggle Profile Dashboard" onerror="this.src='https://placehold.co/280x120/151f32/38bdf8?text=Kaggle+Telemetry+Screen'" style="width:100%; max-width: 280px; border-radius:10px; border:1px solid rgba(32,190,255,0.3); margin-bottom:20px; height:120px; object-fit:cover; cursor: zoom-in;" onclick="viewImage(this.src)">
+                    <img src="kaggle.png" alt="Kaggle Profile Dashboard" onerror="this.src='https://placehold.co/260x100/0f172a/38bdf8?text=Kaggle+Telemetry+Screen'" style="width:100%; max-width: 260px; border-radius:6px; border:1px solid rgba(32,190,255,0.2); margin-bottom:15px; height:100px; object-fit:cover; cursor: pointer;" onclick="openLightbox(this.src)">
                     
-                    <a href="https://www.kaggle.com/datasets/nasuhafadeli03/malay-phishing-email-dataset" target="_blank" class="btn btn-primary" style="background:rgba(32,190,255,0.1); border:1px solid #20beff; color:#20beff; font-size:0.85rem; width:100%; max-width: 280px; justify-content:center; text-decoration:none; padding: 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px; font-weight: bold;">
-                        <i class="fab fa-kaggle"></i> External Kaggle Dataset
+                    <a href="https://www.kaggle.com/datasets/nasuhafadeli03/malay-phishing-email-dataset" target="_blank" style="background:rgba(32,190,255,0.1); border:1px solid #20beff; color:#20beff; font-size:0.8rem; width:100%; max-width: 260px; text-decoration:none; padding: 8px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-weight: bold;">
+                        <i class="fab fa-kaggle"></i> View Kaggle Dataset
                     </a>
                 </div>
 
                 <div>
-                    <p style="font-size: 0.85rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; font-weight: bold;">
-                        <i class="fas fa-certificate" style="color:#eab308;"></i> Verified Kaggle Badge Credentials (6 Earned - Click to Zoom):
+                    <p style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; font-weight: 600;">
+                        <i class="fas fa-certificate" style="color:#eab308;"></i> Verified Badges (6 Earned):
                     </p>
                     
-                    <div class="kaggle-badge-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
                         
-                        <div class="badge-sijil-card" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid #ff9100; border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; cursor: zoom-in;" onclick="viewImage('Python Coder.png')">
-                            <img src="Python Coder.png" class="badge-thumb" alt="Python Coder" style="width: 45px; height: 45px; object-fit: contain; flex-shrink: 0;" onerror="handleImgFallback(this, 'Python Coder')">
-                            <div class="badge-info" style="display: flex; flex-direction: column;">
-                                <span class="badge-name" style="font-size: 0.95rem; font-weight: bold; color: #f8fafc;">Python Coder</span>
-                                <span class="badge-meta" style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; margin-top: 2px;">Verified Badge</span>
+                        <div class="clean-card" style="padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="openLightbox('Python Coder.png')">
+                            <img src="Python Coder.png" alt="Python Coder" style="width: 35px; height: 35px; object-fit: contain;" onerror="handleImgFallback(this, 'Python Coder')">
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: bold; color: #f8fafc;">Python Coder</div>
+                                <div style="font-size: 0.65rem; color: #64748b; text-transform: uppercase;">Verified Badge</div>
                             </div>
                         </div>
 
-                        <div class="badge-sijil-card" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid #e11d48; border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; cursor: zoom-in;" onclick="viewImage('Dataset Creator.png')">
-                            <img src="Dataset Creator.png" class="badge-thumb" alt="Dataset Creator" style="width: 45px; height: 45px; object-fit: contain; flex-shrink: 0;" onerror="handleImgFallback(this, 'Dataset Creator')">
-                            <div class="badge-info" style="display: flex; flex-direction: column;">
-                                <span class="badge-name" style="font-size: 0.95rem; font-weight: bold; color: #f8fafc;">Dataset Creator</span>
-                                <span class="badge-meta" style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; margin-top: 2px;">Verified Badge</span>
+                        <div class="clean-card" style="padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="openLightbox('Dataset Creator.png')">
+                            <img src="Dataset Creator.png" alt="Dataset Creator" style="width: 35px; height: 35px; object-fit: contain;" onerror="handleImgFallback(this, 'Dataset Creator')">
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: bold; color: #f8fafc;">Dataset Creator</div>
+                                <div style="font-size: 0.65rem; color: #64748b; text-transform: uppercase;">Verified Badge</div>
                             </div>
                         </div>
 
-                        <div class="badge-sijil-card" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid #eab308; border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; cursor: zoom-in;" onclick="viewImage('Dataset Documenter.png')">
-                            <img src="Dataset Documenter.png" class="badge-thumb" alt="Dataset Documenter" style="width: 45px; height: 45px; object-fit: contain; flex-shrink: 0;" onerror="handleImgFallback(this, 'Dataset Documenter')">
-                            <div class="badge-info" style="display: flex; flex-direction: column;">
-                                <span class="badge-name" style="font-size: 0.95rem; font-weight: bold; color: #f8fafc;">Dataset Documenter</span>
-                                <span class="badge-meta" style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; margin-top: 2px;">Verified Badge</span>
+                        <div class="clean-card" style="padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="openLightbox('Dataset Documenter.png')">
+                            <img src="Dataset Documenter.png" alt="Dataset Documenter" style="width: 35px; height: 35px; object-fit: contain;" onerror="handleImgFallback(this, 'Dataset Documenter')">
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: bold; color: #f8fafc;">Dataset Documenter</div>
+                                <div style="font-size: 0.65rem; color: #64748b; text-transform: uppercase;">Verified Badge</div>
                             </div>
                         </div>
 
-                        <div class="badge-sijil-card" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid #06b6d4; border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; cursor: zoom-in;" onclick="viewImage('Dataset Tagger.png')">
-                            <img src="Dataset Tagger.png" class="badge-thumb" alt="Dataset Tagger" style="width: 45px; height: 45px; object-fit: contain; flex-shrink: 0;" onerror="handleImgFallback(this, 'Dataset Tagger')">
-                            <div class="badge-info" style="display: flex; flex-direction: column;">
-                                <span class="badge-name" style="font-size: 0.95rem; font-weight: bold; color: #f8fafc;">Dataset Tagger</span>
-                                <span class="badge-meta" style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; margin-top: 2px;">Verified Badge</span>
+                        <div class="clean-card" style="padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="openLightbox('Dataset Tagger.png')">
+                            <img src="Dataset Tagger.png" alt="Dataset Tagger" style="width: 35px; height: 35px; object-fit: contain;" onerror="handleImgFallback(this, 'Dataset Tagger')">
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: bold; color: #f8fafc;">Dataset Tagger</div>
+                                <div style="font-size: 0.65rem; color: #64748b; text-transform: uppercase;">Verified Badge</div>
                             </div>
                         </div>
 
-                        <div class="badge-sijil-card" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid #a855f7; border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; cursor: zoom-in;" onclick="viewImage('Collector.png')">
-                            <img src="Collector.png" class="badge-thumb" alt="Collector" style="width: 45px; height: 45px; object-fit: contain; flex-shrink: 0;" onerror="handleImgFallback(this, 'Collector')">
-                            <div class="badge-info" style="display: flex; flex-direction: column;">
-                                <span class="badge-name" style="font-size: 0.95rem; font-weight: bold; color: #f8fafc;">Collector</span>
-                                <span class="badge-meta" style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; margin-top: 2px;">Verified Badge</span>
+                        <div class="clean-card" style="padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="openLightbox('Collector.png')">
+                            <img src="Collector.png" alt="Collector" style="width: 35px; height: 35px; object-fit: contain;" onerror="handleImgFallback(this, 'Collector')">
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: bold; color: #f8fafc;">Collector</div>
+                                <div style="font-size: 0.65rem; color: #64748b; text-transform: uppercase;">Verified Badge</div>
                             </div>
                         </div>
 
-                        <div class="badge-sijil-card" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid #38bdf8; border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; cursor: zoom-in;" onclick="viewImage('Kaggle Community Member.png')">
-                            <img src="Kaggle Community Member.png" class="badge-thumb" alt="Community Member" style="width: 45px; height: 45px; object-fit: contain; flex-shrink: 0;" onerror="handleImgFallback(this, 'Kaggle Community')">
-                            <div class="badge-info" style="display: flex; flex-direction: column;">
-                                <span class="badge-name" style="font-size: 0.95rem; font-weight: bold; color: #f8fafc;">Community Member</span>
-                                <span class="badge-meta" style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; margin-top: 2px;">Verified Member</span>
+                        <div class="clean-card" style="padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="openLightbox('Kaggle Community Member.png')">
+                            <img src="Kaggle Community Member.png" alt="Community Member" style="width: 35px; height: 35px; object-fit: contain;" onerror="handleImgFallback(this, 'Kaggle Community')">
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: bold; color: #f8fafc;">Community Member</div>
+                                <div style="font-size: 0.65rem; color: #64748b; text-transform: uppercase;">Verified Member</div>
                             </div>
                         </div>
 
@@ -286,197 +285,125 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- SECTION 6: TACTICAL LEADERSHIP & PATHWAYS -->
+        <!-- LEADERSHIP & CERTIFICATIONS                -->
         <!-- ========================================== -->
-        <section id="commitment" style="margin-bottom: 60px;">
+        <section id="commitment" style="margin-bottom: 45px;">
             <h2 class="section-title">
-                <i class="fas fa-user-check" style="color: #38bdf8;"></i> Leadership, Tactical Discipline & Cyberdefense Pathways
+                <i class="fas fa-user-check"></i> Leadership & Cyberdefense Pathways
             </h2>
-            
-            <p style="font-size: 0.8rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: bold; display: flex; align-items: center; gap: 8px;">
-                <i class="fas fa-sync-alt fa-spin"></i> Active Academic Validation & Cisco Cyberdefense Pathways
-            </p>
 
-            <!-- GRID CISCO + COMPTIA -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 50px;">
+            <!-- GRID CISCO & COMPTIA -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-bottom: 35px;">
                 
-                <!-- CISCO 1 -->
-                <div class="cisco-card" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 16px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s;">
-                    <div>
-                        <span style="position: absolute; top: 15px; right: 15px; background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 0.65rem; font-weight: bold; padding: 4px 10px; border-radius: 999px; text-transform: uppercase;">
-                            <i class="fas fa-check-circle" style="margin-right: 3px;"></i> Verified
-                        </span>
-                        <p style="color: #94a3b8; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin: 0 0 8px 0;">Cisco Networking Academy</p>
-                        <h4 style="color: #ffffff; font-size: 1.1rem; font-weight: bold; margin: 0 0 10px 0;">Networking Basics</h4>
-                        <p style="color: #cbd5e1; font-size: 0.8rem; line-height: 1.5; margin: 0 0 20px 0;">Developing core competencies in foundational computer networking architectures and analyzing live network operation telemetry.</p>
-                    </div>
-                    <div>
-                        <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                                <i class="fas fa-route" style="color: #10b981; font-size: 0.85rem;"></i>
-                                <span style="font-size: 0.75rem; color: #cbd5e1; font-weight: 500;">Target: <strong>Network Technician</strong></span>
-                            </div>
-                            <span style="font-size: 0.7rem; color: #10b981; font-weight: 600;">10 Jul 2026</span>
-                        </div>
-                        <p style="margin: 0; font-size: 0.65rem; color: #64748b; font-family: monospace;">Cert ID: 590473fa-d117-4dd2-b72e-beed09217758</p>
-                    </div>
+                <div class="clean-card" style="padding: 18px;">
+                    <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; font-size: 0.65rem; font-weight: bold; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; float: right;">Verified</span>
+                    <p style="color: #94a3b8; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">Cisco Networking Academy</p>
+                    <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: bold; margin-bottom: 8px;">Networking Basics</h4>
+                    <p style="color: #cbd5e1; font-size: 0.75rem; line-height: 1.4; margin-bottom: 12px;">Developing core competencies in computer networking architectures and analyzing live network operation telemetry.</p>
+                    <div style="font-size: 0.65rem; color: #64748b; font-family: monospace;">Cert ID: 590473fa-d117-4dd2-b72e-beed09217758</div>
                 </div>
 
-                <!-- CISCO 2 -->
-                <div class="cisco-card" style="background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(234, 179, 8, 0.15); border-radius: 16px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s;">
-                    <div>
-                        <span style="position: absolute; top: 15px; right: 15px; background: rgba(234, 179, 8, 0.15); color: #eab308; font-size: 0.65rem; font-weight: bold; padding: 4px 10px; border-radius: 999px; text-transform: uppercase;">In-Progress</span>
-                        <p style="color: #94a3b8; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin: 0 0 8px 0;">Cisco Networking Academy</p>
-                        <h4 style="color: #ffffff; font-size: 1.1rem; font-weight: bold; margin: 0 0 10px 0;">The Cybersecurity Landscape</h4>
-                        <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0 0 20px 0;">Mapping active threat vectors and infrastructure defense baselines required for enterprise SOC Analyst validation.</p>
-                    </div>
-                    <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-shield-alt" style="color: #eab308; font-size: 0.85rem;"></i>
-                        <span style="font-size: 0.75rem; color: #cbd5e1; font-weight: 500;">Target: <strong>Cybersecurity Defense Analyst</strong></span>
-                    </div>
+                <div class="clean-card" style="padding: 18px;">
+                    <span style="background: rgba(234, 179, 8, 0.15); color: #eab308; font-size: 0.65rem; font-weight: bold; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; float: right;">In-Progress</span>
+                    <p style="color: #94a3b8; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">Cisco Networking Academy</p>
+                    <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: bold; margin-bottom: 8px;">The Cybersecurity Landscape</h4>
+                    <p style="color: #94a3b8; font-size: 0.75rem; line-height: 1.4;">Mapping active threat vectors and infrastructure defense baselines required for enterprise SOC Analyst validation.</p>
                 </div>
 
-                <!-- CISCO 3 -->
-                <div class="cisco-card" style="background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 16px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s;">
-                    <div>
-                        <span style="position: absolute; top: 15px; right: 15px; background: rgba(16, 185, 129, 0.15); color: #10b981; font-size: 0.65rem; font-weight: bold; padding: 4px 10px; border-radius: 999px; text-transform: uppercase;">In-Progress</span>
-                        <p style="color: #94a3b8; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin: 0 0 8px 0;">Cisco Networking Academy</p>
-                        <h4 style="color: #ffffff; font-size: 1.1rem; font-weight: bold; margin: 0 0 10px 0;">Introduction to Cybersecurity</h4>
-                        <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0 0 20px 0;">Exploring high-fidelity threat intelligence telemetry, data privacy protocols, and secure network posture hardening.</p>
-                    </div>
-                    <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-user-shield" style="color: #10b981; font-size: 0.85rem;"></i>
-                        <span style="font-size: 0.75rem; color: #cbd5e1; font-weight: 500;">Target: <strong>Junior Cybersecurity Analyst</strong></span>
-                    </div>
+                <div class="clean-card" style="padding: 18px;">
+                    <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; font-size: 0.65rem; font-weight: bold; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; float: right;">In-Progress</span>
+                    <p style="color: #94a3b8; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">Cisco Networking Academy</p>
+                    <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: bold; margin-bottom: 8px;">Intro to Cybersecurity</h4>
+                    <p style="color: #94a3b8; font-size: 0.75rem; line-height: 1.4;">Exploring threat intelligence telemetry, data privacy protocols, and secure network posture hardening.</p>
                 </div>
 
-                <!-- COMPTIA SECURITYX -->
-                <div class="cisco-card" style="background: rgba(30, 27, 46, 0.6); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 16px; padding: 22px; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.05); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s;">
-                    <div>
-                        <span style="position: absolute; top: 15px; right: 15px; background: rgba(239, 68, 68, 0.2); color: #ef4444; font-size: 0.65rem; font-weight: bold; padding: 4px 10px; border-radius: 999px; text-transform: uppercase;">Advanced Track</span>
-                        <p style="color: #fca5a5; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin: 0 0 8px 0;">CompTIA Expert Series</p>
-                        <h4 style="color: #ffffff; font-size: 1.1rem; font-weight: bold; margin: 0 0 10px 0;">SecurityX Certification</h4>
-                        <p style="color: #cbd5e1; font-size: 0.8rem; line-height: 1.5; margin: 0 0 20px 0;">Engaged in advanced security engineering research, enterprise architecture design, and complex threat modeling simulation (Formerly known as CASP+).</p>
-                    </div>
-                    <div style="border-top: 1px solid rgba(239, 68, 68, 0.15); padding-top: 12px; display: flex; align-items: center; justify-content: space-between;">
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <i class="fas fa-biohazard" style="color: #ef4444; font-size: 0.85rem;"></i>
-                            <span style="font-size: 0.75rem; color: #fca5a5; font-weight: 500;">Status: <strong>Active Training</strong></span>
-                        </div>
-                        <span style="font-size: 0.7rem; color: #94a3b8; font-style: italic;">Session 2026</span>
-                    </div>
+                <div class="clean-card" style="padding: 18px; border-color: rgba(239, 68, 68, 0.3);">
+                    <span style="background: rgba(239, 68, 68, 0.15); color: #ef4444; font-size: 0.65rem; font-weight: bold; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; float: right;">Advanced</span>
+                    <p style="color: #fca5a5; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">CompTIA Series</p>
+                    <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: bold; margin-bottom: 8px;">SecurityX Certification</h4>
+                    <p style="color: #cbd5e1; font-size: 0.75rem; line-height: 1.4;">Engaged in advanced security engineering research, enterprise architecture design, and threat modeling simulation.</p>
                 </div>
 
             </div>
 
-            <!-- UNIFORMED LOGS INTRO -->
-            <p style="font-size: 0.8rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: bold; display: flex; align-items: center; gap: 8px;">
-                <i class="fas fa-folder-open"></i> Verified Kor SISPA Leadership & Civil Defense Operational Logs
+            <!-- UNIFORMED LOGS -->
+            <p style="font-size: 0.75rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 15px; font-weight: 600;">
+                <i class="fas fa-folder-open"></i> Kor SISPA & APM Operational Logs
             </p>
 
-            <!-- GRID UNIFORMED LOGS -->
-            <div class="artifacts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-bottom: 50px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
                 
-                <div class="artifact-card" onclick="viewImage('kursus metodologi.png')" style="background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.3s;">
-                    <img src="kursus%20metodologi.png" class="lab-img" alt="Kursus Metodologi Latihan APM" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" onerror="handleImgFallback(this, 'Kursus Metodologi Latihan')">
-                    <h4 style="font-size: 0.95rem; color: #f8fafc; margin: 0 0 6px 0; font-weight: bold;">Kursus Metodologi Latihan</h4>
-                    <p style="font-size: 0.75rem; color: #38bdf8; margin: 0;">PULAPA Jengka • Certified • 2025</p>
+                <div class="clean-card" onclick="openLightbox('kursus metodologi.png')" style="padding: 12px; cursor: pointer; text-align: center;">
+                    <img src="kursus%20metodologi.png" alt="Kursus Metodologi" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px; margin-bottom: 8px;" onerror="handleImgFallback(this, 'Kursus Metodologi')">
+                    <h4 style="font-size: 0.85rem; color: #f8fafc; font-weight: bold;">Metodologi Latihan</h4>
+                    <p style="font-size: 0.7rem; color: #38bdf8; margin-top: 2px;">PULAPA Jengka • 2025</p>
                 </div>
 
-                <div class="artifact-card" onclick="viewImage('kursus pusat.png')" style="background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.3s;">
-                    <img src="kursus%20pusat.png" class="lab-img" alt="Pengurusan Pusat Pemindahan" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" onerror="handleImgFallback(this, 'Pengurusan Pusat Pemindahan')">
-                    <h4 style="font-size: 0.95rem; color: #f8fafc; margin: 0 0 6px 0; font-weight: bold;">Pengurusan Pusat Pemindahan</h4>
-                    <p style="font-size: 0.75rem; color: #38bdf8; margin: 0;">PULAPA Jengka • Completed • 2024</p>
+                <div class="clean-card" onclick="openLightbox('kursus pusat.png')" style="padding: 12px; cursor: pointer; text-align: center;">
+                    <img src="kursus%20pusat.png" alt="Pengurusan Pusat Pemindahan" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px; margin-bottom: 8px;" onerror="handleImgFallback(this, 'Pusat Pemindahan')">
+                    <h4 style="font-size: 0.85rem; color: #f8fafc; font-weight: bold;">Pusat Pemindahan</h4>
+                    <p style="font-size: 0.7rem; color: #38bdf8; margin-top: 2px;">PULAPA Jengka • 2024</p>
                 </div>
 
-                <div class="artifact-card" onclick="viewImage('kursus bakal.png')" style="background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.3s;">
-                    <img src="kursus%20bakal.png" class="lab-img" alt="Kursus Bakal Pegawai Kor SISPA" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" onerror="handleImgFallback(this, 'Kursus Bakal Pegawai')">
-                    <h4 style="font-size: 0.95rem; color: #f8fafc; margin: 0 0 6px 0; font-weight: bold;">Kursus Bakal Pegawai Kor SISPA</h4>
-                    <p style="font-size: 0.75rem; color: #38bdf8; margin: 0;">PULAPA Jengka • Executive Pass • 2026</p>
+                <div class="clean-card" onclick="openLightbox('kursus bakal.png')" style="padding: 12px; cursor: pointer; text-align: center;">
+                    <img src="kursus%20bakal.png" alt="Kursus Bakal Pegawai" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px; margin-bottom: 8px;" onerror="handleImgFallback(this, 'Bakal Pegawai')">
+                    <h4 style="font-size: 0.85rem; color: #f8fafc; font-weight: bold;">Bakal Pegawai Kor SISPA</h4>
+                    <p style="font-size: 0.7rem; color: #38bdf8; margin-top: 2px;">PULAPA Jengka • 2026</p>
                 </div>
 
-                <div class="artifact-card" onclick="viewImage('kursus asas.png')" style="background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.3s;">
-                    <img src="kursus%20asas.png" class="lab-img" alt="Kursus Asas Pertahanan Awam" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" onerror="handleImgFallback(this, 'Kursus Asas Pertahanan Awam PISPA')">
-                    <h4 style="font-size: 0.95rem; color: #f8fafc; margin: 0 0 6px 0; font-weight: bold;">Kursus Asas Pertahanan Awam</h4>
-                    <p style="font-size: 0.75rem; color: #38bdf8; margin: 0;">UniSZA Besut • Completed • 2024</p>
+                <div class="clean-card" onclick="openLightbox('kursus asas.png')" style="padding: 12px; cursor: pointer; text-align: center;">
+                    <img src="kursus%20asas.png" alt="Kursus Asas" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px; margin-bottom: 8px;" onerror="handleImgFallback(this, 'Kursus Asas')">
+                    <h4 style="font-size: 0.85rem; color: #f8fafc; font-weight: bold;">Asas Pertahanan Awam</h4>
+                    <p style="font-size: 0.7rem; color: #38bdf8; margin-top: 2px;">UniSZA Besut • 2024</p>
                 </div>
 
-                <div class="artifact-card" onclick="viewImage('kursus first.png')" style="background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.3s;">
-                    <img src="kursus%20first.png" class="lab-img" alt="First Responder Life Support" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" onerror="handleImgFallback(this, 'First Responder Life Support Level 1')">
-                    <h4 style="font-size: 0.95rem; color: #f8fafc; margin: 0 0 6px 0; font-weight: bold;">First Responder Life Support (FRLS)</h4>
-                    <p style="font-size: 0.75rem; color: #38bdf8; margin: 0;">ALPHA UniSZA • Level 1 Core • 2025</p>
+                <div class="clean-card" onclick="openLightbox('kursus first.png')" style="padding: 12px; cursor: pointer; text-align: center;">
+                    <img src="kursus%20first.png" alt="First Responder" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px; margin-bottom: 8px;" onerror="handleImgFallback(this, 'FRLS Level 1')">
+                    <h4 style="font-size: 0.85rem; color: #f8fafc; font-weight: bold;">First Responder (FRLS)</h4>
+                    <p style="font-size: 0.7rem; color: #38bdf8; margin-top: 2px;">ALPHA UniSZA • 2025</p>
                 </div>
 
-            </div>
-
-            <!-- STRATEGIC INDUSTRY ALIGNMENT -->
-            <div class="commitment-box" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); border-top: 3px solid #38bdf8;">
-                <h4 style="color: #38bdf8; font-weight: bold; font-size: 1.15rem; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
-                    <i class="fas fa-shield-alt"></i> Strategic Industry Alignment: CyberSecurity Malaysia (CSM)
-                </h4>
-                <p style="margin: 0; font-size:0.95rem; color:#cbd5e1; line-height: 1.6;">
-                    My technical roadmap is engineered specifically to contribute to high-stakes defense sectors. Combining deep-level routing infrastructure deployment, traffic analysis via Wireshark, and local threat-vector analysis through my published Malay Phishing Email Dataset, I provide high operational synergy for defensive systems protection.
-                </p>
             </div>
         </section>
 
     </div>
 
-    <!-- FLOATING ACTION BUTTON (RESUME & DIRECT CONTACT) -->
+    <!-- FLOATING ACTION BUTTONS (DIRECT EMAIL, WHATSAPP & RESUME CV) -->
     <div class="floating-action-bar">
-        <a href="aydanasuha03@gmail.com" class="fab-btn" style="background: #151f32; color: #38bdf8; border: 1px solid #38bdf8;">
+        <!-- BUTANG EMAIL RASMI -->
+        <a href="mailto:eydanasuha03@gmail.com" class="fab-btn">
             <i class="fas fa-envelope"></i> Email Direct
         </a>
-        <a href="resumer.pdf"target="_blank" download class="fab-btn">
-            <i class="fas fa-file-download"></i> Download Resume CV
+        
+        <!-- BUTANG WHATSAPP DIRECT -->
+        <a href="https://wa.me/601139263109" target="_blank" class="fab-btn" style="border-color: #25d366; color: #25d366;">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+
+        <!-- BUTANG DOWNLOAD RESUME -->
+        <a href="resumer.pdf" target="_blank" download class="fab-btn" style="background: #38bdf8; color: #070a12; border-color: #38bdf8;">
+            <i class="fas fa-file-download"></i> Download Resume
         </a>
     </div>
 
-    <!-- SECURED COMPLIANCE FOOTER SYSTEM -->
+    <!-- FOOTER -->
     <footer>
-        <p>© 2026 Aida Nasuha. SECURED REPOSITORY PLATFORM // ALL LAB METRICS COMPLIANT WITH INDUSTRY ACADEMIC STANDARD BENCHMARKS.</p>
+        <p>© 2026 Aida Nasuha. SECURED REPOSITORY PLATFORM // CYBERSECURITY PORTFOLIO</p>
     </footer>
 
     <!-- INTERACTIVE LIGHTBOX SYSTEM -->
-    <div class="lightbox" id="custom-lightbox" style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(7, 11, 22, 0.95); align-items: center; justify-content: center; cursor: pointer; padding: 20px; box-sizing: border-box;">
-        <div class="lightbox-wrapper" style="position: relative; max-width: 90%; max-height: 90vh; display: flex; align-items: center; justify-content: center; cursor: default;" onclick="event.stopPropagation()">
-            <span class="lightbox-close" onclick="closeImage()" style="position: absolute; top: -45px; right: 0; color: #ffffff; font-size: 14px; font-weight: bold; cursor: pointer; background: #e11d48; padding: 6px 16px; border-radius: 6px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);">
-                &times; Tutup
+    <div class="lightbox" id="custom-lightbox" style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(7, 11, 22, 0.95); align-items: center; justify-content: center; padding: 20px;">
+        <div style="position: relative; max-width: 90%; max-height: 90vh; display: flex; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
+            <span onclick="closeImage()" style="position: absolute; top: -40px; right: 0; color: #ffffff; font-size: 12px; font-weight: bold; cursor: pointer; background: #e11d48; padding: 5px 12px; border-radius: 4px;">
+                Tutup &times;
             </span>
-            <img src="" id="target-lightbox-img" alt="Enlarged View" style="max-width: 100%; max-height: 85vh; width: auto; height: auto; object-fit: contain; border-radius: 8px; border: 2px solid rgba(56, 189, 248, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.8); display: block;">
+            <img src="" id="target-lightbox-img" alt="Enlarged View" style="max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.4); display: block;">
         </div>
     </div>
 
-    <!-- SCRIPT UTAMA FULL ENGINE -->
+    <!-- JAVASCRIPT SYSTEM -->
     <script>
-        // 1. Matrix Background Decoration Logic
-        const canvas = document.getElementById('cyber-bg');
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            const matrixStrings = "010101010011010101010100111".split("");
-            const fontSize = 16;
-            const columns = canvas.width / fontSize;
-            const drops = Array(Math.floor(columns)).fill(1);
-
-            function drawMatrix() {
-                ctx.fillStyle = 'rgba(9, 13, 22, 0.05)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = 'rgba(56, 189, 248, 0.15)';
-                ctx.font = fontSize + 'px monospace';
-                for (let i = 0; i < drops.length; i++) {
-                    const char = matrixStrings[Math.floor(Math.random() * matrixStrings.length)];
-                    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                    drops[i]++;
-                }
-            }
-            setInterval(drawMatrix, 33);
-            window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
-        }
-
-        // 2. Interactive Lightbox Engine
+        // 1. Lightbox View Functions
         function openLightbox(src) {
             if (!src || src.includes('placehold.co')) return; 
             const lightbox = document.getElementById('custom-lightbox');
@@ -495,11 +422,6 @@
             }
         }
 
-        function viewImage(src) {
-            openLightbox(src);
-        }
-
-        // Event listener selamat untuk menutup gambar bila latar gelap diklik
         const lightboxElem = document.getElementById('custom-lightbox');
         if (lightboxElem) {
             lightboxElem.addEventListener('click', function(e) {
@@ -509,25 +431,25 @@
             });
         }
 
-        // 3. Fallback Engine untuk Imej Lencana/Cert yang Hilang
+        // 2. Fallback Engine
         function handleImgFallback(img, textLabel) {
             const parent = img.parentElement;
             if (!parent) return;
 
             const container = document.createElement('div');
-            container.style.cssText = "display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #090d16 0%, #151f32 100%); border:1px solid rgba(56,189,248,0.25); border-radius:8px; height:45px; width:45px; flex-shrink: 0; text-align:center; box-sizing:border-box; cursor:pointer;";
+            container.style.cssText = "display:flex; flex-direction:column; align-items:center; justify-content:center; background:#0f172a; border:1px solid rgba(56,189,248,0.2); border-radius:6px; height:35px; width:35px; flex-shrink: 0; cursor:pointer;";
             
             container.onclick = function(e) { 
                 e.stopPropagation();
                 openLightbox(textLabel + '.png'); 
             };
             
-            container.innerHTML = `<i class="fas fa-certificate" style="color: #eab308; font-size: 1.1rem;"></i>`;
+            container.innerHTML = `<i class="fas fa-certificate" style="color: #eab308; font-size: 0.9rem;"></i>`;
             parent.insertBefore(container, parent.firstChild);
             img.style.display = 'none';
         }
 
-        // 4. Dynamic Active Navigation Highlight semasa Scroll
+        // 3. Dynamic Active Navigation
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
         if (sections.length > 0 && navLinks.length > 0) {
