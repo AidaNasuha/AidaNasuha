@@ -152,7 +152,7 @@
             <!-- INPUT FIELD -->
             <div style="display: flex; align-items: center; background: rgba(15, 23, 42, 0.6); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.2); width: 100%; box-sizing: border-box;">
                 <span style="color: #10b981; font-weight: bold; font-size: 0.8rem; white-space: nowrap; margin-right: 8px; flex-shrink: 0;">visitor@aida-sec:~$</span>
-                <input type="text" id="hero-terminal-input" style="background: transparent; border: none; outline: none; color: #f8fafc; font-family: monospace; font-size: 0.8rem; width: 100%; flex-grow: 1;" placeholder="Taip 'help' di sini..." autocomplete="off">
+                <input type="text" id="hero-terminal-input" style="background: transparent; border: none; outline: none; color: #f8fafc; font-family: monospace; font-size: 0.8rem; width: 100%; flex-grow: 1;" placeholder="Taip 'help' di sini..." autocomplete="off" onkeydown="handleTerminalCommand(this, event)">
             </div>
         </div>
 
@@ -179,72 +179,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT TERMINAL DAH DISIMPANKAN DALAM SECTION TERUS -->
-    <script>
-        (function() {
-            function setupTerminal() {
-                const input = document.getElementById('hero-terminal-input');
-                const log = document.getElementById('terminal-log');
-
-                if (!input || !log) return;
-
-                // Guna event listener supaya x kacau script lain
-                input.onkeydown = function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        const cmd = this.value.trim().toLowerCase();
-                        if (cmd === '') return;
-                        
-                        this.value = '';
-
-                        // Papar apa yang difaip pengguna
-                        const userCmd = document.createElement('p');
-                        userCmd.style.margin = '0 0 4px 0';
-                        userCmd.innerHTML = `<span style="color:#10b981;">visitor@aida-sec:~$</span> ${cmd}`;
-                        log.appendChild(userCmd);
-
-                        // Respon sistem
-                        let responseText = '';
-                        if (cmd === 'help') {
-                            responseText = `<div style="color: #cbd5e1; margin-bottom: 8px; padding-left: 8px; border-left: 2px solid #38bdf8;">
-                                <strong style="color: #f59e0b;">Commands Available:</strong><br>
-                                • <span style="color:#38bdf8;">skills</span> - Core Technical Skills<br>
-                                • <span style="color:#38bdf8;">certs</span> - Roadmap & Education<br>
-                                • <span style="color:#38bdf8;">contact</span> - Direct Contact Info<br>
-                                • <span style="color:#38bdf8;">clear</span> - Clear Screen
-                               </div>`;
-                        } else if (cmd === 'skills') {
-                            responseText = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Wireshark, Snort IDS, Cisco Networking, Python Data Analytics, Linux Admin.</p>`;
-                        } else if (cmd === 'certs') {
-                            responseText = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Bachelor in Computer Network Security (2026), Target: CCNA & CompTIA Security+.</p>`;
-                        } else if (cmd === 'contact') {
-                            responseText = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Email: aydanasuha03@gmail.com | WA: +601139263109</p>`;
-                        } else if (cmd === 'clear') {
-                            log.innerHTML = '';
-                            return;
-                        } else {
-                            responseText = `<p style="color:#ef4444; margin-bottom:8px;">> Command '${cmd}' not recognized. Type <span style="color:#f59e0b;">'help'</span> for available commands.</p>`;
-                        }
-
-                        const resDiv = document.createElement('div');
-                        resDiv.innerHTML = responseText;
-                        log.appendChild(resDiv);
-
-                        // Auto scroll ke paling bawah
-                        log.scrollTop = log.scrollHeight;
-                    }
-                };
-            }
-
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', setupTerminal);
-            } else {
-                setupTerminal();
-            }
-        })();
-    </script>
-
-</section>
+     
 <!-- ========================================== -->
 <!-- SECTION 2: CAREER DEVELOPMENT PLAN         -->
 <!-- ========================================== -->
@@ -702,52 +637,59 @@
                 lightbox.style.display = 'none';
             }
         }
+    <!-- ========================================== -->
+    <!-- SCRIPT TERMINAL FIXED                      -->
+    <!-- ========================================== -->
+    <script>
+        function handleTerminalCommand(inputElement, event) {
+            // Semak jika kunci yang ditekan adalah ENTER
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Halang form daripada submit/refresh
 
-        // FUNCTION UNTUK TERMINAL COMMANDS (HELP, SKILLS, DLL)
-        function handleTerminalCommand(inputElement) {
-            const cmd = inputElement.value.trim().toLowerCase();
-            if (!cmd) return;
+                const cmd = inputElement.value.trim().toLowerCase();
+                if (!cmd) return;
 
-            const logBox = document.getElementById('terminal-log');
-            inputElement.value = '';
+                const logBox = document.getElementById('terminal-log');
+                inputElement.value = '';
 
-            if (!logBox) return;
+                if (!logBox) return;
 
-            // 1. Papar apa pengguna taip
-            const userLine = document.createElement('p');
-            userLine.style.margin = '0 0 4px 0';
-            userLine.innerHTML = `<span style="color:#10b981;">visitor@aida-sec:~$</span> ${cmd}`;
-            logBox.appendChild(userLine);
+                // 1. Papar apa pengguna taip
+                const userLine = document.createElement('p');
+                userLine.style.margin = '0 0 4px 0';
+                userLine.innerHTML = `<span style="color:#10b981;">visitor@aida-sec:~$</span> ${cmd}`;
+                logBox.appendChild(userLine);
 
-            // 2. Respon arahan
-            let output = '';
-            if (cmd === 'help') {
-                output = `<div style="color: #cbd5e1; margin-bottom: 8px; padding-left: 8px; border-left: 2px solid #38bdf8;">
-                    <strong style="color: #f59e0b;">Commands Available:</strong><br>
-                    • <span style="color:#38bdf8;">skills</span> - Core Technical Skills<br>
-                    • <span style="color:#38bdf8;">certs</span> - Roadmap & Education<br>
-                    • <span style="color:#38bdf8;">contact</span> - Direct Contact Info<br>
-                    • <span style="color:#38bdf8;">clear</span> - Clear Screen
-                </div>`;
-            } else if (cmd === 'skills') {
-                output = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Wireshark, Snort IDS, Cisco Networking, Python Data Analytics, Linux Admin.</p>`;
-            } else if (cmd === 'certs') {
-                output = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Bachelor in Computer Network Security (2026), Target: CCNA & CompTIA Security+.</p>`;
-            } else if (cmd === 'contact') {
-                output = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Email: aydanasuha03@gmail.com | WA: +601139263109</p>`;
-            } else if (cmd === 'clear') {
-                logBox.innerHTML = '';
-                return;
-            } else {
-                output = `<p style="color:#ef4444; margin-bottom:8px;">> Command '${cmd}' not recognized. Type <span style="color:#f59e0b;">'help'</span> for available commands.</p>`;
+                // 2. Respon arahan
+                let output = '';
+                if (cmd === 'help') {
+                    output = `<div style="color: #cbd5e1; margin-bottom: 8px; padding-left: 8px; border-left: 2px solid #38bdf8;">
+                        <strong style="color: #f59e0b;">Commands Available:</strong><br>
+                        • <span style="color:#38bdf8;">skills</span> - Core Technical Skills<br>
+                        • <span style="color:#38bdf8;">certs</span> - Roadmap & Education<br>
+                        • <span style="color:#38bdf8;">contact</span> - Direct Contact Info<br>
+                        • <span style="color:#38bdf8;">clear</span> - Clear Screen
+                    </div>`;
+                } else if (cmd === 'skills') {
+                    output = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Wireshark, Snort IDS, Cisco Networking, Python Data Analytics, Linux Admin.</p>`;
+                } else if (cmd === 'certs') {
+                    output = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Bachelor in Computer Network Security (2026), Target: CCNA & CompTIA Security+.</p>`;
+                } else if (cmd === 'contact') {
+                    output = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Email: aydanasuha03@gmail.com | WA: +601139263109</p>`;
+                } else if (cmd === 'clear') {
+                    logBox.innerHTML = '';
+                    return;
+                } else {
+                    output = `<p style="color:#ef4444; margin-bottom:8px;">> Command '${cmd}' not recognized. Type <span style="color:#f59e0b;">'help'</span> for available commands.</p>`;
+                }
+
+                const resContainer = document.createElement('div');
+                resContainer.innerHTML = output;
+                logBox.appendChild(resContainer);
+
+                // Auto scroll ke bawah
+                logBox.scrollTop = logBox.scrollHeight;
             }
-
-            const resContainer = document.createElement('div');
-            resContainer.innerHTML = output;
-            logBox.appendChild(resContainer);
-
-            // Auto scroll ke bawah
-            logBox.scrollTop = logBox.scrollHeight;
         }
     </script>
 </body>
