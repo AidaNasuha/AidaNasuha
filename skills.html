@@ -655,7 +655,7 @@
     </div>
 </section>
 
-    <!-- ========================================== -->
+   <!-- ========================================== -->
     <!-- SECURED COMPLIANCE FOOTER SYSTEM           -->
     <!-- ========================================== -->
     <footer style="text-align: center; padding: 25px 20px; background: rgba(9, 13, 22, 0.8); border-top: 1px solid rgba(56, 189, 248, 0.15); margin-top: 50px;">
@@ -665,9 +665,9 @@
     </footer>
 
     <!-- ========================================== -->
-    <!-- POP-UP LIGHTBOX SYSTEM (PAKSA SEMBUNYI KECUALI DIKLIK) -->
+    <!-- POP-UP LIGHTBOX SYSTEM                     -->
     <!-- ========================================== -->
-    <div id="custom-lightbox" style="display: none !important; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(7, 11, 22, 0.92); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+    <div id="custom-lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(7, 11, 22, 0.92); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;" onclick="closeImage()">
         
         <div style="position: relative; max-width: 90%; max-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
             
@@ -681,3 +681,74 @@
             
         </div>
     </div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPT SISTEM (LIGHTBOX + TERMINAL HERO)   -->
+    <!-- ========================================== -->
+    <script>
+        // FUNCTION UNTUK LIGHTBOX
+        function openImage(src) {
+            const lightbox = document.getElementById('custom-lightbox');
+            const img = document.getElementById('target-lightbox-img');
+            if (lightbox && img) {
+                img.src = src;
+                lightbox.style.display = 'flex';
+            }
+        }
+
+        function closeImage() {
+            const lightbox = document.getElementById('custom-lightbox');
+            if (lightbox) {
+                lightbox.style.display = 'none';
+            }
+        }
+
+        // FUNCTION UNTUK TERMINAL COMMANDS (HELP, SKILLS, DLL)
+        function handleTerminalCommand(inputElement) {
+            const cmd = inputElement.value.trim().toLowerCase();
+            if (!cmd) return;
+
+            const logBox = document.getElementById('terminal-log');
+            inputElement.value = '';
+
+            if (!logBox) return;
+
+            // 1. Papar apa pengguna taip
+            const userLine = document.createElement('p');
+            userLine.style.margin = '0 0 4px 0';
+            userLine.innerHTML = `<span style="color:#10b981;">visitor@aida-sec:~$</span> ${cmd}`;
+            logBox.appendChild(userLine);
+
+            // 2. Respon arahan
+            let output = '';
+            if (cmd === 'help') {
+                output = `<div style="color: #cbd5e1; margin-bottom: 8px; padding-left: 8px; border-left: 2px solid #38bdf8;">
+                    <strong style="color: #f59e0b;">Commands Available:</strong><br>
+                    • <span style="color:#38bdf8;">skills</span> - Core Technical Skills<br>
+                    • <span style="color:#38bdf8;">certs</span> - Roadmap & Education<br>
+                    • <span style="color:#38bdf8;">contact</span> - Direct Contact Info<br>
+                    • <span style="color:#38bdf8;">clear</span> - Clear Screen
+                </div>`;
+            } else if (cmd === 'skills') {
+                output = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Wireshark, Snort IDS, Cisco Networking, Python Data Analytics, Linux Admin.</p>`;
+            } else if (cmd === 'certs') {
+                output = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Bachelor in Computer Network Security (2026), Target: CCNA & CompTIA Security+.</p>`;
+            } else if (cmd === 'contact') {
+                output = `<p style="color:#f8fafc; padding-left: 8px; border-left: 2px solid #38bdf8; margin-bottom:8px;">> Email: aydanasuha03@gmail.com | WA: +601139263109</p>`;
+            } else if (cmd === 'clear') {
+                logBox.innerHTML = '';
+                return;
+            } else {
+                output = `<p style="color:#ef4444; margin-bottom:8px;">> Command '${cmd}' not recognized. Type <span style="color:#f59e0b;">'help'</span> for available commands.</p>`;
+            }
+
+            const resContainer = document.createElement('div');
+            resContainer.innerHTML = output;
+            logBox.appendChild(resContainer);
+
+            // Auto scroll ke bawah
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
