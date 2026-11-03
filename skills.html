@@ -145,6 +145,22 @@
             padding-bottom: 5px;
         }
 
+    
+        /* COMMITMENT SECTION ALIGNMENT FIX */
+        #commitment { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 0 !important; }
+        #commitment > h2, #commitment > p { width: 100% !important; flex: 0 0 100% !important; }
+        #commitment .artifacts-grid { width: 100% !important; max-width: 100% !important; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important; align-items: stretch !important; }
+        #commitment .commitment-box { display: block !important; width: 100% !important; max-width: 100% !important; flex: 0 0 100% !important; margin: 28px 0 0 !important; box-sizing: border-box !important; }
+        #commitment #course-certificate-folder { width: min(100%, 360px) !important; }
+        #commitment #all-course-certificates { width: 100% !important; }
+        #commitment .artifact-card img { width: 100% !important; height: 180px !important; object-fit: contain !important; background: rgba(255,255,255,0.04); }
+        @media (max-width: 760px) {
+            #commitment { padding-left: 5% !important; padding-right: 5% !important; }
+            #commitment .artifacts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+            #commitment .artifact-card { padding: 12px !important; }
+            #commitment .artifact-card img { height: 150px !important; }
+        }
+
     </style>
 </head>
 <body>
