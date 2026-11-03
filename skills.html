@@ -132,6 +132,19 @@
             .btn-group { justify-content: center; }
         }
 
+    
+        /* SINGLE-MENU VIEW: show only the section selected in navigation */
+        body.single-page > section { display: none !important; }
+        body.single-page > section.is-active { display: flex !important; }
+        body.single-page > footer { display: none !important; }
+        body.single-page > section.is-active { min-height: calc(100vh - 76px); }
+        body.single-page nav a.active {
+            color: #38bdf8;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+            border-bottom: 2px solid #38bdf8;
+            padding-bottom: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -748,5 +761,47 @@
             }
         }
     </script>
+
+    <!-- SINGLE-MENU NAVIGATION -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = Array.from(document.querySelectorAll('body > section[id]'));
+            const links = Array.from(document.querySelectorAll('nav a.nav-link'));
+
+            function showSection(sectionId, updateUrl = true) {
+                const target = sections.find(section => section.id === sectionId) || sections.find(section => section.id === 'hero');
+                if (!target) return;
+
+                document.body.classList.add('single-page');
+                sections.forEach(section => section.classList.toggle('is-active', section === target));
+                links.forEach(link => {
+                    const active = link.getAttribute('href') === '#' + target.id;
+                    link.classList.toggle('active', active);
+                    if (active) link.setAttribute('aria-current', 'page');
+                    else link.removeAttribute('aria-current');
+                });
+
+                if (updateUrl) history.replaceState(null, '', '#' + target.id);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            links.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    const id = this.getAttribute('href').slice(1);
+                    if (sections.some(section => section.id === id)) {
+                        event.preventDefault();
+                        showSection(id);
+                    }
+                });
+            });
+
+            window.addEventListener('hashchange', function () {
+                showSection(location.hash.slice(1), false);
+            });
+
+            showSection(location.hash.slice(1) || 'hero', false);
+        });
+    </script>
+
 </body>
 </html>
