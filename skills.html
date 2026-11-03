@@ -609,7 +609,12 @@
     </p>
 
     <!-- GRID UNIFORMED LOGS (5 SIJIL APM & SISPA) -->
-    <div class="artifacts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 45px;">
+    <div id="course-certificate-folder" class="artifact-card" role="button" tabindex="0" onclick="showCourseCertificates()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showCourseCertificates();}" style="max-width:360px; margin:0 0 28px 0; background:rgba(15,23,42,0.72); border:1px solid rgba(56,189,248,0.35); padding:22px; border-radius:14px; cursor:pointer; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.25);">
+  <i class="fas fa-folder-open" style="font-size:2.4rem; color:#38bdf8; margin-bottom:12px;"></i>
+  <h4 style="font-size:1rem; color:#f8fafc; margin-bottom:6px;">Kursus Metodologi</h4>
+  <p style="font-size:0.8rem; color:#94a3b8; margin:0;">Klik untuk melihat semua sijil</p>
+ </div>
+ <div id="all-course-certificates" class="artifacts-grid" style="display:none; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px; margin-bottom:45px;" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 45px;">
         
         <!-- SIJIL 1 -->
         <div class="artifact-card" onclick="viewImage('kursus metodologi.png')" style="background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255,255,255,0.08); padding: 16px; border-radius: 14px; cursor: pointer; text-align: center; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2);" onmouseover="this.style.border='1px solid #38bdf8'; this.style.transform='translateY(-5px)';" onmouseout="this.style.border='1px solid rgba(255,255,255,0.08)'; this.style.transform='translateY(0)';">
@@ -691,9 +696,21 @@
     <!-- ========================================== -->
     <script>
         // FUNCTION UNTUK LIGHTBOX
+        function showCourseCertificates() {
+            const folder = document.getElementById('course-certificate-folder');
+            const certificates = document.getElementById('all-course-certificates');
+            if (folder) folder.style.display = 'none';
+            if (certificates) certificates.style.display = 'grid';
+        }
+
         function viewImage(src) { openImage(src); }
 
         function openImage(src) {
+            window.certificateReturnState = {
+                scrollY: window.scrollY,
+                folderVisible: document.getElementById('course-certificate-folder')?.style.display !== 'none',
+                gridVisible: document.getElementById('all-course-certificates')?.style.display !== 'none'
+            };
             const lightbox = document.getElementById('custom-lightbox');
             const img = document.getElementById('target-lightbox-img');
             if (lightbox && img) {
@@ -704,9 +721,8 @@
 
         function closeImage() {
             const lightbox = document.getElementById('custom-lightbox');
-            if (lightbox) {
-                lightbox.style.display = 'none';
-            }
+            if (lightbox) lightbox.style.display = 'none';
+            if (window.certificateReturnState) window.scrollTo({ top: window.certificateReturnState.scrollY, behavior: 'auto' });
         }
     <!-- ========================================== -->
     <!-- SCRIPT TERMINAL FIXED                      -->
