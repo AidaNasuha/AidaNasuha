@@ -135,7 +135,7 @@
     
         /* SINGLE-MENU VIEW: show only the section selected in navigation */
         body.single-page > section { display: none !important; }
-        body.single-page > section.is-active { display: flex !important; }
+        body.single-page > section.is-active { display: flex !important; visibility: visible !important; opacity: 1 !important; }
         body.single-page > footer { display: none !important; }
         body.single-page > section.is-active { min-height: calc(100vh - 76px); }
         body.single-page nav a.active {
@@ -766,7 +766,7 @@
 
     <!-- SINGLE-MENU NAVIGATION -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        (function () {
             const sections = Array.from(document.querySelectorAll('body > section[id]'));
             const links = Array.from(document.querySelectorAll('nav a.nav-link'));
 
@@ -802,7 +802,7 @@
             });
 
             showSection(location.hash.slice(1) || 'hero', false);
-        });
+        })();
     </script>
 
 </body>
