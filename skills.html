@@ -361,9 +361,67 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
 @media(max-width:900px) {.mission-layout {grid-template-columns:1fr}.mission-radar {max-width:270px}}
 @media(max-width:480px) {.mission-console,.mission-path-card {padding:19px}.mission-radar {max-width:225px}.mission-step {padding:14px}}
 @media(prefers-reduced-motion:reduce) {.mission-radar-sweep,.mission-radar-dot,.mission-dialog {animation:none!important}.mission-reveal {opacity:1;transform:none;transition:none}.mission-open,.mission-step {transition:none}}
+
+/* =============================================
+   CONTACT ME - CYBER BLUE SOCIAL CONNECT
+============================================= */
+#contact {position:relative;isolation:isolate}
+.contact-header {text-align:center;max-width:760px;margin:0 auto 30px}
+.contact-eyebrow {display:block;color:#67e8f9;font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:12px}
+.contact-desc {color:#a8bed4;font-size:15px;line-height:1.8}
+.contact-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.contact-card {--mouse-x:50%;--mouse-y:50%;position:relative;overflow:hidden;isolation:isolate;min-width:0;display:flex;align-items:center;gap:18px;padding:26px;border:1px solid rgba(56,189,248,.23);border-radius:22px;background:linear-gradient(145deg,#18273f,#0c1627);box-shadow:0 16px 34px rgba(0,0,0,.26),inset 0 1px rgba(255,255,255,.05);transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;outline-offset:4px}
+.contact-card::before {content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;background:radial-gradient(240px circle at var(--mouse-x) var(--mouse-y),rgba(56,189,248,.25),transparent 73%);transition:opacity .25s ease}
+.contact-card:hover,.contact-card:focus-visible {transform:translateY(-7px);border-color:#67e8f9;box-shadow:0 23px 45px rgba(0,0,0,.35),0 0 24px rgba(56,189,248,.22)}
+.contact-card:hover::before,.contact-card:focus-visible::before {opacity:1}
+.contact-icon {flex:none;display:grid;place-items:center;width:62px;height:62px;border-radius:18px;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);font-size:28px;color:#8be7ff;transition:transform .35s ease,box-shadow .35s ease}
+.contact-card:hover .contact-icon {transform:scale(1.09) rotate(-4deg);box-shadow:0 0 22px rgba(56,189,248,.27)}
+.contact-card.instagram .contact-icon {color:#ff91c8}
+.contact-card.whatsapp .contact-icon {color:#67e5ba}
+.contact-card .contact-info {flex:1;min-width:0}
+.contact-card h3 {font-size:19px;margin-bottom:2px;color:#f8fafc}
+.contact-card p {font-size:13px;color:#acc0d4;overflow-wrap:anywhere}
+.contact-visit {display:inline-block;margin-top:9px;color:#67e8f9;font-size:12px;font-weight:700}
+.contact-arrow {color:#67e8f9;transition:transform .3s ease}
+.contact-card:hover .contact-arrow {transform:translate(3px,-3px)}
+.contact-reveal {opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.contact-reveal.is-visible {opacity:1;transform:none}
+@media(max-width:850px) {.contact-grid {grid-template-columns:1fr}}
+@media(max-width:480px) {.contact-card {padding:18px;gap:13px}.contact-icon {width:52px;height:52px;font-size:24px}.contact-card h3 {font-size:17px}}
+@media(hover:none) {.contact-card::before {opacity:.35}}
+@media(prefers-reduced-motion:reduce) {.contact-card,.contact-icon,.contact-arrow,.contact-reveal {transition:none!important}.contact-reveal {opacity:1;transform:none}}
+
+
+/* CYBER CODE RAIN — subtle, mobile-friendly background */
+#cyber-code-rain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .72;
+}
+/* Keep all content and modal layers above the ambient code rain. */
+body > header, body > section, body > footer {
+  position: relative;
+  z-index: 1;
+}
+body > header { position: sticky; z-index: 100; }
+body > .about-modal-overlay,
+body > #lightbox,
+body > #missionModal { z-index: 2000; }
+@media(max-width: 850px) {
+  #cyber-code-rain { opacity: .48; }
+}
+@media(prefers-reduced-motion: reduce) {
+  #cyber-code-rain { display: none; }
+}
+
 </style>
 </head>
 <body>
+<canvas id="cyber-code-rain" aria-hidden="true"></canvas>
 
 <header>
  <div class="logo"><i class="fas fa-shield-alt"></i> AIDA NASUHA</div>
@@ -377,6 +435,7 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
   <a href="#labs">Core Labs</a>
   <a href="#kaggle">Kaggle Awards</a>
   <a href="#commitment">Commitment</a>
+  <a href="#contact">Contact Me</a>
  </nav>
 </header>
 
@@ -439,7 +498,7 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
       <div class="about-halo halo-two" aria-hidden="true"></div>
       <button class="about-photo-button" id="openAboutPhoto" type="button" aria-label="Open Aida Nasuha biodata">
         <div class="about-photo-shell">
-          <img src="gambar kelantan.png" alt="Aida memegang bendera Kelantan" loading="lazy" onerror="this.onerror=null;this.src='gambar kelantan.png'">
+          <img src="kelantan.png" alt="Aida memegang bendera Kelantan" loading="lazy" onerror="this.onerror=null;this.src='aidaf.png'">
           <div class="about-photo-caption"><small>PERSONAL PROFILE</small><strong>Aida Nasuha</strong><span>Tap / click to explore my story</span></div>
         </div>
       </button>
@@ -476,8 +535,8 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
     </div>
     <div class="about-panel" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile">
       <div class="identity-panel-layout">
-        <div class="gambar kelantan-photo">
-          <img src="gambar kelantan.png" alt="Aida holding the Kelantan flag" onerror="this.onerror=null;this.src='aidaf.png'">
+        <div class="kelantan-photo">
+          <img src="kelantan.png" alt="Aida holding the Kelantan flag" onerror="this.onerror=null;this.src='aidaf.png'">
           <small>Kelantan identity portrait</small>
         </div>
         <div><span class="about-eyebrow">PERSONAL IDENTITY</span><h3>Aida Nasuha Binti Muhamad Fadeli</h3><p class="kelantan-label"><i class="fas fa-map-pin"></i> Anak Jati Kelantan</p><p>Born and raised with Kelantan roots. Passionate about IT, development, network security, and uniformed services.</p><p>My identity combines my home-state pride, curiosity about technology and commitment to learning.</p></div>
@@ -739,6 +798,38 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
  </div>
 </section>
 
+
+<!-- CONTACT ME: SOCIAL CONNECT -->
+<section id="contact" aria-labelledby="contactTitle">
+  <div class="contact-header contact-reveal">
+    <span class="contact-eyebrow">LET'S CONNECT / SOCIAL NETWORKS</span>
+    <h2 class="section-title" id="contactTitle"><i class="fas fa-paper-plane" aria-hidden="true"></i> Contact Me</h2>
+    <p class="contact-desc">Let's connect, collaborate and exchange ideas. Find me on social media or reach out directly.</p>
+  </div>
+  <div class="contact-grid">
+    <a class="contact-card tiktok contact-reveal" href="https://www.tiktok.com/@aidafadeli0?_r=1&amp;_t=ZS-9B9OjKExnpW" target="_blank" rel="noopener noreferrer" aria-label="Visit Aida Nasuha on TikTok (opens in a new tab)">
+      <span class="contact-icon"><i class="fab fa-tiktok" aria-hidden="true"></i></span>
+      <span class="contact-info"><h3>TikTok</h3><p>@aidafadeli0</p><span class="contact-visit">Follow my journey</span></span>
+      <i class="fas fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+    </a>
+    <a class="contact-card instagram contact-reveal" href="https://www.instagram.com/aidafadeli?mdxt=MWR1OXo5OGc4bDJsOA%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit Aida Nasuha on Instagram (opens in a new tab)">
+      <span class="contact-icon"><i class="fab fa-instagram" aria-hidden="true"></i></span>
+      <span class="contact-info"><h3>Instagram</h3><p>@aidafadeli</p><span class="contact-visit">Life &amp; moments</span></span>
+      <i class="fas fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+    </a>
+    <a class="contact-card whatsapp contact-reveal" href="https://wa.me/601139263109" target="_blank" rel="noopener noreferrer" aria-label="Message Aida Nasuha on WhatsApp (opens in a new tab)">
+      <span class="contact-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></span>
+      <span class="contact-info"><h3>WhatsApp</h3><p>Direct message</p><span class="contact-visit">Let's chat</span></span>
+      <i class="fas fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+    </a>
+    <a class="contact-card email contact-reveal" href="mailto:aydanasuha03@gmail.com" aria-label="Email Aida Nasuha">
+      <span class="contact-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+      <span class="contact-info"><h3>Email</h3><p>aydanasuha03@gmail.com</p><span class="contact-visit">Professional enquiries</span></span>
+      <i class="fas fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+
 <footer>
  <p>© 2026 Aida Nasuha Binti Muhamad Fadeli</p>
  <p>Cybersecurity & Data Portfolio</p>
@@ -905,6 +996,126 @@ document.querySelectorAll('section[id]').forEach(section=>observer.observe(secti
     }, { threshold: 0.08 });
     items.forEach(el => observer.observe(el));
   }
+})();
+</script>
+
+
+<script>
+/* CONTACT: mouse-following spotlight and scroll reveal */
+(function () {
+  const cards = document.querySelectorAll('#contact .contact-card');
+  const mouseCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (mouseCapable) {
+    cards.forEach(card => card.addEventListener('pointermove', event => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', (event.clientX - rect.left) + 'px');
+      card.style.setProperty('--mouse-y', (event.clientY - rect.top) + 'px');
+    }));
+  }
+  const elements = [...document.querySelectorAll('#contact .contact-reveal')];
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    elements.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.08});
+    elements.forEach(el => observer.observe(el));
+  }
+})();
+</script>
+
+<script>
+/* Ambient coding rain: responsive canvas, intentionally dim, no external dependencies. */
+(function () {
+  'use strict';
+  const canvas = document.getElementById('cyber-code-rain');
+  if (!canvas || !canvas.getContext) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduceMotion.matches) return;
+  const ctx = canvas.getContext('2d', {alpha: true});
+  if (!ctx) return;
+  const glyphs = '01{}[]<>/;$#';
+  let width = 0, height = 0, streams = [], frameId = null;
+  let lastFrame = 0;
+  let mobile = false;
+  const random = (min, max) => min + Math.random() * (max - min);
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    mobile = width <= 850 || window.matchMedia('(pointer: coarse)').matches;
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    canvas.width = Math.round(width * pixelRatio);
+    canvas.height = Math.round(height * pixelRatio);
+    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    // Limited streams on touch screens for readability and battery life.
+    const maxStreams = mobile ? 12 : 38;
+    const count = Math.min(maxStreams, Math.max(5, Math.floor(width / (mobile ? 35 : 48))));
+    streams = Array.from({length: count}, (_, i) => ({
+      x: (i + .5) * width / count + random(-9, 9),
+      y: random(-height, height),
+      speed: random(mobile ? .35 : .55, mobile ? .75 : 1.2),
+      size: mobile ? 11 : 12,
+      length: Math.floor(random(4, mobile ? 7 : 11)),
+      seed: Math.floor(random(0, glyphs.length))
+    }));
+    ctx.clearRect(0, 0, width, height);
+  }
+
+  function paint(timestamp) {
+    frameId = requestAnimationFrame(paint);
+    const frameInterval = mobile ? 1000 / 18 : 1000 / 28;
+    if (timestamp - lastFrame < frameInterval) return;
+    const elapsed = Math.min(timestamp - (lastFrame || timestamp), 100);
+    lastFrame = timestamp;
+    ctx.clearRect(0, 0, width, height);
+    ctx.textAlign = 'center';
+    streams.forEach(stream => {
+      ctx.font = '600 ' + stream.size + 'px ui-monospace, SFMono-Regular, Consolas, monospace';
+      for (let i = 0; i < stream.length; i++) {
+        const yy = stream.y - i * (stream.size + 7);
+        if (yy < -18 || yy > height + 18) continue;
+        const char = glyphs[(stream.seed + i + Math.floor(stream.y / 44)) % glyphs.length];
+        const alpha = (1 - i / stream.length) * (mobile ? .16 : .22);
+        ctx.fillStyle = i === 0 ? 'rgba(103,232,249,' + alpha + ')' : 'rgba(56,189,248,' + alpha + ')';
+        ctx.fillText(char, stream.x, yy);
+      }
+      stream.y += stream.speed * elapsed / 16;
+      if (stream.y - stream.length * 20 > height) {
+        stream.y = random(-height * .6, -25);
+        stream.seed = Math.floor(random(0, glyphs.length));
+      }
+    });
+  }
+
+  function stop() {
+    if (frameId !== null) cancelAnimationFrame(frameId);
+    frameId = null;
+  }
+  function start() {
+    if (frameId !== null || document.hidden || reduceMotion.matches) return;
+    lastFrame = 0;
+    frameId = requestAnimationFrame(paint);
+  }
+  let resizeFrame;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(resize);
+  }, {passive: true});
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+  if (reduceMotion.addEventListener) {
+    reduceMotion.addEventListener('change', () => {
+      if (reduceMotion.matches) { stop(); ctx.clearRect(0, 0, width, height); }
+      else { resize(); start(); }
+    });
+  }
+  resize();
+  start();
 })();
 </script>
 
