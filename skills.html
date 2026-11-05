@@ -121,11 +121,25 @@ section{padding:55px 5%}
   </div>
  </div>
 
- <div class="hero-image">
-  <img src="aidaf.png" alt="Aida Nasuha">
- </div>
-</section>
+ <div class="hero-visual">
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
 
+  <div class="hero-card-layer layer-back"></div>
+  <div class="hero-card-layer layer-middle"></div>
+
+  <div class="hero-card-main">
+    <img src="aidaf.png" alt="Aida Nasuha">
+  </div>
+
+  <div class="hero-focus-tag">
+    <span>Career Focus</span>
+    <strong>Network Security ◈</strong>
+  </div>
+</div>
+
+</section>
+ 
 <section id="plan">
  <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Career Development Plan</h2>
  <div class="grid">
@@ -553,6 +567,168 @@ nav a:hover {
     #38bdf8,
     #06b6d4
   ) !important;
+}
+</style>
+ 
+<style>
+/* AIDA NASUHA — BLUE LAYERED HERO */
+
+.hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  min-height: 550px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(56,189,248,.25);
+  pointer-events: none;
+}
+
+.ring-one {
+  width: 120%;
+  aspect-ratio: 1;
+  animation: ringRotate 25s linear infinite;
+}
+
+.ring-two {
+  width: 105%;
+  aspect-ratio: 1;
+  border-style: dashed;
+  opacity: .5;
+  animation: ringRotate 35s linear infinite reverse;
+}
+
+.photo-layer {
+  position: absolute;
+  width: 88%;
+  height: 490px;
+  border-radius: 32px;
+  border: 1px solid rgba(56,189,248,.3);
+  background: linear-gradient(
+    135deg,
+    rgba(56,189,248,.18),
+    rgba(6,182,212,.03)
+  );
+}
+
+.layer-one {
+  transform: rotate(-8deg) translateX(-12px);
+}
+
+.layer-two {
+  transform: rotate(7deg) translateX(12px);
+}
+
+.photo-main {
+  position: relative;
+  width: 90%;
+  height: 500px;
+  background: #f8fafc;
+  border-radius: 32px;
+  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 25px 70px rgba(0,0,0,.45);
+  animation: photoFloat 5s ease-in-out infinite;
+}
+
+.photo-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+}
+
+.career-tag {
+  position: absolute;
+  left: 0;
+  bottom: 45px;
+  z-index: 3;
+  background: rgba(12,20,42,.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(56,189,248,.3);
+  padding: 16px 22px;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.3);
+  animation: tagFloat 5s ease-in-out infinite;
+}
+
+.career-tag span {
+  display: block;
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.career-tag strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 18px;
+  color: #67e8f9;
+}
+
+@keyframes photoFloat {
+  0%,100% {
+    transform: translateY(0) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(0deg);
+  }
+}
+
+@keyframes tagFloat {
+  0%,100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes ringRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 850px) {
+  .hero-visual {
+    max-width: 300px;
+    min-height: 430px;
+  }
+
+  .photo-layer {
+    height: 370px;
+  }
+
+  .photo-main {
+    height: 380px;
+  }
+
+  .career-tag {
+    left: 0;
+    bottom: 15px;
+    padding: 12px 16px;
+  }
+
+  .career-tag strong {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-main,
+  .career-tag,
+  .hero-ring {
+    animation: none !important;
+  }
 }
 </style>
 </body>
