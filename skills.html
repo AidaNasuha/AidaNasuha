@@ -150,6 +150,217 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
 @media(max-width:480px){.about-stage{height:460px}.about-photo-button{width:60%;height:330px}.bio-one{top:1%;left:0}.bio-two{right:0;top:19%}.bio-three{left:0;bottom:23%}.bio-four{right:0;bottom:2%}.floating-bio{max-width:151px}.about-tabs button{padding:8px 11px;font-size:12px}.hobby-tiles,.dream-steps{grid-template-columns:1fr 1fr}.edu-logo{width:54px;height:54px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.aida-animate,.reveal-about{opacity:1;transform:none}}
 
+
+/* =========================================================
+   ABOUT ME — MOUSE-FOLLOWING CYBER BLUE SPOTLIGHT (V2)
+   Follows the cursor; no changes to personal information.
+   ========================================================= */
+@media (hover: hover) and (pointer: fine) {
+  .about-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 35px;
+    background: radial-gradient(
+      250px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(56,189,248,.25) 0%,
+      rgba(6,182,212,.11) 28%,
+      rgba(56,189,248,0) 72%
+    );
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  .about-stage:hover::before,
+  .about-stage:focus-within::before { opacity: 1; }
+
+  /* Highlight the photograph at the *correct photo-local* pointer location. */
+  .about-photo-shell::after {
+    background: radial-gradient(
+      170px circle at var(--photo-x, 50%) var(--photo-y, 50%),
+      rgba(125,211,252,.26),
+      rgba(56,189,248,.09) 42%,
+      transparent 78%
+    );
+  }
+  .about-stage:hover .about-photo-shell {
+    border-color: #7dd3fc;
+    box-shadow:
+      0 30px 75px rgba(0,0,0,.58),
+      0 0 26px rgba(56,189,248,.33),
+      0 0 58px rgba(56,189,248,.17);
+  }
+  .about-stage:hover .about-photo-button::before {
+    box-shadow: 0 0 30px rgba(56,189,248,.28);
+  }
+  .floating-bio {
+    background:
+      linear-gradient(135deg,rgba(56,189,248,.09),transparent 65%),
+      rgba(13,29,48,.96);
+  }
+  .about-stage:hover .floating-bio {
+    border-color: rgba(125,211,252,.7);
+    box-shadow: 0 14px 34px rgba(0,0,0,.45),
+                0 0 22px rgba(56,189,248,.2);
+  }
+}
+
+/* The cards and image remain clear on touch-only devices. */
+@media (hover: none), (pointer: coarse) {
+  .about-stage::before { display: none; }
+  .about-photo-shell::after { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-stage::before,
+  .about-photo-shell::after { transition: none !important; }
+}
+
+
+/* EDUCATION JOURNEY — LOGO CARDS, STAGGERED REVEAL & CYBER GLOW */
+#panel-education .edu-track {
+  border-left: 2px solid rgba(56,189,248,.45);
+}
+#panel-education .edu-step {
+  min-width: 0;
+  border-color: rgba(56,189,248,.25);
+  background: linear-gradient(135deg,rgba(29,55,81,.85),rgba(10,22,39,.93));
+  box-shadow: 0 8px 20px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.04);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+#panel-education .edu-step:hover,
+#panel-education .edu-step:focus-visible {
+  transform: translateY(-5px);
+  border-color: rgba(103,232,249,.8);
+  box-shadow: 0 16px 34px rgba(0,0,0,.3),0 0 25px rgba(56,189,248,.19);
+  outline: none;
+}
+#panel-education .edu-logo {
+  overflow: hidden;
+  background: #f3f8fc;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.07),0 5px 15px rgba(0,0,0,.18);
+}
+#panel-education .edu-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 4px;
+  object-fit: contain;
+}
+#panel-education:not([hidden]) .edu-step {
+  animation: educationReveal .65s cubic-bezier(.2,.75,.2,1) both;
+}
+#panel-education:not([hidden]) .edu-step:nth-child(2) {animation-delay: .14s;}
+#panel-education:not([hidden]) .edu-step:nth-child(3) {animation-delay: .28s;}
+@keyframes educationReveal {
+  from {opacity:0;translate:0 18px;filter:brightness(.72);}
+  to {opacity:1;translate:0 0;filter:brightness(1);}
+}
+@media (max-width:480px) {
+  #panel-education .edu-step {gap:10px;padding:10px;}
+  #panel-education .edu-step h4 {font-size:15px;}
+  #panel-education .edu-step p {font-size:12px;overflow-wrap:anywhere;}
+}
+@media (prefers-reduced-motion:reduce) {
+  #panel-education:not([hidden]) .edu-step {animation:none;}
+}
+
+
+/* ABOUT ME — HOBBIES ICON MOTION + GLOW */
+.hobby-motion-grid {gap:16px; margin:22px 0 26px}
+.hobby-motion-grid>.hobby-motion-card {position:relative;display:flex;min-height:190px;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:22px 14px;overflow:hidden;border:1px solid rgba(56,189,248,.28);border-radius:20px;background:linear-gradient(145deg,#1a3049,#0b1728);box-shadow:0 12px 26px rgba(0,0,0,.18);transition:transform .32s ease,border-color .32s ease,box-shadow .32s ease;cursor:default}
+.hobby-motion-card::after {content:"";position:absolute;inset:-50%;background:radial-gradient(circle,rgba(56,189,248,.19) 0,transparent 52%);opacity:0;transition:opacity .32s;pointer-events:none}
+.hobby-motion-card:hover,.hobby-motion-card:focus-visible {transform:translateY(-7px);border-color:#67e8f9;box-shadow:0 16px 32px rgba(0,0,0,.29),0 0 23px rgba(56,189,248,.23);outline:none}
+.hobby-motion-card:hover::after,.hobby-motion-card:focus-visible::after {opacity:1}
+.hobby-motion-card>* {position:relative;z-index:1}
+.hobby-orbit {position:relative;display:grid;place-items:center;width:74px;height:74px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#244f72,#11283e);border:1px solid rgba(103,232,249,.4);box-shadow:inset 0 1px 7px rgba(255,255,255,.05),0 0 20px rgba(56,189,248,.12)}
+.hobby-motion-grid .hobby-orbit i {font-size:31px;color:#8de7ff;transform-origin:center;filter:drop-shadow(0 0 7px rgba(56,189,248,.36));transition:transform .25s}
+.hobby-motion-card strong {font-size:15px;color:#f5fbff}
+.hobby-motion-card small {font-size:11px;color:#9fbad2}
+.motion-spark {position:absolute;width:5px;height:5px;border-radius:50%;background:#67e8f9;box-shadow:0 0 10px #38bdf8;opacity:.72}
+.spark-a {top:7px;right:9px}.spark-b {bottom:8px;left:7px}
+@keyframes aidaRacketSwing {0%,100%{transform:rotate(-20deg)}50%{transform:rotate(25deg)}}
+@keyframes aidaBallBounce {0%,100%{transform:translateY(-7px) rotate(-12deg)}50%{transform:translateY(10px) rotate(28deg)}}
+@keyframes aidaRunStep {0%,100%{transform:translateX(-6px) rotate(-5deg)}50%{transform:translateX(7px) rotate(8deg)}}
+@keyframes aidaSparkFloat {0%,100%{transform:translateY(0) scale(.8);opacity:.45}50%{transform:translateY(-10px) scale(1.25);opacity:1}}
+.hobby-badminton .hobby-orbit i {animation:aidaRacketSwing 2.4s ease-in-out infinite}
+.hobby-netball .hobby-orbit i {animation:aidaBallBounce 1.6s ease-in-out infinite}
+.hobby-running .hobby-orbit i {animation:aidaRunStep 1.1s ease-in-out infinite}
+.hobby-motion-card .motion-spark {animation:aidaSparkFloat 2.8s ease-in-out infinite}
+.hobby-motion-card .spark-b {animation-delay:1.1s}
+.hobby-motion-card:hover .hobby-orbit,.hobby-motion-card:focus-visible .hobby-orbit {box-shadow:0 0 27px rgba(56,189,248,.36)}
+.tech-interest-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 18px}
+.tech-interest-card {display:flex;gap:10px;align-items:center;min-height:70px;padding:13px;border:1px solid rgba(56,189,248,.25);border-radius:15px;background:rgba(56,189,248,.07);color:#cce8f8;transition:transform .3s,background .3s,box-shadow .3s}
+.tech-interest-card i {color:#67e8f9;font-size:21px;transition:transform .3s}
+.tech-interest-card span {font-size:12px;line-height:1.4}
+.tech-interest-card:hover,.tech-interest-card:focus-visible {transform:translateY(-4px);background:rgba(56,189,248,.13);box-shadow:0 0 18px rgba(56,189,248,.17);outline:1px solid #38bdf8}
+.tech-interest-card:hover i,.tech-interest-card:focus-visible i {transform:scale(1.2) rotate(-5deg)}
+.hobby-footnote {font-size:12px!important;color:#96b2c8!important}
+@media(max-width:570px) {.hobby-motion-grid {grid-template-columns:repeat(2,minmax(0,1fr))}.hobby-motion-grid>.hobby-motion-card {min-height:165px}.tech-interest-grid {grid-template-columns:1fr}.tech-interest-card {min-height:55px}}
+@media(prefers-reduced-motion:reduce) {.hobby-motion-grid .hobby-orbit i,.hobby-motion-card .motion-spark {animation:none!important}.hobby-motion-card,.tech-interest-card {transition:none!important;transform:none!important}}
+
+/* ==================================================
+   MY FUTURE MISSION — CYBER INVESTIGATION EXPERIENCE
+   Scoped to #mission and #missionModal.
+================================================== */
+#mission {position:relative;isolation:isolate;overflow:hidden}
+#mission::before {content:"";position:absolute;inset:5% -10%;background:radial-gradient(circle at 60% 32%,rgba(56,189,248,.085),transparent 50%);pointer-events:none;z-index:-1}
+.mission-head {max-width:880px;margin-bottom:32px}
+.mission-kicker {display:block;color:#67e8f9;font-size:12px;font-weight:700;letter-spacing:2.5px;margin-bottom:8px}
+.mission-desc {color:#b9cbe0;max-width:760px;font-size:15px}
+.mission-layout {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);gap:25px;align-items:stretch}
+.mission-console,.mission-path-card {position:relative;overflow:hidden;border:1px solid rgba(56,189,248,.27);border-radius:27px;background:linear-gradient(145deg,rgba(19,37,58,.97),rgba(7,15,29,.98));box-shadow:0 20px 52px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.055)}
+.mission-console {padding:26px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mission-corner {color:#70d9fb;font-family:monospace;font-size:11px;letter-spacing:1.1px;align-self:flex-start}
+.mission-radar {position:relative;width:min(100%,310px);aspect-ratio:1;margin:6px auto 8px;border-radius:50%;background:radial-gradient(circle,rgba(19,83,117,.23),rgba(6,17,30,.24) 68%,transparent 72%);border:1px solid rgba(56,189,248,.15);box-shadow:0 0 44px rgba(56,189,248,.09)}
+.mission-radar::before,.mission-radar::after {content:"";position:absolute;inset:17%;border:1px solid rgba(103,232,249,.29);border-radius:50%}
+.mission-radar::after {inset:34%}
+.mission-radar-axis {position:absolute;inset:0;background:linear-gradient(transparent calc(50% - .5px),rgba(56,189,248,.22) 50%,transparent calc(50% + .5px)),linear-gradient(90deg,transparent calc(50% - .5px),rgba(56,189,248,.22) 50%,transparent calc(50% + .5px));border-radius:50%}
+.mission-radar-sweep {position:absolute;inset:4%;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,transparent 258deg,rgba(56,189,248,.025) 285deg,rgba(56,189,248,.22) 350deg,rgba(103,232,249,.5) 360deg);animation:missionSweep 7s linear infinite;mask-image:radial-gradient(circle,transparent 0 11%,#000 12%)}
+.mission-radar-center {position:absolute;inset:0;display:grid;place-items:center;z-index:1;pointer-events:none}
+.mission-radar-center i {width:72px;height:72px;display:grid;place-items:center;border-radius:50%;border:1px solid #67e8f9;background:rgba(12,49,72,.94);font-size:29px;color:#a4ecff;box-shadow:0 0 25px rgba(56,189,248,.25)}
+.mission-radar-dot {position:absolute;width:8px;height:8px;border-radius:50%;background:#67e8f9;box-shadow:0 0 0 5px rgba(56,189,248,.13),0 0 16px #38bdf8;animation:missionPulse 2.5s ease-in-out infinite}
+.mission-dot-one {left:71%;top:29%}.mission-dot-two {left:28%;top:66%;animation-delay:1s}.mission-dot-three {left:68%;top:74%;animation-delay:1.7s}
+.mission-console h3 {color:#f2faff;font-size:clamp(22px,2.3vw,30px);margin:0 0 10px}
+.mission-console p {color:#b8cee1;max-width:420px;font-size:14px}
+.mission-tag {display:inline-flex;align-items:center;gap:8px;margin:15px 0 10px;padding:7px 13px;border:1px solid rgba(56,189,248,.3);border-radius:20px;color:#80e2fb;background:rgba(56,189,248,.09);font-size:11px;font-weight:700;letter-spacing:.8px}
+.mission-open {display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:11px 20px;margin-top:20px;border:1px solid #38bdf8;border-radius:40px;color:#051321;background:#67d9ff;font-weight:800;cursor:pointer;box-shadow:0 9px 23px rgba(56,189,248,.22);transition:transform .25s,box-shadow .25s}
+.mission-open:hover,.mission-open:focus-visible {transform:translateY(-4px);box-shadow:0 12px 32px rgba(56,189,248,.35)}
+.mission-path-card {padding:28px}
+.mission-path-card h3 {font-size:21px;color:#f3faff;margin-bottom:5px}
+.mission-path-intro {font-size:13px;color:#adc4d9;margin-bottom:22px}
+.mission-steps {position:relative;display:grid;gap:14px;padding-left:19px;border-left:2px solid rgba(56,189,248,.3)}
+.mission-step {position:relative;padding:16px 17px;border-radius:17px;background:rgba(56,189,248,.055);border:1px solid rgba(56,189,248,.2);transition:transform .3s,box-shadow .3s,border-color .3s}
+.mission-step::before {content:"";position:absolute;width:12px;height:12px;top:27px;left:-26px;background:#38bdf8;border-radius:50%;box-shadow:0 0 16px rgba(56,189,248,.6)}
+.mission-step:hover,.mission-step:focus-visible {transform:translateX(6px);border-color:#67e8f9;box-shadow:0 10px 28px rgba(56,189,248,.13);outline:none}
+.mission-step-head {display:flex;align-items:center;gap:12px;margin-bottom:5px}
+.mission-step-head i {color:#67e8f9;font-size:22px;width:26px;text-align:center}
+.mission-step-head strong {color:white;font-size:15px}
+.mission-step p {color:#aec6d9;font-size:13px}
+.mission-step small {color:#67e8f9;font-size:10px;letter-spacing:1px;font-weight:700}
+.mission-note {margin-top:20px;color:#8caac3;font-size:12px}
+.mission-reveal {opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.mission-reveal.is-visible {opacity:1;transform:none}
+#missionModal[hidden] {display:none!important}
+#missionModal {position:fixed;inset:0;z-index:1400;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(2,8,19,.85);backdrop-filter:blur(12px)}
+.mission-dialog {position:relative;width:min(730px,100%);max-height:min(88vh,900px);overflow:auto;padding:clamp(20px,4vw,36px);border:1px solid rgba(103,232,249,.4);border-radius:27px;background:linear-gradient(150deg,#142a42,#090f1e);box-shadow:0 25px 80px rgba(0,0,0,.55),0 0 36px rgba(56,189,248,.14);animation:missionZoom .35s cubic-bezier(.2,.85,.25,1) both}
+.mission-dialog h2 {font-size:clamp(24px,4vw,34px);margin:8px 42px 12px 0;color:white}
+.mission-dialog p {color:#c1d4e5;margin-bottom:14px}
+.mission-dialog h3 {color:#8ae4ff;margin:18px 0 9px;font-size:17px}
+.mission-dialog ul {padding-left:20px;color:#c1d4e5}
+.mission-dialog li {margin:8px 0}
+.mission-dialog-close {position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(56,189,248,.35);background:#15314a;color:#8ae4ff;font-size:23px;cursor:pointer}
+.mission-dialog-close:focus-visible {outline:2px solid #67e8f9;outline-offset:3px}
+.mission-dialog-badges {display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.mission-dialog-badges span {padding:8px 11px;background:rgba(56,189,248,.09);border:1px solid rgba(56,189,248,.28);border-radius:22px;color:#93e5ff;font-size:12px}
+@keyframes missionSweep {to {transform:rotate(360deg)}}
+@keyframes missionPulse {50% {opacity:.3;transform:scale(.72)}}
+@keyframes missionZoom {from {transform:scale(.88) translateY(15px);opacity:0}to {transform:scale(1) translateY(0);opacity:1}}
+@media(max-width:900px) {.mission-layout {grid-template-columns:1fr}.mission-radar {max-width:270px}}
+@media(max-width:480px) {.mission-console,.mission-path-card {padding:19px}.mission-radar {max-width:225px}.mission-step {padding:14px}}
+@media(prefers-reduced-motion:reduce) {.mission-radar-sweep,.mission-radar-dot,.mission-dialog {animation:none!important}.mission-reveal {opacity:1;transform:none;transition:none}.mission-open,.mission-step {transition:none}}
 </style>
 </head>
 <body>
@@ -160,6 +371,7 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
   <a href="index.html">Main Home</a>
   <a href="#hero">Home</a>
   <a href="#about">About Me</a>
+  <a href="#mission">My Mission</a>
   <a href="#plan">Plan</a>
   <a href="#skills">Skills</a>
   <a href="#labs">Core Labs</a>
@@ -227,7 +439,7 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
       <div class="about-halo halo-two" aria-hidden="true"></div>
       <button class="about-photo-button" id="openAboutPhoto" type="button" aria-label="Open Aida Nasuha biodata">
         <div class="about-photo-shell">
-          <img src="gambar kelantan.png" alt="Aida memegang bendera Kelantan" loading="lazy" onerror="this.onerror=null;this.src='aidaf.png'">
+          <img src="kelantan.png" alt="Aida memegang bendera Kelantan" loading="lazy" onerror="this.onerror=null;this.src='aidaf.png'">
           <div class="about-photo-caption"><small>PERSONAL PROFILE</small><strong>Aida Nasuha</strong><span>Tap / click to explore my story</span></div>
         </div>
       </button>
@@ -265,7 +477,7 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
     <div class="about-panel" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile">
       <div class="identity-panel-layout">
         <div class="kelantan-photo">
-          <img src="gambar kelantan.png" alt="Aida holding the Kelantan flag" onerror="this.onerror=null;this.src='gambar kelantan.png'">
+          <img src="kelantan.png" alt="Aida holding the Kelantan flag" onerror="this.onerror=null;this.src='aidaf.png'">
           <small>Kelantan identity portrait</small>
         </div>
         <div><span class="about-eyebrow">PERSONAL IDENTITY</span><h3>Aida Nasuha Binti Muhamad Fadeli</h3><p class="kelantan-label"><i class="fas fa-map-pin"></i> Anak Jati Kelantan</p><p>Born and raised with Kelantan roots. Passionate about IT, development, network security, and uniformed services.</p><p>My identity combines my home-state pride, curiosity about technology and commitment to learning.</p></div>
@@ -274,16 +486,35 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
     <div class="about-panel" id="panel-education" role="tabpanel" aria-labelledby="tab-education" hidden>
       <h3>My Education Journey</h3><p class="muted">From primary school to university.</p>
       <div class="edu-track">
-        <div class="edu-step"><div class="edu-logo"><img src="logo-skpk.png" alt="SKPK emblem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-school" style="display:none" aria-hidden="true"></i></div><div><small>PRIMARY SCHOOL</small><h4>SKPK</h4><p>Sekolah Kebangsaan Pulau Kundor</p></div></div>
-        <div class="edu-step"><div class="edu-logo"><img src="logo-smkkbh.png" alt="SMKKBH emblem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-school" style="display:none" aria-hidden="true"></i></div><div><small>SECONDARY SCHOOL</small><h4>SMKKBH</h4><p>Sekolah Menengah Kebangsaan Kedai Buloh</p></div></div>
-        <div class="edu-step"><div class="edu-logo"><img src="logo-unisza.png" alt="UniSZA emblem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-university" style="display:none" aria-hidden="true"></i></div><div><small>UNIVERSITY</small><h4>UniSZA</h4><p>Universiti Sultan Zainal Abidin</p></div></div>
+        <div class="edu-step" tabindex="0"><div class="edu-logo"><img src="logoskpk.png" alt="SKPK emblem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-school" style="display:none" aria-hidden="true"></i></div><div><small>PRIMARY SCHOOL</small><h4>SKPK</h4><p>Sekolah Kebangsaan Pulau Kundor</p></div></div>
+        <div class="edu-step" tabindex="0"><div class="edu-logo"><img src="logosmkkbh.webp" alt="SMKKBH emblem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-school" style="display:none" aria-hidden="true"></i></div><div><small>SECONDARY SCHOOL</small><h4>SMKKBH</h4><p>Sekolah Menengah Kebangsaan Kedai Buloh</p></div></div>
+        <div class="edu-step" tabindex="0"><div class="edu-logo"><img src="logounisza.png" alt="UniSZA emblem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-university" style="display:none" aria-hidden="true"></i></div><div><small>UNIVERSITY</small><h4>UniSZA</h4><p>Universiti Sultan Zainal Abidin</p></div></div>
       </div>
-      <p class="about-file-note">Logo rasmi akan kelihatan selepas fail logo institusi dimuat naik menggunakan nama fail di atas. Ikon pendidikan dipaparkan sementara.</p>
+      <p class="about-file-note">Education journey: SK Pulau Kundor → SMK Kedai Buloh → Universiti Sultan Zainal Abidin.</p>
     </div>
     <div class="about-panel" id="panel-hobbies" role="tabpanel" aria-labelledby="tab-hobbies" hidden>
       <h3>Hobbies & Interests</h3><p class="muted">How I stay active and what I love to explore.</p>
-      <div class="hobby-tiles"><div><i class="fas fa-table-tennis"></i><strong>Badminton</strong></div><div><i class="fas fa-basketball-ball"></i><strong>Netball</strong></div><div><i class="fas fa-running"></i><strong>Running</strong></div></div>
-      <h4 class="interest-title">Technology Interests</h4><div class="about-chip-row"><span>Information Technology</span><span>Software Development</span><span>Network Security</span></div>
+      <div class="hobby-tiles hobby-motion-grid" aria-label="My sport hobbies">
+        <div class="hobby-motion-card hobby-badminton" tabindex="0">
+          <div class="hobby-orbit"><i class="fas fa-table-tennis" aria-hidden="true"></i><span class="motion-spark spark-a"></span><span class="motion-spark spark-b"></span></div>
+          <strong>Badminton</strong><small>Focus • Agility</small>
+        </div>
+        <div class="hobby-motion-card hobby-netball" tabindex="0">
+          <div class="hobby-orbit"><i class="fas fa-basketball-ball" aria-hidden="true"></i><span class="motion-spark spark-a"></span><span class="motion-spark spark-b"></span></div>
+          <strong>Netball</strong><small>Teamwork • Strategy</small>
+        </div>
+        <div class="hobby-motion-card hobby-running" tabindex="0">
+          <div class="hobby-orbit"><i class="fas fa-running" aria-hidden="true"></i><span class="motion-spark spark-a"></span><span class="motion-spark spark-b"></span></div>
+          <strong>Running</strong><small>Endurance • Discipline</small>
+        </div>
+      </div>
+      <h4 class="interest-title">Technology Interests</h4>
+      <div class="tech-interest-grid" aria-label="My technology interests">
+        <div class="tech-interest-card" tabindex="0"><i class="fas fa-laptop-code" aria-hidden="true"></i><span>Information Technology</span></div>
+        <div class="tech-interest-card" tabindex="0"><i class="fas fa-code" aria-hidden="true"></i><span>Software Development</span></div>
+        <div class="tech-interest-card" tabindex="0"><i class="fas fa-shield-alt" aria-hidden="true"></i><span>Network Security</span></div>
+      </div>
+      <p class="hobby-footnote">Move your mouse over each card to see its animated icon. On mobile, animations are gentle and don't require hover.</p>
     </div>
     <div class="about-panel" id="panel-dream" role="tabpanel" aria-labelledby="tab-dream" hidden>
       <span class="about-eyebrow">MY ASPIRATION</span><h3>Police • Digital & Data Forensics</h3>
@@ -291,6 +522,60 @@ header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradien
       <div class="dream-steps"><div><i class="fas fa-user-shield"></i><span>Uniformed Service</span></div><div><i class="fas fa-search"></i><span>Investigation</span></div><div><i class="fas fa-fingerprint"></i><span>Digital Forensics</span></div></div>
     </div>
   </div>
+</div>
+
+
+<!-- FUTURE MISSION: CYBER INVESTIGATION EXPERIENCE -->
+<section id="mission" aria-labelledby="missionTitle">
+ <div class="mission-head mission-reveal">
+  <span class="mission-kicker">CHAPTER 02 / FUTURE ASPIRATION</span>
+  <h2 class="section-title" id="missionTitle"><i class="fas fa-fingerprint"></i> My Future Mission</h2>
+  <p class="mission-desc">From Network Security to Digital Investigation — a personal aspiration to contribute to public safety through technology, discipline and forensic analysis.</p>
+ </div>
+ <div class="mission-layout">
+  <div class="mission-console mission-reveal">
+   <span class="mission-corner"><i class="fas fa-satellite-dish" aria-hidden="true"></i> DIGITAL INVESTIGATION / ASPIRATION</span>
+   <div class="mission-radar" aria-hidden="true">
+    <div class="mission-radar-axis"></div><div class="mission-radar-sweep"></div>
+    <span class="mission-radar-dot mission-dot-one"></span><span class="mission-radar-dot mission-dot-two"></span><span class="mission-radar-dot mission-dot-three"></span>
+    <div class="mission-radar-center"><i class="fas fa-shield-alt"></i></div>
+   </div>
+   <span class="mission-tag"><i class="fas fa-bullseye" aria-hidden="true"></i> MY CAREER GOAL</span>
+   <h3>Police Digital Forensics</h3>
+   <p>My ambition is to join the police force in a role connected to digital forensics, cybercrime investigation and the analysis of digital evidence.</p>
+   <button class="mission-open" id="openMissionModal" type="button"><i class="fas fa-expand-alt" aria-hidden="true"></i> Explore My Mission</button>
+  </div>
+  <div class="mission-path-card mission-reveal">
+   <span class="mission-kicker">PATHWAY / LEARNING JOURNEY</span>
+   <h3>My Road to Digital Forensics</h3>
+   <p class="mission-path-intro">A direction I hope to pursue, not a claim of current professional experience.</p>
+   <div class="mission-steps">
+    <div class="mission-step" tabindex="0"><small>01 — CURRENT LEARNING FOCUS</small><div class="mission-step-head"><i class="fas fa-network-wired" aria-hidden="true"></i><strong>Computer Network Security</strong></div><p>Strengthening my understanding of networks, systems, threat detection and defensive security.</p></div>
+    <div class="mission-step" tabindex="0"><small>02 — SKILLS TO DEVELOP</small><div class="mission-step-head"><i class="fas fa-search" aria-hidden="true"></i><strong>Digital Evidence &amp; Forensics</strong></div><p>Exploring evidence handling, digital investigations, data analysis and forensic methodologies.</p></div>
+    <div class="mission-step" tabindex="0"><small>03 — LONG-TERM AMBITION</small><div class="mission-step-head"><i class="fas fa-user-shield" aria-hidden="true"></i><strong>Police Forensic Career</strong></div><p>Aspiring to serve the community in a law-enforcement role involving digital or data forensics.</p></div>
+   </div>
+   <p class="mission-note"><i class="fas fa-info-circle" aria-hidden="true"></i> This timeline describes a future ambition and learning goals.</p>
+  </div>
+ </div>
+</section>
+
+<!-- FUTURE MISSION POPUP -->
+<div id="missionModal" hidden>
+ <div class="mission-dialog" role="dialog" aria-modal="true" aria-labelledby="missionDialogTitle" tabindex="-1">
+  <button type="button" class="mission-dialog-close" id="closeMissionModal" aria-label="Close mission popup">&times;</button>
+  <span class="mission-kicker">PERSONAL FILE / FUTURE MISSION</span>
+  <h2 id="missionDialogTitle">Why Digital Forensics?</h2>
+  <p>I have a strong interest in uniformed services and a long-term ambition to join the police force, particularly in work connected to digital forensic investigations.</p>
+  <p>My interest in IT, software development and network security motivates me to explore how digital evidence can help investigators understand cyber incidents and support public safety.</p>
+  <h3>My development priorities</h3>
+  <ul>
+   <li>Build strong foundations in computer networking and cybersecurity.</li>
+   <li>Develop practical knowledge of digital forensic tools and evidence analysis.</li>
+   <li>Strengthen technical documentation, critical thinking and investigative discipline.</li>
+   <li>Explore future career pathways in law enforcement and forensic technology.</li>
+  </ul>
+  <div class="mission-dialog-badges"><span><i class="fas fa-network-wired" aria-hidden="true"></i> Network Security</span><span><i class="fas fa-fingerprint" aria-hidden="true"></i> Digital Forensics</span><span><i class="fas fa-shield-alt" aria-hidden="true"></i> Public Service</span></div>
+ </div>
 </div>
 
 <section id="plan">
@@ -540,13 +825,86 @@ document.querySelectorAll('section[id]').forEach(section=>observer.observe(secti
   }
  });
  const stage=document.getElementById('aboutStage');
- stage.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const box=stage.getBoundingClientRect();const x=(e.clientX-box.left)/box.width*100;const y=(e.clientY-box.top)/box.height*100;stage.style.setProperty('--mx',x+'%');stage.style.setProperty('--my',y+'%')});
+ // Cursor spotlight: stage glow uses stage-relative coordinates;
+ // photo reflection uses photo-relative coordinates to avoid offset light.
+ const photoShell=stage.querySelector('.about-photo-shell');
+ const finePointer=window.matchMedia('(hover: hover) and (pointer: fine)');
+ stage.addEventListener('pointermove',e=>{
+  if(!finePointer.matches || e.pointerType!=='mouse')return;
+  const box=stage.getBoundingClientRect();
+  if(!box.width || !box.height)return;
+  const x=Math.max(0,Math.min(100,(e.clientX-box.left)/box.width*100));
+  const y=Math.max(0,Math.min(100,(e.clientY-box.top)/box.height*100));
+  stage.style.setProperty('--mx',x.toFixed(2)+'%');
+  stage.style.setProperty('--my',y.toFixed(2)+'%');
+  const photoBox=photoShell.getBoundingClientRect();
+  if(photoBox.width && photoBox.height){
+   const px=Math.max(0,Math.min(100,(e.clientX-photoBox.left)/photoBox.width*100));
+   const py=Math.max(0,Math.min(100,(e.clientY-photoBox.top)/photoBox.height*100));
+   stage.style.setProperty('--photo-x',px.toFixed(2)+'%');
+   stage.style.setProperty('--photo-y',py.toFixed(2)+'%');
+  }
+ });
+ stage.addEventListener('pointerleave',()=>{
+  stage.style.setProperty('--mx','50%');
+  stage.style.setProperty('--my','50%');
+  stage.style.setProperty('--photo-x','50%');
+  stage.style.setProperty('--photo-y','50%');
+ });
  const reveals=document.querySelectorAll('.reveal-about');
  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){reveals.forEach(el=>el.classList.add('is-visible'))}
  else{const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{threshold:.1});reveals.forEach(el=>revealObserver.observe(el))}
  // Reveal original portfolio cards as users scroll.
  const other=document.querySelectorAll('.section-title:not(#about .section-title),.skill-card,.artifact-card,.cisco-card');
  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.05});other.forEach(el=>{el.classList.add('aida-animate');observer.observe(el)})}
+})();
+</script>
+
+
+<script>
+/* MY FUTURE MISSION: popup and scroll reveal, independent of About Me */
+(function () {
+  const overlay = document.getElementById('missionModal');
+  const dialog = overlay.querySelector('.mission-dialog');
+  const openBtn = document.getElementById('openMissionModal');
+  const closeBtn = document.getElementById('closeMissionModal');
+  let previousFocus = null;
+  function openMission() {
+    previousFocus = document.activeElement;
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeMission() {
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+    if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+  }
+  openBtn.addEventListener('click', openMission);
+  closeBtn.addEventListener('click', closeMission);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeMission(); });
+  document.addEventListener('keydown', e => {
+    if (overlay.hidden) return;
+    if (e.key === 'Escape') { e.stopPropagation(); closeMission(); }
+    if (e.key === 'Tab') {
+      const focusables = [...dialog.querySelectorAll('button:not([disabled]), a[href], [tabindex="0"]')].filter(el => el.getClientRects().length);
+      if (!focusables.length) return;
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  const items = document.querySelectorAll('#mission .mission-reveal');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08 });
+    items.forEach(el => observer.observe(el));
+  }
 })();
 </script>
 
