@@ -5,1453 +5,549 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aida Nasuha | Cybersecurity & Data Portfolio</title>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <style>
-/* ================================
-   AIDA NASUHA - CYBER BLUE THEME
-================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#090d16;color:#f8fafc;font-family:'Segoe UI',sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}
+header{position:sticky;top:0;z-index:100;background:rgba(9,13,22,.94);backdrop-filter:blur(15px);border-bottom:1px solid #363052;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-weight:800;color:#38bdf8;letter-spacing:1px}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{font-size:13px;color:#cbd5e1}
+nav a:hover,nav a.active{color:#38bdf8}
+section{padding:85px 7%;max-width:1400px;margin:auto;scroll-margin-top:90px}
+h1,h2,h3,h4{line-height:1.3}
+.section-title{font-size:clamp(25px,3vw,38px);margin-bottom:30px;color:#f8fafc;border-bottom:1px solid #32364c;padding-bottom:18px}
+.section-title i{color:#38bdf8;margin-right:12px}
+.muted{color:#a8b0c8}
+.accent{color:#38bdf8}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.card,.plan-card,.skill-card,.artifact-card,.cisco-card{background:#121727;border:1px solid #33324d;border-radius:20px;padding:25px;transition:.3s}
+.card:hover,.plan-card:hover,.skill-card:hover,.artifact-card:hover,.cisco-card:hover{transform:translateY(-4px);border-color:#38bdf8}
+.card h3,.card h4{margin-bottom:12px}
+.card p{color:#a8b0c8;font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #38bdf8;border-radius:30px;padding:12px 22px;font-size:14px;font-weight:600;transition:.3s}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:#38bdf8;color:#111020}
+.btn-secondary{color:#38bdf8}
+.btn-green{color:#67e8f9;border-color:#67e8f9}
+#hero{display:grid;grid-template-columns:1.5fr 1fr;align-items:center;gap:55px;min-height:80vh}
+#hero h1{font-size:clamp(34px,5vw,64px);margin:10px 0 15px}
+#hero .subtitle{font-size:20px;color:#38bdf8;margin-bottom:20px}
+#hero .intro{color:#b9c1d5;margin-bottom:25px}
+.hero-image{width:100%;max-width:340px;justify-self:center;border-radius:25px;padding:4px;background:linear-gradient(135deg,#38bdf8,#67e8f9)}
+.hero-image img{width:100%;height:410px;object-fit:cover;object-position:top;border-radius:22px;display:block}
+.buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.terminal{background:#080c17;border:1px solid #383552;border-radius:14px;padding:18px;margin-top:25px;font-family:monospace;font-size:12px;color:#67e8f9;overflow-wrap:anywhere}
+.terminal input{background:transparent;color:white;border:0;outline:0;padding:10px;width:100%;font:inherit}
+.timeline{border-left:2px solid #38bdf8;padding-left:25px}
+.milestone{margin-bottom:25px;position:relative}
+.milestone:before{content:"";width:10px;height:10px;border-radius:50%;background:#38bdf8;position:absolute;left:-31px;top:8px}
+.milestone strong{color:#38bdf8;display:block;margin-bottom:8px}
+.milestone p{color:#a8b0c8;font-size:14px}
+.skill-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:20px}
+.skill-head h3{font-size:17px}
+.badge{font-size:11px;border:1px solid #67e8f9;color:#67e8f9;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.progress{height:8px;border-radius:10px;background:#293048;margin:15px 0}
+.progress span{height:100%;display:block;background:linear-gradient(90deg,#38bdf8,#67e8f9);border-radius:10px}
+.practical{border-left:3px solid #38bdf8;padding:12px;background:#0b1020;color:#b8c2d5;font-size:14px}
+.artifact-card img{width:100%;height:190px;object-fit:cover;border-radius:12px;margin-bottom:15px;cursor:zoom-in}
+.artifact-card h4{margin-bottom:10px}
+.artifact-card p{color:#a8b0c8;font-size:14px}
+.badge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.badge-card{background:#181d30;border:1px solid #35344e;border-radius:12px;padding:15px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.badge-card:hover{border-color:#38bdf8}
+.badge-card img{width:48px;height:48px;object-fit:contain}
+.badge-card span{font-size:13px;font-weight:600}
+.cert-image{width:100%;height:160px;object-fit:contain;background:#0b1020;border-radius:12px;cursor:zoom-in}
+#certificates{display:none}
+#certificates.open{display:grid}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:1000;align-items:center;justify-content:center;padding:25px}
+#lightbox img{max-width:95%;max-height:85vh;object-fit:contain}
+#lightbox button{position:absolute;top:15px;right:25px;background:none;border:0;color:white;font-size:40px;cursor:pointer}
+footer{text-align:center;padding:35px;color:#94a3b8;border-top:1px solid #303348}
+@media(max-width:850px){
+header{flex-direction:column}
+nav{justify-content:center;gap:10px}
+section{padding:55px 5%}
+#hero{grid-template-columns:1fr}
+.hero-image{grid-row:1;max-width:250px}
+.hero-image img{height:300px}
+.grid,.badge-grid{grid-template-columns:1fr}
+.skill-head{flex-wrap:wrap}
+}
+
+/* FINAL CYBER BLUE HARMONIZATION */
+#hero {grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:55px;}
+#hero>div{min-width:0}
+#hero h1{background:linear-gradient(90deg,#fff,#38bdf8,#06b6d4,#fff);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:aidaGradient 6s linear infinite}
+@keyframes aidaGradient{to{background-position:200% center}}
+.card,.skill-card,.artifact-card,.cisco-card{border-color:rgba(56,189,248,.25)}
+.card:hover,.skill-card:hover,.artifact-card:hover,.cisco-card:hover{box-shadow:0 16px 44px rgba(56,189,248,.18);border-color:#38bdf8}
+header{background:rgba(8,15,30,.94);border-color:rgba(56,189,248,.2);box-shadow:0 8px 28px rgba(0,0,0,.26);padding:14px 3%}
+header nav{gap:9px;justify-content:center}
+header nav a{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;background:linear-gradient(145deg,#1b2940,#101827);border:1px solid rgba(148,163,184,.17);box-shadow:4px 5px 12px rgba(0,0,0,.3),-1px -1px 3px rgba(255,255,255,.05);transition:transform .3s,box-shadow .3s,background .3s;white-space:nowrap}
+header nav a:hover{color:#fff;transform:translateY(-4px);background:linear-gradient(145deg,#155580,#12304d);border-color:#38bdf8;box-shadow:0 0 18px rgba(56,189,248,.28)}
+header nav a.active{color:#67e8f9;border-color:#38bdf8;background:linear-gradient(145deg,#164563,#0e283d);box-shadow:0 0 14px rgba(56,189,248,.22)}
+.hero-visual{position:relative;width:100%;max-width:410px;height:540px;min-height:0;margin:auto;display:flex;justify-content:center;align-items:center;isolation:isolate}
+.hero-visual .hero-ring{position:absolute;width:110%;aspect-ratio:1;border:1px solid rgba(56,189,248,.24);border-radius:50%;pointer-events:none;z-index:0}
+.hero-visual .hero-ring-1{animation:ringSpin 26s linear infinite}
+.hero-visual .hero-ring-2{width:97%;border-style:dashed;opacity:.55;animation:ringSpin 35s linear infinite reverse}
+.hero-visual .hero-card-layer{position:absolute;width:86%;height:460px;border-radius:30px;border:1px solid rgba(56,189,248,.38);background:linear-gradient(135deg,rgba(56,189,248,.17),rgba(6,182,212,.03));z-index:1}
+.hero-visual .layer-back{transform:rotate(-8deg) translateX(-10px)}
+.hero-visual .layer-middle{transform:rotate(7deg) translateX(10px)}
+.hero-visual .hero-card-main{position:relative;width:86%;height:460px;border-radius:30px;background:#f8fafc;overflow:hidden;z-index:2;box-shadow:0 24px 65px rgba(0,0,0,.45);animation:heroFloat 5s ease-in-out infinite}
+.hero-visual .hero-card-main img{width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block}
+.hero-visual .hero-focus-tag{position:absolute;left:0;bottom:34px;z-index:4;max-width:230px;padding:14px 18px;background:rgba(12,20,42,.96);border:1px solid rgba(56,189,248,.4);border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.35);animation:tagFloat 5s ease-in-out infinite}
+.hero-visual .hero-focus-tag span{display:block;color:#cad8e8;font-size:13px}
+.hero-visual .hero-focus-tag strong{display:block;margin-top:4px;color:#67e8f9;font-size:16px}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+@keyframes heroFloat{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-12px) rotate(0)}}
+@keyframes tagFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.aida-animate{opacity:0;transform:translateY(35px);transition:opacity .8s,transform .8s}
+.aida-animate.visible{opacity:1;transform:translateY(0)}
+/* ABOUT ME - INTERACTIVE SPOTLIGHT */
+.about-section{overflow:visible}
+.about-eyebrow{display:inline-block;color:#67e8f9;font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:9px}
+.about-heading{margin-bottom:24px}.about-heading .section-title{margin-bottom:12px}
+.about-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:75px;align-items:center}
+.about-stage{--mx:50%;--my:50%;position:relative;isolation:isolate;height:590px;max-width:560px;width:100%;margin:auto;display:flex;align-items:center;justify-content:center}
+.about-halo{position:absolute;z-index:-1;border:1px solid rgba(56,189,248,.24);border-radius:50%;aspect-ratio:1;pointer-events:none}
+.halo-one{width:min(95%,490px);animation:ringSpin 40s linear infinite}.halo-two{width:min(78%,420px);border-style:dashed;animation:ringSpin 32s linear infinite reverse}
+.about-photo-button{position:relative;z-index:2;width:min(67%,320px);height:420px;background:none;border:0;padding:0;cursor:pointer;border-radius:27px;transform:perspective(900px) rotateY(0deg);transition:transform .35s ease,filter .35s ease}
+.about-photo-button::before{content:"";position:absolute;inset:-9px;border:1px solid rgba(56,189,248,.45);border-radius:32px;transform:rotate(-5deg);z-index:-1;box-shadow:0 15px 50px rgba(56,189,248,.1)}
+.about-photo-shell{height:100%;width:100%;position:relative;overflow:hidden;border-radius:27px;background:#f8fafc;border:2px solid rgba(56,189,248,.65);box-shadow:0 28px 65px rgba(0,0,0,.55),0 0 28px rgba(56,189,248,.18)}
+.about-photo-shell::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(56,189,248,.22),transparent 75%);opacity:0;transition:opacity .25s}
+.about-stage:hover .about-photo-shell::after{opacity:1}
+.about-stage:hover .about-photo-button{transform:perspective(900px) translateY(-10px) rotateY(-3deg);filter:drop-shadow(0 0 13px rgba(56,189,248,.28))}
+.about-photo-shell img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.about-photo-caption{position:absolute;bottom:0;left:0;right:0;z-index:1;padding:36px 18px 19px;text-align:center;background:linear-gradient(transparent,rgba(5,13,29,.93));color:white}
+.about-photo-caption small{display:block;color:#67e8f9;letter-spacing:2px;font-size:10px}.about-photo-caption strong{display:block;font-size:21px}.about-photo-caption span{display:block;font-size:11px;color:#d6e9f5}
+.floating-bio{position:absolute;z-index:4;display:flex;align-items:center;gap:11px;max-width:240px;padding:11px 14px;border-radius:15px;background:rgba(13,29,48,.96);border:1px solid rgba(56,189,248,.45);box-shadow:0 14px 34px rgba(0,0,0,.4),0 0 16px rgba(56,189,248,.13);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .32s ease,transform .42s cubic-bezier(.2,.8,.2,1)}
+.floating-bio strong{display:block;color:#eef8ff;font-size:12px;line-height:1.25}.floating-bio small{display:block;color:#9fc2d9;font-size:10px;line-height:1.4}.bio-symbol{color:#67e8f9;font-size:19px}
+.bio-one{left:0;top:8%;transform:translate(-12px,15px)}.bio-two{right:0;top:23%;transform:translate(12px,15px)}.bio-three{left:-2%;bottom:20%;transform:translate(-12px,15px)}.bio-four{right:-2%;bottom:6%;transform:translate(12px,15px)}
+@media(hover:hover) and (pointer:fine){.about-stage:hover .floating-bio{opacity:1;transform:translate(0,0)}.about-stage:hover .bio-two{transition-delay:.14s}.about-stage:hover .bio-three{transition-delay:.28s}.about-stage:hover .bio-four{transition-delay:.42s}}
+.about-copy h3{font-size:clamp(30px,4vw,54px);line-height:1.1;margin-bottom:14px}.about-copy h3 span{color:#38bdf8}.about-lead{color:#67e8f9;font-weight:600;margin-bottom:18px}.about-copy>p:not(.about-lead):not(.about-hint){color:#bac9dc;margin-bottom:16px;font-size:15px}
+.about-chip-row{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}.about-chip-row span{padding:8px 12px;border-radius:30px;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.25);color:#9fddf8;font-size:12px}
+.about-explore-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 21px;border-radius:30px;background:linear-gradient(135deg,#38bdf8,#06b6d4);color:#00101e;border:0;font-weight:800;cursor:pointer;box-shadow:0 12px 28px rgba(56,189,248,.2);transition:transform .3s,box-shadow .3s}
+.about-explore-btn:hover{transform:translateY(-4px);box-shadow:0 15px 35px rgba(56,189,248,.35)}.about-hint{margin-top:14px;font-size:12px;color:#8fa6bd}
+.reveal-about{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}.reveal-about.is-visible{opacity:1;transform:translateY(0)}
+/* POPUP */
+.about-modal-overlay[hidden],.about-panel[hidden]{display:none!important}
+.about-modal-overlay{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;padding:16px;background:rgba(2,7,18,.83);backdrop-filter:blur(12px)}
+.about-modal{width:min(830px,100%);max-height:min(90vh,900px);overflow-y:auto;overscroll-behavior:contain;padding:27px;background:linear-gradient(145deg,#142840,#0b1424);border:1px solid rgba(56,189,248,.52);border-radius:25px;box-shadow:0 25px 75px rgba(0,0,0,.62),0 0 35px rgba(56,189,248,.18);animation:modalZoom .34s cubic-bezier(.2,.8,.2,1)}
+@keyframes modalZoom{from{opacity:0;transform:scale(.87) translateY(14px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.about-modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.about-modal-header h2{font-size:clamp(22px,3vw,31px)}.about-close{background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.25);border-radius:50%;width:40px;height:40px;color:#67e8f9;cursor:pointer;flex:none}
+.about-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:23px 0;padding-bottom:15px;border-bottom:1px solid rgba(56,189,248,.2)}.about-tabs button{padding:9px 14px;color:#bfd3e5;background:#12283c;border:1px solid #2a4b66;border-radius:12px;cursor:pointer}.about-tabs button.selected,.about-tabs button:hover{color:#67e8f9;border-color:#38bdf8;background:#173d57;box-shadow:0 0 12px rgba(56,189,248,.13)}
+.about-panel{animation:panelFade .27s ease}.about-panel h3{font-size:23px;color:#f7fbff;margin-bottom:10px}.about-panel p{color:#c1d2e3;margin-bottom:13px}.about-panel h4{margin-top:4px}.about-panel .muted{color:#9fb2ca}
+@keyframes panelFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.identity-panel-layout{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:24px;align-items:center}.kelantan-photo{background:#e7edf4;border-radius:18px;overflow:hidden;border:1px solid #37769b}.kelantan-photo img{display:block;width:100%;height:290px;object-fit:contain}.kelantan-photo small{display:block;background:#11273b;color:#b6d8ea;text-align:center;padding:6px;font-size:11px}.kelantan-label{color:#67e8f9!important;font-weight:700}
+.edu-track{border-left:2px solid rgba(56,189,248,.38);margin:22px 0 14px 20px;padding-left:24px}.edu-step{position:relative;display:flex;align-items:center;gap:15px;padding:13px;margin-bottom:12px;border:1px solid rgba(56,189,248,.18);border-radius:16px;background:rgba(56,189,248,.05)}.edu-step:before{content:"";position:absolute;left:-32px;top:50%;height:12px;width:12px;border-radius:50%;background:#38bdf8;box-shadow:0 0 12px #38bdf8}.edu-logo{display:grid;place-items:center;flex:none;width:65px;height:65px;border:1px solid rgba(56,189,248,.2);background:#eaf3f7;border-radius:12px;color:#0284c7;font-size:25px}.edu-logo img{max-width:90%;max-height:90%;object-fit:contain}.edu-step small{color:#67e8f9;font-size:10px;letter-spacing:1px}.edu-step h4{font-size:17px;margin:0}.edu-step p{font-size:13px;margin:0}.about-file-note{font-size:11px;color:#98acbe!important}
+.hobby-tiles,.dream-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:19px 0}.hobby-tiles>div,.dream-steps>div{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;padding:18px 10px;background:#172e45;border:1px solid rgba(56,189,248,.25);border-radius:15px;font-size:12px}.hobby-tiles i,.dream-steps i{color:#67e8f9;font-size:24px}.interest-title{margin:15px 0 4px}
+@media(max-width:1100px){header{flex-direction:column}header nav{justify-content:center}}
+@media(max-width:850px){#hero{grid-template-columns:1fr}#hero .hero-visual{grid-row:1;max-width:310px;height:410px}#hero .hero-card-main,#hero .hero-card-layer{height:355px}#hero .hero-focus-tag{bottom:15px}.about-layout{grid-template-columns:1fr;gap:20px}.about-stage{height:470px;max-width:460px}.about-photo-button{height:365px}.floating-bio{opacity:1;transform:none!important;max-width:180px;padding:8px}.floating-bio strong{font-size:11px}.floating-bio small{font-size:9px}.about-copy{text-align:left}.identity-panel-layout{grid-template-columns:1fr}.kelantan-photo{max-width:260px}.about-modal{padding:18px}}
+@media(max-width:480px){.about-stage{height:460px}.about-photo-button{width:60%;height:330px}.bio-one{top:1%;left:0}.bio-two{right:0;top:19%}.bio-three{left:0;bottom:23%}.bio-four{right:0;bottom:2%}.floating-bio{max-width:151px}.about-tabs button{padding:8px 11px;font-size:12px}.hobby-tiles,.dream-steps{grid-template-columns:1fr 1fr}.edu-logo{width:54px;height:54px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.aida-animate,.reveal-about{opacity:1;transform:none}}
 
-:root {
-  --bg: #090d16;
-  --panel: #121a2b;
-  --blue: #38bdf8;
-  --cyan: #67e8f9;
-  --text: #f8fafc;
-  --muted: #a8b5cc;
-  --border: rgba(56,189,248,.22);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Segoe UI', sans-serif;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
-img {
-  max-width: 100%;
-}
-
-/* BACKGROUND */
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(14,165,233,.09),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 10% 80%,
-      rgba(6,182,212,.05),
-      transparent 40%
-    );
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* ================================
-   PREMIUM 3D NAVIGATION
-================================ */
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-  padding: 14px 3%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  background: rgba(8,15,30,.94);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 8px 30px rgba(0,0,0,.25);
-}
-
-.logo {
-  color: var(--blue);
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: 1px;
-  white-space: nowrap;
-}
-
-.logo i {
-  margin-right: 6px;
-}
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-nav a {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 17px;
-  border-radius: 13px;
-  color: #b8c4d8;
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-  background: linear-gradient(
-    145deg, #1b2940, #101827
-  );
-  border: 1px solid rgba(148,163,184,.15);
-  box-shadow:
-    4px 5px 12px rgba(0,0,0,.35),
-    -1px -1px 3px rgba(255,255,255,.06);
-  transition: all .3s ease;
-}
-
-nav a:hover {
-  color: white;
-  background: linear-gradient(
-    145deg, #155580, #12304d
-  );
-  transform: translateY(-4px);
-  border-color: var(--blue);
-  box-shadow: 0 0 20px rgba(56,189,248,.3);
-}
-
-nav a.active {
-  color: var(--cyan);
-  background: linear-gradient(
-    145deg, #164563, #0e283d
-  );
-  border-color: var(--blue);
-  box-shadow:
-    0 5px 15px rgba(56,189,248,.2),
-    0 0 12px rgba(56,189,248,.2);
-}
-
-nav a:active {
-  transform: translateY(1px) scale(.97);
-}
-
-/* ================================
-   GENERAL SECTIONS
-================================ */
-
-section {
-  padding: 85px 7%;
-  max-width: 1450px;
-  margin: auto;
-  scroll-margin-top: 110px;
-}
-
-.section-title {
-  font-size: clamp(25px,3vw,38px);
-  margin-bottom: 30px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--border);
-}
-
-.section-title i {
-  color: var(--blue);
-  margin-right: 12px;
-}
-
-.accent {
-  color: var(--blue);
-}
-
-.muted {
-  color: var(--muted);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2,minmax(0,1fr));
-  gap: 24px;
-}
-
-.card,
-.skill-card,
-.artifact-card,
-.cisco-card {
-  background: rgba(18,26,43,.88);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 25px;
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease,
-    border-color .35s ease;
-}
-
-.card:hover,
-.skill-card:hover,
-.artifact-card:hover,
-.cisco-card:hover {
-  transform: translateY(-7px);
-  border-color: var(--blue);
-  box-shadow: 0 15px 40px rgba(56,189,248,.15);
-}
-
-.card h3,
-.card h4 {
-  margin-bottom: 12px;
-}
-
-.card p,
-.artifact-card p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* BUTTONS */
-
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  border: 1px solid var(--blue);
-  border-radius: 30px;
-  padding: 12px 22px;
-  font-size: 14px;
-  font-weight: 600;
-  background: transparent;
-  transition: all .3s ease;
-}
-
-.btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(56,189,248,.2);
-}
-
-.btn-primary {
-  background: var(--blue);
-  color: #020617;
-}
-
-.btn-secondary {
-  color: var(--blue);
-}
-
-.btn-green {
-  border-color: #2dd4bf;
-  color: #5eead4;
-}
-
-/* ================================
-   HERO SECTION
-================================ */
-
-#hero {
-  display: grid;
-  grid-template-columns:
-    minmax(0,1.5fr) minmax(0,1fr);
-  align-items: center;
-  gap: 55px;
-  min-height: 85vh;
-}
-
-.hero-content {
-  min-width: 0;
-}
-
-#hero h1 {
-  font-size: clamp(33px,4.5vw,65px);
-  line-height: 1.2;
-  margin: 12px 0 22px;
-  overflow-wrap: break-word;
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #38bdf8,
-    #06b6d4,
-    #ffffff
-  );
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 6s linear infinite;
-}
-
-.subtitle {
-  color: var(--blue);
-  font-size: 20px;
-  margin-bottom: 25px;
-}
-
-.intro {
-  color: #b9c7da;
-  font-size: 15px;
-  line-height: 1.9;
-}
-
-/* ================================
-   LAYERED PROFILE DESIGN
-================================ */
-
-.hero-visual {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  height: 550px;
-  min-width: 0;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  isolation: isolate;
-}
-
-/* BLUE ROTATING RINGS */
-
-.hero-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(56,189,248,.25);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-ring-1 {
-  width: 110%;
-  aspect-ratio: 1;
-  animation: ringRotate 25s linear infinite;
-}
-
-.hero-ring-2 {
-  width: 96%;
-  aspect-ratio: 1;
-  border-style: dashed;
-  opacity: .55;
-  animation: ringRotate 35s linear infinite reverse;
-}
-
-/* BACK LAYERS */
-
-.hero-card-layer {
-  position: absolute;
-  width: 88%;
-  height: 470px;
-  border-radius: 32px;
-  border: 1px solid rgba(56,189,248,.35);
-  background: linear-gradient(
-    135deg,
-    rgba(56,189,248,.15),
-    rgba(6,182,212,.04)
-  );
-  z-index: 1;
-}
-
-.layer-back {
-  transform: rotate(-7deg) translateX(-10px);
-}
-
-.layer-middle {
-  transform: rotate(6deg) translateX(10px);
-}
-
-/* MAIN PHOTO CARD */
-
-.hero-card-main {
-  position: relative;
-  width: 88%;
-  height: 470px;
-  background: white;
-  border-radius: 32px;
-  overflow: hidden;
-  z-index: 2;
-  box-shadow: 0 25px 65px rgba(0,0,0,.45);
-  animation: photoFloat 5s ease-in-out infinite;
-}
-
-.hero-card-main img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
-  display: block;
-}
-
-/* CAREER LABEL */
-
-.hero-focus-tag {
-  position: absolute;
-  left: 0;
-  bottom: 38px;
-  z-index: 5;
-  width: max-content;
-  max-width: 230px;
-  padding: 15px 20px;
-  background: rgba(15,23,42,.96);
-  border: 1px solid rgba(56,189,248,.4);
-  border-radius: 18px;
-  box-shadow: 0 12px 35px rgba(0,0,0,.4);
-  backdrop-filter: blur(12px);
-  animation: tagFloat 5s ease-in-out infinite;
-}
-
-.hero-focus-tag span {
-  display: block;
-  color: #cbd5e1;
-  font-size: 14px;
-}
-
-.hero-focus-tag strong {
-  display: block;
-  color: var(--cyan);
-  font-size: 17px;
-  margin-top: 5px;
-}
-
-/* TERMINAL */
-
-.terminal {
-  background: #080c17;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 18px;
-  margin-top: 25px;
-  font-family: monospace;
-  font-size: 12px;
-  color: #5eead4;
-  overflow-wrap: anywhere;
-}
-
-.terminal input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background: transparent;
-  color: white;
-  border: none;
-  outline: none;
-  font: inherit;
-}
-
-/* ================================
-   CAREER TIMELINE
-================================ */
-
-.timeline {
-  border-left: 2px solid var(--blue);
-  padding-left: 25px;
-  margin-top: 20px;
-}
-
-.milestone {
-  position: relative;
-  margin-bottom: 25px;
-}
-
-.milestone::before {
-  content: "";
-  position: absolute;
-  left: -31px;
-  top: 8px;
-  width: 10px;
-  height: 10px;
-  background: var(--blue);
-  border-radius: 50%;
-  box-shadow: 0 0 12px rgba(56,189,248,.4);
-}
-
-.milestone strong {
-  display: block;
-  color: var(--blue);
-  margin-bottom: 8px;
-}
-
-.milestone p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* ================================
-   SKILLS
-================================ */
-
-.skill-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.skill-head h3 {
-  font-size: 17px;
-}
-
-.badge {
-  padding: 5px 12px;
-  border: 1px solid #2dd4bf;
-  border-radius: 20px;
-  color: #5eead4;
-  font-size: 11px;
-}
-
-.progress {
-  height: 8px;
-  margin: 18px 0;
-  background: #293048;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress span {
-  display: block;
-  height: 100%;
-  border-radius: 10px;
-  background: linear-gradient(
-    90deg, #0284c7, #38bdf8
-  );
-}
-
-.practical {
-  background: #0b1020;
-  border-left: 3px solid var(--blue);
-  padding: 14px;
-  color: #b8c2d5;
-  font-size: 14px;
-}
-
-/* ================================
-   LABS AND BADGES
-================================ */
-
-.artifact-card img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  cursor: zoom-in;
-}
-
-.artifact-card h4 {
-  margin-bottom: 10px;
-}
-
-.badge-grid {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 15px;
-}
-
-.badge-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 15px;
-  background: #181d30;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.badge-card:hover {
-  border-color: var(--blue);
-  transform: translateY(-3px);
-}
-
-.badge-card img {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-}
-
-.badge-card span {
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.cert-image {
-  width: 100%;
-  height: 160px;
-  object-fit: contain;
-  background: #0b1020;
-  cursor: zoom-in;
-}
-
-#certificates {
-  display: none;
-}
-
-#certificates.open {
-  display: grid;
-}
-
-/* IMAGE PREVIEW */
-
-#lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(0,0,0,.94);
-  align-items: center;
-  justify-content: center;
-  padding: 25px;
-}
-
-#lightbox img {
-  max-width: 95%;
-  max-height: 85vh;
-  object-fit: contain;
-}
-
-#lightbox button {
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 40px;
-}
-
-/* ================================
-   SCROLL ANIMATIONS
-================================ */
-
-.aida-animate {
-  opacity: 0;
-  transform: translateY(35px);
-  transition:
-    opacity .8s ease,
-    transform .8s ease;
-}
-
-.aida-animate.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ANIMATION KEYFRAMES */
-
-@keyframes gradientMove {
-  from { background-position: 200% center; }
-  to { background-position: 0% center; }
-}
-
-@keyframes ringRotate {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes photoFloat {
-  0%,100% {
-    transform: translateY(0) rotate(2deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(0deg);
-  }
-}
-
-@keyframes tagFloat {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-footer {
-  text-align: center;
-  padding: 35px;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-}
-
-/* ================================
-   MOBILE RESPONSIVE
-================================ */
-
-@media (max-width: 1050px) {
-  header {
-    flex-direction: column;
-  }
-
-  nav {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 850px) {
-  section {
-    padding: 55px 5%;
-  }
-
-  #hero {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .hero-visual {
-    grid-row: 1;
-    max-width: 300px;
-    height: 410px;
-  }
-
-  .hero-card-main,
-  .hero-card-layer {
-    height: 355px;
-  }
-
-  .hero-focus-tag {
-    left: 0;
-    bottom: 15px;
-    padding: 12px 15px;
-  }
-
-  .hero-focus-tag strong {
-    font-size: 14px;
-  }
-
-  .grid,
-  .badge-grid {
-    grid-template-columns: 1fr;
-  }
-
-  nav a {
-    font-size: 12px;
-    padding: 9px 12px;
-  }
-}
-
-@media (max-width: 400px) {
-  .hero-visual {
-    max-width: 270px;
-  }
-
-  .hero-ring-1 {
-    width: 100%;
-  }
-
-  #hero h1 {
-    font-size: 32px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  .aida-animate {
-    opacity: 1;
-    transform: none;
-  }
-}
 </style>
 </head>
-
 <body>
 
-<!-- NAVIGATION -->
-
 <header>
-  <div class="logo">
-    <i class="fas fa-shield-alt"></i>
-    AIDA NASUHA
-  </div>
-
-  <nav>
-    <a href="index.html">Main Home</a>
-    <a href="#hero" class="active">Home</a>
-    <a href="#plan">Plan</a>
-    <a href="#skills">Skills</a>
-    <a href="#labs">Core Labs</a>
-    <a href="#kaggle">Kaggle Awards</a>
-    <a href="#commitment">Commitment</a>
-  </nav>
+ <div class="logo"><i class="fas fa-shield-alt"></i> AIDA NASUHA</div>
+ <nav>
+  <a href="index.html">Main Home</a>
+  <a href="#hero">Home</a>
+  <a href="#about">About Me</a>
+  <a href="#plan">Plan</a>
+  <a href="#skills">Skills</a>
+  <a href="#labs">Core Labs</a>
+  <a href="#kaggle">Kaggle Awards</a>
+  <a href="#commitment">Commitment</a>
+ </nav>
 </header>
 
-<!-- HERO -->
-
 <section id="hero">
+ <div>
+  <p class="accent">WELCOME TO MY E-PORTFOLIO</p>
+  <h1>AIDA NASUHA BINTI MUHAMAD FADELI</h1>
+  <p class="subtitle">Future Network Security Specialist</p>
+  <p class="intro">
+   Welcome! This E-Portfolio serves as a live repository of my technical capabilities and academic milestones. Here, I map out my core strengths in <strong>Network Security</strong>, interactive <strong>Penetration Testing logs</strong>, and verified <strong>Data Analytics credentials</strong>. Each section represents a proven baseline of my readiness to contribute to enterprise-grade security operations and digital defense teams.
+  </p>
 
-  <div class="hero-content">
-    <p class="accent">
-      WELCOME TO MY E-PORTFOLIO
-    </p>
-
-    <h1>
-      AIDA NASUHA BINTI MUHAMAD FADELI
-    </h1>
-
-    <p class="subtitle">
-      Future Network Security Specialist
-    </p>
-
-    <p class="intro">
-      Welcome! This E-Portfolio serves as a live
-      repository of my technical capabilities and
-      academic milestones. Here, I map out my core
-      strengths in <strong>Network Security</strong>,
-      interactive <strong>Penetration Testing logs</strong>,
-      and verified <strong>Data Analytics credentials</strong>.
-      Each section represents a proven baseline of my
-      readiness to contribute to enterprise-grade
-      security operations and digital defense teams.
-    </p>
-
-    <div class="buttons">
-      <a class="btn btn-secondary"
-         href="mailto:aydanasuha03@gmail.com">
-        <i class="fas fa-envelope"></i>
-        Email Direct
-      </a>
-
-      <a class="btn btn-green"
-         href="https://wa.me/601139263109"
-         target="_blank"
-         rel="noopener noreferrer">
-        <i class="fab fa-whatsapp"></i>
-        WhatsApp
-      </a>
-
-      <a class="btn btn-primary"
-         href="resumer.pdf"
-         download="AIDA_NASUHA_Resume.pdf">
-        <i class="fas fa-file-download"></i>
-        Download Resume
-      </a>
-    </div>
-
-    <div class="terminal">
-      <p>● GUEST@AIDA-NASUHA-SECURITY-NODE:~ ONLINE</p>
-      <p>visitor@aida-sec:~$ whoami</p>
-      <p style="color:white">
-        Aida Nasuha | Cybersecurity Analyst & Data Security Researcher
-      </p>
-      <p>visitor@aida-sec:~$ cat core_focus.txt</p>
-      <p>
-        Threat Intelligence • Network Telemetry •
-        Localized Dataset Research (Malay Phishing)
-      </p>
-      <input id="terminal-input"
-             placeholder="Type 'help' and press Enter..."
-             aria-label="Terminal command">
-      <p id="terminal-output"></p>
-    </div>
+  <div class="buttons">
+   <a class="btn btn-secondary" href="mailto:aydanasuha03@gmail.com"><i class="fas fa-envelope"></i> Email Direct</a>
+   <a class="btn btn-green" href="https://wa.me/601139263109" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+   <a class="btn btn-primary" href="resumer.pdf" download="AIDA_NASUHA_Resume.pdf"><i class="fas fa-file-download"></i> Download Resume</a>
   </div>
 
-  <!-- LAYERED PHOTO -->
-
-  <div class="hero-visual">
-
-    <div class="hero-ring hero-ring-1"></div>
-    <div class="hero-ring hero-ring-2"></div>
-
-    <div class="hero-card-layer layer-back"></div>
-    <div class="hero-card-layer layer-middle"></div>
-
-    <div class="hero-card-main">
-      <img src="aidaf.png" alt="Aida Nasuha">
-    </div>
-
-    <div class="hero-focus-tag">
-      <span>Career Focus</span>
-      <strong>Network Security ◈</strong>
-    </div>
-
+  <div class="terminal">
+   <p>● GUEST@AIDA-NASUHA-SECURITY-NODE:~ ONLINE</p>
+   <p>visitor@aida-sec:~$ whoami</p>
+   <p style="color:white">Aida Nasuha | Cybersecurity Analyst & Data Security Researcher</p>
+   <p>visitor@aida-sec:~$ cat core_focus.txt</p>
+   <p>Threat Intelligence • Network Telemetry • Localized Dataset Research (Malay Phishing)</p>
+   <input id="terminal-input" placeholder="Type 'help' and press Enter..." aria-label="Terminal command">
+   <p id="terminal-output"></p>
   </div>
+ </div>
+
+ <div class="hero-visual">
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+
+  <div class="hero-card-layer layer-back"></div>
+  <div class="hero-card-layer layer-middle"></div>
+
+  <div class="hero-card-main">
+    <img src="aidaf.png" alt="Aida Nasuha">
+  </div>
+
+  <div class="hero-focus-tag">
+    <span>Career Focus</span>
+    <strong>Network Security ◈</strong>
+  </div>
+</div>
 
 </section>
+ 
 
-<!-- CAREER PLAN -->
+<!-- ABOUT ME: INTERACTIVE IDENTITY -->
+<section id="about" class="about-section">
+  <div class="about-heading reveal-about">
+    <span class="about-eyebrow">CHAPTER 01 / GET TO KNOW ME</span>
+    <h2 class="section-title"><i class="fas fa-id-card"></i> Behind My Story</h2>
+    <p class="muted">More than a portfolio — discover my roots, education, passions and ambition.</p>
+  </div>
+  <div class="about-layout">
+    <div class="about-stage reveal-about" id="aboutStage">
+      <div class="about-halo halo-one" aria-hidden="true"></div>
+      <div class="about-halo halo-two" aria-hidden="true"></div>
+      <button class="about-photo-button" id="openAboutPhoto" type="button" aria-label="Open Aida Nasuha biodata">
+        <div class="about-photo-shell">
+          <img src="aidaf.png" alt="Aida Nasuha portrait" loading="lazy">
+          <div class="about-photo-caption"><small>PERSONAL PROFILE</small><strong>Aida Nasuha</strong><span>Tap / click to explore my story</span></div>
+        </div>
+      </button>
+      <div class="floating-bio bio-one"><span class="bio-symbol"><i class="fas fa-map-marker-alt"></i></span><div><strong>Anak Jati Kelantan</strong><small>My identity and roots</small></div></div>
+      <div class="floating-bio bio-two"><span class="bio-symbol"><i class="fas fa-graduation-cap"></i></span><div><strong>Education</strong><small>SKPK • SMKKBH • UniSZA</small></div></div>
+      <div class="floating-bio bio-three"><span class="bio-symbol"><i class="fas fa-running"></i></span><div><strong>Hobbies</strong><small>Badminton • Netball • Running</small></div></div>
+      <div class="floating-bio bio-four"><span class="bio-symbol"><i class="fas fa-shield-alt"></i></span><div><strong>Future Dream</strong><small>Police • Digital Forensics</small></div></div>
+    </div>
+    <div class="about-copy reveal-about">
+      <span class="about-eyebrow">HELLO, I'M</span>
+      <h3>Aida <span>Nasuha.</span></h3>
+      <p class="about-lead">A Kelantan-born technology enthusiast.</p>
+      <p>I have a keen interest in information technology, software development and network security. Outside technology, I enjoy badminton, netball and running, and have a strong interest in uniformed services.</p>
+      <p>My aspiration is to contribute to police investigations through digital and data forensics, combining technology, discipline and public service.</p>
+      <div class="about-chip-row"><span><i class="fas fa-code"></i> Developer</span><span><i class="fas fa-network-wired"></i> Network Security</span><span><i class="fas fa-fingerprint"></i> Digital Forensics</span></div>
+      <button type="button" class="about-explore-btn" id="openAboutButton"><i class="fas fa-expand-alt"></i> Explore My Story <i class="fas fa-arrow-right"></i></button>
+      <p class="about-hint">Hover over the photo for floating facts. Click to open my personal file.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT ME ZOOM POPUP -->
+<div class="about-modal-overlay" id="aboutModal" hidden>
+  <div class="about-modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle" tabindex="-1">
+    <div class="about-modal-header">
+      <div><span class="about-eyebrow">AIDA / PERSONAL FILE</span><h2 id="aboutModalTitle">Discover My Story</h2></div>
+      <button type="button" class="about-close" id="closeAboutModal" aria-label="Close biodata popup"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="about-tabs" role="tablist" aria-label="About me categories">
+      <button role="tab" id="tab-profile" aria-controls="panel-profile" aria-selected="true" data-tab="profile" class="selected">Profile</button>
+      <button role="tab" id="tab-education" aria-controls="panel-education" aria-selected="false" data-tab="education">Education</button>
+      <button role="tab" id="tab-hobbies" aria-controls="panel-hobbies" aria-selected="false" data-tab="hobbies">Hobbies</button>
+      <button role="tab" id="tab-dream" aria-controls="panel-dream" aria-selected="false" data-tab="dream">Future Dream</button>
+    </div>
+    <div class="about-panel" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile">
+      <div class="identity-panel-layout">
+        <div class="kelantan-photo">
+          <img src="aida-kelantan.jpg" alt="Aida holding the Kelantan flag" onerror="this.onerror=null;this.src='aidaf.png'">
+          <small>Kelantan identity portrait</small>
+        </div>
+        <div><span class="about-eyebrow">PERSONAL IDENTITY</span><h3>Aida Nasuha Binti Muhamad Fadeli</h3><p class="kelantan-label"><i class="fas fa-map-pin"></i> Anak Jati Kelantan</p><p>Born and raised with Kelantan roots. Passionate about IT, development, network security, and uniformed services.</p><p>My identity combines my home-state pride, curiosity about technology and commitment to learning.</p></div>
+      </div>
+    </div>
+    <div class="about-panel" id="panel-education" role="tabpanel" aria-labelledby="tab-education" hidden>
+      <h3>My Education Journey</h3><p class="muted">From primary school to university.</p>
+      <div class="edu-track">
+        <div class="edu-step"><div class="edu-logo"><img src="logo-skpk.png" alt="SKPK emblem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-school" style="display:none" aria-hidden="true"></i></div><div><small>PRIMARY SCHOOL</small><h4>SKPK</h4><p>Sekolah Kebangsaan Pulau Kundor</p></div></div>
+        <div class="edu-step"><div class="edu-logo"><img src="logo-smkkbh.png" alt="SMKKBH emblem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-school" style="display:none" aria-hidden="true"></i></div><div><small>SECONDARY SCHOOL</small><h4>SMKKBH</h4><p>Sekolah Menengah Kebangsaan Kedai Buloh</p></div></div>
+        <div class="edu-step"><div class="edu-logo"><img src="logo-unisza.png" alt="UniSZA emblem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="fas fa-university" style="display:none" aria-hidden="true"></i></div><div><small>UNIVERSITY</small><h4>UniSZA</h4><p>Universiti Sultan Zainal Abidin</p></div></div>
+      </div>
+      <p class="about-file-note">Logo rasmi akan kelihatan selepas fail logo institusi dimuat naik menggunakan nama fail di atas. Ikon pendidikan dipaparkan sementara.</p>
+    </div>
+    <div class="about-panel" id="panel-hobbies" role="tabpanel" aria-labelledby="tab-hobbies" hidden>
+      <h3>Hobbies & Interests</h3><p class="muted">How I stay active and what I love to explore.</p>
+      <div class="hobby-tiles"><div><i class="fas fa-table-tennis"></i><strong>Badminton</strong></div><div><i class="fas fa-basketball-ball"></i><strong>Netball</strong></div><div><i class="fas fa-running"></i><strong>Running</strong></div></div>
+      <h4 class="interest-title">Technology Interests</h4><div class="about-chip-row"><span>Information Technology</span><span>Software Development</span><span>Network Security</span></div>
+    </div>
+    <div class="about-panel" id="panel-dream" role="tabpanel" aria-labelledby="tab-dream" hidden>
+      <span class="about-eyebrow">MY ASPIRATION</span><h3>Police • Digital & Data Forensics</h3>
+      <p>I aspire to join the police force in a role connected to digital forensic investigation and evidence analysis, applying my interest in cybersecurity and IT to serve the community.</p>
+      <div class="dream-steps"><div><i class="fas fa-user-shield"></i><span>Uniformed Service</span></div><div><i class="fas fa-search"></i><span>Investigation</span></div><div><i class="fas fa-fingerprint"></i><span>Digital Forensics</span></div></div>
+    </div>
+  </div>
+</div>
 
 <section id="plan">
-  <h2 class="section-title">
-    <i class="fas fa-map-marked-alt"></i>
-    Career Development Plan
-  </h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3 class="accent">Strategic Roadmap Architecture</h3>
-      <img src="strategic%20plan.png"
-           alt="Cybersecurity Career Roadmap"
-           style="width:100%;border-radius:12px;cursor:zoom-in"
-           onclick="openImage(this.src)">
-      <p style="margin-top:12px">
-        Click image to enlarge
-      </p>
-    </div>
-
-    <div class="card">
-      <h3 class="accent">Long-Term Professional Mission</h3>
-      <p>
-        My mission is to evolve into a high-caliber
-        <strong>Security Operations Center (SOC) Specialist</strong>.
-        I am dedicated to orchestrating resilient network
-        infrastructure defenses, analyzing complex threat
-        telemetry, and ultimately contributing to national
-        cyberdefense resilience within apex agencies like
-        <strong>CyberSecurity Malaysia (CSM)</strong>.
-      </p>
-
-      <div class="timeline">
-        <div class="milestone">
-          <strong>2026 — Graduation & Technical Foundations</strong>
-          <p>
-            Complete Bachelor of Computer Science
-            (Computer Network Security), bridging core
-            theoretical frameworks with hands-on lab execution.
-          </p>
-        </div>
-
-        <div class="milestone">
-          <strong>2026–2027 — Professional Certification Trajectory</strong>
-          <p>
-            Targeting industry-recognized credentials
-            including Cisco CCNA and CompTIA Security+
-            to validate operational readiness.
-          </p>
-        </div>
-
-        <div class="milestone">
-          <strong>2027–2029 — Enterprise SOC Tier-1 Engagement</strong>
-          <p>
-            Acquiring real-world exposure in live security
-            monitoring, continuous network logging, and
-            active incident response workflows.
-          </p>
-        </div>
-
-        <div class="milestone">
-          <strong>2030+ — Apex Specialization & Infrastructure Hardening</strong>
-          <p>
-            Advance into senior technical roles such as
-            Network Security Analyst or Infrastructure
-            Security Architect at national cyberdefense agencies.
-          </p>
-        </div>
-      </div>
-    </div>
+ <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Career Development Plan</h2>
+ <div class="grid">
+  <div class="card">
+   <h3 class="accent">Strategic Roadmap Architecture</h3>
+   <img src="strategic%20plan.png" alt="Cybersecurity Career Roadmap" style="width:100%;border-radius:12px;cursor:zoom-in" onclick="openImage(this.src)">
+   <p style="text-align:center;margin-top:10px">Click image to enlarge</p>
   </div>
+  <div class="card">
+   <h3 class="accent">Long-Term Professional Mission</h3>
+   <p style="margin-bottom:25px">My mission is to evolve into a high-caliber <strong>Security Operations Center (SOC) Specialist</strong>. I am dedicated to orchestrating resilient network infrastructure defenses, analyzing complex threat telemetry, and ultimately contributing to national cyberdefense resilience within apex agencies like <strong>CyberSecurity Malaysia (CSM)</strong>.</p>
+   <div class="timeline">
+    <div class="milestone">
+     <strong>2026 — Graduation & Technical Foundations</strong>
+     <p>Complete Bachelor of Computer Science (Computer Network Security), bridging core theoretical frameworks with hands-on lab execution.</p>
+    </div>
+    <div class="milestone">
+     <strong>2026–2027 — Professional Certification Trajectory</strong>
+     <p>Targeting industry-recognized credentials including Cisco CCNA and CompTIA Security+ to validate operational readiness.</p>
+    </div>
+    <div class="milestone">
+     <strong>2027–2029 — Enterprise SOC Tier-1 Engagement</strong>
+     <p>Acquiring real-world exposure in live security monitoring, continuous network logging, and active incident response workflows.</p>
+    </div>
+    <div class="milestone">
+     <strong>2030+ — Apex Specialization & Infrastructure Hardening</strong>
+     <p>Advance into senior technical roles such as Network Security Analyst or Infrastructure Security Architect at national cyberdefense agencies.</p>
+    </div>
+   </div>
+  </div>
+ </div>
 </section>
-
-<!-- TECHNICAL SKILLS -->
 
 <section id="skills">
-  <h2 class="section-title">
-    <i class="fas fa-shield-alt"></i>
-    Technical Skills Assessment
-  </h2>
-
-  <div class="grid">
-
-    <div class="skill-card">
-      <div class="skill-head">
-        <h3>
-          Traffic Auditing & Packet Analysis
-          (Wireshark / Zenmap)
-        </h3>
-        <span class="badge">Intermediate</span>
-      </div>
-      <div class="progress">
-        <span style="width:60%"></span>
-      </div>
-      <div class="practical">
-        <strong>Practical Application:</strong>
-        Learning to capture basic network traffic,
-        filtering protocols (HTTP/DNS), and identifying
-        unencrypted strings in PCAP files.
-      </div>
-    </div>
-
-    <div class="skill-card">
-      <div class="skill-head">
-        <h3>
-          Host-Based Forensics & Metadata Extraction
-          (Autopsy Tools)
-        </h3>
-        <span class="badge">Intermediate</span>
-      </div>
-      <div class="progress">
-        <span style="width:60%"></span>
-      </div>
-      <div class="practical">
-        <strong>Practical Application:</strong>
-        Conducting data recovery, analyzing file system
-        metadata, and generating forensic investigative
-        report logs.
-      </div>
-    </div>
-
-    <div class="skill-card">
-      <div class="skill-head">
-        <h3>
-          Network Infrastructure & Design
-          (Cisco Packet Tracer)
-        </h3>
-        <span class="badge">Mid-Advanced</span>
-      </div>
-      <div class="progress">
-        <span style="width:75%"></span>
-      </div>
-      <div class="practical">
-        <strong>Practical Application:</strong>
-        Configuring basic enterprise network topologies,
-        assigning Access Control Lists (ACL), and
-        setting up inter-VLAN routing nodes.
-      </div>
-    </div>
-
+ <h2 class="section-title"><i class="fas fa-shield-alt"></i> Technical Skills Assessment</h2>
+ <div class="grid">
+  <div class="skill-card">
+   <div class="skill-head">
+    <h3>Traffic Auditing & Packet Analysis (Wireshark / Zenmap)</h3>
+    <span class="badge">Intermediate</span>
+   </div>
+   <div class="progress"><span style="width:60%"></span></div>
+   <div class="practical"><strong>Practical Application:</strong> Learning to capture basic network traffic, filtering protocols (HTTP/DNS), and identifying unencrypted strings in PCAP files.</div>
   </div>
+  <div class="skill-card">
+   <div class="skill-head">
+    <h3>Host-Based Forensics & Metadata Extraction (Autopsy Tools)</h3>
+    <span class="badge">Intermediate</span>
+   </div>
+   <div class="progress"><span style="width:60%"></span></div>
+   <div class="practical"><strong>Practical Application:</strong> Conducting data recovery, analyzing file system metadata, and generating forensic investigative report logs.</div>
+  </div>
+  <div class="skill-card">
+   <div class="skill-head">
+    <h3>Network Infrastructure & Design (Cisco Packet Tracer)</h3>
+    <span class="badge">Mid-Advanced</span>
+   </div>
+   <div class="progress"><span style="width:75%"></span></div>
+   <div class="practical"><strong>Practical Application:</strong> Configuring basic enterprise network topologies, assigning Access Control Lists (ACL), and setting up inter-VLAN routing nodes.</div>
+  </div>
+ </div>
 </section>
-
-<!-- CORE LABS -->
 
 <section id="labs">
-  <h2 class="section-title">
-    <i class="fas fa-cubes"></i>
-    Core Infrastructure & Penetration Logs
-  </h2>
-
-  <p class="muted" style="margin-bottom:25px">
-    Click on any log file image below to review the full screenshot.
-  </p>
-
-  <div class="grid">
-
-    <div class="artifact-card">
-      <img src="Screenshot 2025-04-16 124934.png"
-           alt="Cisco VLAN Lab"
-           onclick="openImage(this.src)">
-      <h4>1. Cisco VLAN Configuration</h4>
-      <p>
-        Isolating network broadcast zones, deploying
-        dynamic inter-VLAN routing tables, and applying
-        port-security limits on virtual edge hardware switches.
-      </p>
-    </div>
-
-    <div class="artifact-card">
-      <img src="Screenshot 2024-10-06 111126.png"
-           alt="XAMPP Environment"
-           onclick="openImage(this.src)">
-      <h4>2. Local Stack Staging</h4>
-      <p>
-        Provisioning secure local staging instances
-        executing independent Apache modules integrated
-        directly with MySQL database backends via XAMPP.
-      </p>
-    </div>
-
-    <div class="artifact-card">
-      <img src="Screenshot 2025-12-02 170628.png"
-           alt="Wireshark Capture"
-           onclick="openImage(this.src)">
-      <h4>3. Wireshark Telemetry Audit</h4>
-      <p>
-        Capturing raw live host egress data traffic,
-        conducting frame disassembly, and tracing
-        unencrypted plaintext credentials hidden inside
-        network streams.
-      </p>
-    </div>
-
-    <div class="artifact-card">
-      <img src="Screenshot 2025-12-07 200509.png"
-           alt="WebGoat Injection"
-           onclick="openImage(this.src)">
-      <h4>4. OWASP SQL Injection Mitigation</h4>
-      <p>
-        Simulating deep input logic manipulation
-        vulnerabilities within WebGoat sandbox to
-        understand and protect databases against
-        unauthorized manipulation queries.
-      </p>
-    </div>
-
+ <h2 class="section-title"><i class="fas fa-cubes"></i> Core Infrastructure & Penetration Logs</h2>
+ <p class="muted" style="margin-bottom:25px">Click on any log file image below to review the full screenshot.</p>
+ <div class="grid">
+  <div class="artifact-card">
+   <img src="Screenshot 2025-04-16 124934.png" alt="Cisco VLAN Lab" onclick="openImage(this.src)">
+   <h4>1. Cisco VLAN Configuration</h4>
+   <p>Isolating network broadcast zones, deploying dynamic inter-VLAN routing tables, and applying port-security limits on virtual edge hardware switches.</p>
   </div>
+  <div class="artifact-card">
+   <img src="Screenshot 2024-10-06 111126.png" alt="XAMPP Environment" onclick="openImage(this.src)">
+   <h4>2. Local Stack Staging</h4>
+   <p>Provisioning secure local staging instances executing independent Apache modules integrated directly with MySQL database backends via XAMPP.</p>
+  </div>
+  <div class="artifact-card">
+   <img src="Screenshot 2025-12-02 170628.png" alt="Wireshark Capture" onclick="openImage(this.src)">
+   <h4>3. Wireshark Telemetry Audit</h4>
+   <p>Capturing raw live host egress data traffic, conducting frame disassembly, and tracing unencrypted plaintext credentials hidden inside network streams.</p>
+  </div>
+  <div class="artifact-card">
+   <img src="Screenshot 2025-12-07 200509.png" alt="WebGoat Injection" onclick="openImage(this.src)">
+   <h4>4. OWASP SQL Injection Mitigation</h4>
+   <p>Simulating deep input logic manipulation vulnerabilities within WebGoat sandbox to understand and protect databases against unauthorized manipulation queries.</p>
+  </div>
+ </div>
 </section>
-
-<!-- KAGGLE -->
 
 <section id="kaggle">
-  <h2 class="section-title">
-    <i class="fab fa-kaggle"></i>
-    Kaggle Open-Source Hub & Verification Center
-  </h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3 class="accent">Malay Phishing Email Dataset</h3>
-      <p>
-        Built and published an open-source dataset
-        repository on Kaggle to assist machine learning
-        algorithms in analyzing and mitigating localized
-        cyber threats.
-      </p>
-      <img src="kaggle.png"
-           alt="Kaggle Profile Dashboard"
-           style="width:100%;max-height:230px;object-fit:contain;margin:20px 0;border-radius:12px;cursor:zoom-in"
-           onclick="openImage(this.src)">
-
-      <a class="btn btn-secondary"
-         href="https://www.kaggle.com/datasets/nasuhafadeli03/malay-phishing-email-dataset"
-         target="_blank"
-         rel="noopener noreferrer">
-        <i class="fab fa-kaggle"></i>
-        External Kaggle Dataset
-      </a>
-    </div>
-
-    <div class="card">
-      <h3>Verified Kaggle Badge Credentials (6 Earned)</h3>
-      <p style="margin-bottom:18px">
-        Click any badge to enlarge.
-      </p>
-
-      <div class="badge-grid">
-        <div class="badge-card" onclick="openImage('Python Coder.png')">
-          <img src="Python Coder.png" alt="Python Coder">
-          <span>Python Coder</span>
-        </div>
-
-        <div class="badge-card" onclick="openImage('Dataset Creator.png')">
-          <img src="Dataset Creator.png" alt="Dataset Creator">
-          <span>Dataset Creator</span>
-        </div>
-
-        <div class="badge-card" onclick="openImage('Dataset Documenter.png')">
-          <img src="Dataset Documenter.png" alt="Dataset Documenter">
-          <span>Dataset Documenter</span>
-        </div>
-
-        <div class="badge-card" onclick="openImage('Dataset Tagger.png')">
-          <img src="Dataset Tagger.png" alt="Dataset Tagger">
-          <span>Dataset Tagger</span>
-        </div>
-
-        <div class="badge-card" onclick="openImage('Collector.png')">
-          <img src="Collector.png" alt="Collector">
-          <span>Collector</span>
-        </div>
-
-        <div class="badge-card" onclick="openImage('Kaggle Community Member.png')">
-          <img src="Kaggle Community Member.png" alt="Community Member">
-          <span>Community Member</span>
-        </div>
-      </div>
-    </div>
-
+ <h2 class="section-title"><i class="fab fa-kaggle"></i> Kaggle Open-Source Hub & Verification Center</h2>
+ <div class="grid">
+  <div class="card">
+   <h3 class="accent">Malay Phishing Email Dataset</h3>
+   <p>Built and published an open-source dataset repository on Kaggle to assist machine learning algorithms in analyzing and mitigating localized cyber threats.</p>
+   <img src="kaggle.png" alt="Kaggle Profile Dashboard" style="width:100%;max-height:230px;object-fit:contain;margin:20px 0;border-radius:12px;cursor:zoom-in" onclick="openImage(this.src)">
+   <a class="btn btn-secondary" href="https://www.kaggle.com/datasets/nasuhafadeli03/malay-phishing-email-dataset" target="_blank" rel="noopener noreferrer"><i class="fab fa-kaggle"></i> External Kaggle Dataset</a>
   </div>
+  <div class="card">
+   <h3>Verified Kaggle Badge Credentials (6 Earned)</h3>
+   <p style="margin-bottom:18px">Click any badge to enlarge.</p>
+   <div class="badge-grid">
+    <div class="badge-card" onclick="openImage('Python Coder.png')"><img src="Python Coder.png" alt="Python Coder"><span>Python Coder</span></div>
+    <div class="badge-card" onclick="openImage('Dataset Creator.png')"><img src="Dataset Creator.png" alt="Dataset Creator"><span>Dataset Creator</span></div>
+    <div class="badge-card" onclick="openImage('Dataset Documenter.png')"><img src="Dataset Documenter.png" alt="Dataset Documenter"><span>Dataset Documenter</span></div>
+    <div class="badge-card" onclick="openImage('Dataset Tagger.png')"><img src="Dataset Tagger.png" alt="Dataset Tagger"><span>Dataset Tagger</span></div>
+    <div class="badge-card" onclick="openImage('Collector.png')"><img src="Collector.png" alt="Collector"><span>Collector</span></div>
+    <div class="badge-card" onclick="openImage('Kaggle Community Member.png')"><img src="Kaggle Community Member.png" alt="Community Member"><span>Community Member</span></div>
+   </div>
+  </div>
+ </div>
 </section>
-
-<!-- COMMITMENT -->
 
 <section id="commitment">
-  <h2 class="section-title">
-    <i class="fas fa-user-check"></i>
-    Leadership, Tactical Discipline & Cyberdefense Pathways
-  </h2>
+ <h2 class="section-title"><i class="fas fa-user-check"></i> Leadership, Tactical Discipline & Cyberdefense Pathways</h2>
+ <p class="accent" style="margin-bottom:25px">Active Academic Validation & Cisco Cyberdefense Pathways</p>
 
-  <p class="accent" style="margin-bottom:25px">
-    Active Academic Validation & Cisco Cyberdefense Pathways
-  </p>
-
-  <div class="grid">
-
-    <div class="cisco-card">
-      <h3>Networking Basics</h3>
-      <p class="accent">
-        Cisco Networking Academy — Verified
-      </p>
-      <p class="muted">
-        Developing core competencies in foundational
-        computer networking architectures and analyzing
-        live network operation telemetry.
-      </p>
-      <p>Target: Network Technician</p>
-      <p class="muted">10 Jul 2026</p>
-    </div>
-
-    <div class="cisco-card">
-      <h3>The Cybersecurity Landscape</h3>
-      <p class="accent">
-        Cisco Networking Academy — In-Progress
-      </p>
-      <p class="muted">
-        Mapping active threat vectors and infrastructure
-        defense baselines required for enterprise
-        SOC Analyst validation.
-      </p>
-      <p>Target: Cybersecurity Defense Analyst</p>
-    </div>
-
-    <div class="cisco-card">
-      <h3>Introduction to Cybersecurity</h3>
-      <p class="accent">
-        Cisco Networking Academy — In-Progress
-      </p>
-    </div>
-
-    <div class="cisco-card">
-      <h3>SecurityX Certification (CAS-005)</h3>
-      <p class="accent">CompTIA SecurityX</p>
-
-      <a class="btn btn-secondary"
-         style="margin-top:15px"
-         href="CompTIA%20SecurityX%20ce%20certificate.pdf"
-         target="_blank"
-         rel="noopener noreferrer">
-        View Certificate
-      </a>
-
-      <a class="btn btn-secondary"
-         style="margin-top:10px"
-         href="https://verify.comptia.org"
-         target="_blank"
-         rel="noopener noreferrer">
-        Verify CompTIA
-      </a>
-    </div>
-
+ <div class="grid">
+  <div class="cisco-card">
+   <h3>Networking Basics</h3>
+   <p class="accent">Cisco Networking Academy — Verified</p>
+   <p class="muted">Developing core competencies in foundational computer networking architectures and analyzing live network operation telemetry.</p>
+   <p>Target: Network Technician</p>
+   <p class="muted">10 Jul 2026</p>
   </div>
-
-  <div class="card" style="margin-top:30px">
-    <h3>Leadership & Training Certificates</h3>
-    <p>Click below to view the course certificates.</p>
-
-    <button class="btn btn-primary"
-            id="cert-toggle"
-            type="button"
-            style="margin-top:15px"
-            onclick="toggleCertificates()"
-            aria-expanded="false">
-      <i class="fas fa-folder-open"></i>
-      Kursus Metodologi & Certificates
-    </button>
+  <div class="cisco-card">
+   <h3>The Cybersecurity Landscape</h3>
+   <p class="accent">Cisco Networking Academy — In-Progress</p>
+   <p class="muted">Mapping active threat vectors and infrastructure defense baselines required for enterprise SOC Analyst validation.</p>
+   <p>Target: Cybersecurity Defense Analyst</p>
   </div>
-
-  <div class="grid" id="certificates" style="margin-top:25px">
-
-    <div class="artifact-card">
-      <img class="cert-image"
-           src="kursus%20metodologi.png"
-           alt="Kursus Metodologi Latihan"
-           onclick="openImage(this.src)">
-      <h4>Kursus Metodologi Latihan</h4>
-    </div>
-
-    <div class="artifact-card">
-      <img class="cert-image"
-           src="kursus%20pusat.png"
-           alt="Pengurusan Pusat Pemindahan"
-           onclick="openImage(this.src)">
-      <h4>Pengurusan Pusat Pemindahan</h4>
-    </div>
-
-    <div class="artifact-card">
-      <img class="cert-image"
-           src="kursus%20bakal.png"
-           alt="Kursus Bakal Pegawai Kor SISPA"
-           onclick="openImage(this.src)">
-      <h4>Kursus Bakal Pegawai Kor SISPA</h4>
-    </div>
-
-    <div class="artifact-card">
-      <img class="cert-image"
-           src="kursus%20asas.png"
-           alt="Kursus Asas Pertahanan Awam"
-           onclick="openImage(this.src)">
-      <h4>Kursus Asas Pertahanan Awam</h4>
-    </div>
-
-    <div class="artifact-card">
-      <img class="cert-image"
-           src="kursus%20first.png"
-           alt="First Responder Life Support"
-           onclick="openImage(this.src)">
-      <h4>First Responder Life Support (FRLS)</h4>
-    </div>
-
+  <div class="cisco-card">
+   <h3>Introduction to Cybersecurity</h3>
+   <p class="accent">Cisco Networking Academy — In-Progress</p>
   </div>
+  <div class="cisco-card">
+   <h3>SecurityX Certification (CAS-005)</h3>
+   <p class="accent">CompTIA SecurityX</p>
+   <a class="btn btn-secondary" style="margin-top:15px" href="CompTIA%20SecurityX%20ce%20certificate.pdf" target="_blank" rel="noopener noreferrer">View Certificate</a>
+   <a class="btn btn-secondary" style="margin-top:10px" href="https://verify.comptia.org" target="_blank" rel="noopener noreferrer">Verify CompTIA</a>
+  </div>
+ </div>
+
+ <div class="card" style="margin-top:30px">
+  <h3>Leadership & Training Certificates</h3>
+  <p>Click below to view the course certificates.</p>
+  <button class="btn btn-primary" id="cert-toggle" style="margin-top:15px;cursor:pointer" type="button" onclick="toggleCertificates()" aria-expanded="false">
+   <i class="fas fa-folder-open"></i> Kursus Metodologi & Certificates
+  </button>
+ </div>
+
+ <div class="grid" id="certificates" style="margin-top:25px">
+  <div class="artifact-card"><img class="cert-image" src="kursus%20metodologi.png" alt="Kursus Metodologi Latihan" onclick="openImage(this.src)"><h4>Kursus Metodologi Latihan</h4></div>
+  <div class="artifact-card"><img class="cert-image" src="kursus%20pusat.png" alt="Pengurusan Pusat Pemindahan" onclick="openImage(this.src)"><h4>Pengurusan Pusat Pemindahan</h4></div>
+  <div class="artifact-card"><img class="cert-image" src="kursus%20bakal.png" alt="Kursus Bakal Pegawai Kor SISPA" onclick="openImage(this.src)"><h4>Kursus Bakal Pegawai Kor SISPA</h4></div>
+  <div class="artifact-card"><img class="cert-image" src="kursus%20asas.png" alt="Kursus Asas Pertahanan Awam" onclick="openImage(this.src)"><h4>Kursus Asas Pertahanan Awam</h4></div>
+  <div class="artifact-card"><img class="cert-image" src="kursus%20first.png" alt="First Responder Life Support" onclick="openImage(this.src)"><h4>First Responder Life Support (FRLS)</h4></div>
+ </div>
 </section>
 
-<!-- FOOTER -->
-
 <footer>
-  <p>© 2026 Aida Nasuha Binti Muhamad Fadeli</p>
-  <p>Cybersecurity & Data Portfolio</p>
+ <p>© 2026 Aida Nasuha Binti Muhamad Fadeli</p>
+ <p>Cybersecurity & Data Portfolio</p>
 </footer>
 
-<!-- IMAGE LIGHTBOX -->
-
-<div id="lightbox"
-     role="dialog"
-     aria-modal="true"
-     aria-label="Image preview"
-     onclick="closeImage()">
-
-  <button type="button"
-          onclick="closeImage()"
-          aria-label="Close image">
-    &times;
-  </button>
-
-  <img id="lightbox-img"
-       alt="Enlarged certificate or project image"
-       onclick="event.stopPropagation()">
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" onclick="closeImage()">
+ <button type="button" onclick="closeImage()" aria-label="Close image">&times;</button>
+ <img id="lightbox-img" alt="Enlarged certificate or project image" onclick="event.stopPropagation()">
 </div>
 
 <script>
-/* IMAGE PREVIEW */
-
-function openImage(src) {
-  const box = document.getElementById('lightbox');
-  const image = document.getElementById('lightbox-img');
-
-  image.src = src;
-  box.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+function openImage(src){
+ const box=document.getElementById('lightbox');
+ document.getElementById('lightbox-img').src=src;
+ box.style.display='flex';
+ document.body.style.overflow='hidden';
 }
-
-function closeImage() {
-  document.getElementById('lightbox').style.display = 'none';
-  document.body.style.overflow = '';
+function closeImage(){
+ document.getElementById('lightbox').style.display='none';
+ document.body.style.overflow='';
 }
-
-/* CERTIFICATE FOLDER */
-
-function toggleCertificates() {
-  const area = document.getElementById('certificates');
-  const btn = document.getElementById('cert-toggle');
-
-  area.classList.toggle('open');
-  btn.setAttribute(
-    'aria-expanded',
-    String(area.classList.contains('open'))
-  );
+document.addEventListener('keydown',function(e){
+ if(e.key==='Escape') closeImage();
+});
+function toggleCertificates(){
+ const area=document.getElementById('certificates');
+ const btn=document.getElementById('cert-toggle');
+ area.classList.toggle('open');
+ btn.setAttribute('aria-expanded',String(area.classList.contains('open')));
 }
-
-/* TERMINAL */
-
-document.getElementById('terminal-input')
-  .addEventListener('keydown', function(e) {
-
-  if (e.key !== 'Enter') return;
-
-  const command = this.value.trim().toLowerCase();
-  const output = document.getElementById('terminal-output');
-
-  const responses = {
-    help: 'Commands: help, whoami, skills, contact, clear',
-    whoami: 'Aida Nasuha | Future Network Security Specialist',
-    skills: 'Wireshark, Zenmap, Autopsy, Cisco Packet Tracer',
-    contact: 'aydanasuha03@gmail.com'
-  };
-
-  output.textContent = command === 'clear'
-    ? ''
-    : (responses[command] || 'Unknown command. Type help.');
-
-  this.value = '';
+document.getElementById('terminal-input').addEventListener('keydown',function(e){
+ if(e.key!=='Enter')return;
+ const command=this.value.trim().toLowerCase();
+ const out=document.getElementById('terminal-output');
+ const responses={
+  help:'Commands: help, whoami, skills, contact, clear',
+  whoami:'Aida Nasuha | Future Network Security Specialist',
+  skills:'Wireshark, Zenmap, Autopsy, Cisco Packet Tracer',
+  contact:'aydanasuha03@gmail.com'
+ };
+ if(command==='clear')out.textContent='';
+ else out.textContent=responses[command]||'Unknown command. Type help.';
+ this.value='';
 });
+const links=document.querySelectorAll('nav a[href^="#"]');
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));
+  }
+ });
+},{rootMargin:'-25% 0px -60% 0px'});
+document.querySelectorAll('section[id]').forEach(section=>observer.observe(section));
+</script>
 
-/* ESC KEY */
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeImage();
-});
-
-/* NAVIGATION ACTIVE STATE */
-
-const navLinks = document.querySelectorAll(
-  'nav a[href^="#"]'
-);
-
-const navObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(link => {
-        link.classList.toggle(
-          'active',
-          link.getAttribute('href') === '#' + entry.target.id
-        );
-      });
-    }
-  });
-}, {
-  rootMargin: '-25% 0px -60% 0px'
-});
-
-document.querySelectorAll('section[id]').forEach(section => {
-  navObserver.observe(section);
-});
-
-/* SCROLL REVEAL */
-
-if (
-  'IntersectionObserver' in window &&
-  !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-) {
-  const revealItems = document.querySelectorAll(
-    '.section-title, .skill-card, .artifact-card, .cisco-card'
-  );
-
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.05
-  });
-
-  revealItems.forEach(item => {
-    item.classList.add('aida-animate');
-    revealObserver.observe(item);
-  });
-}
+<script>
+(function(){
+ const overlay=document.getElementById('aboutModal');
+ const dialog=overlay.querySelector('.about-modal');
+ const photo=document.getElementById('openAboutPhoto');
+ const openButton=document.getElementById('openAboutButton');
+ const closeButton=document.getElementById('closeAboutModal');
+ const tabs=[...overlay.querySelectorAll('[data-tab]')];
+ const panels=[...overlay.querySelectorAll('.about-panel')];
+ let restoreFocus=null;
+ function switchTab(name){
+  tabs.forEach(tab=>{const active=tab.dataset.tab===name;tab.classList.toggle('selected',active);tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1});
+  panels.forEach(panel=>panel.hidden=panel.id!=='panel-'+name);
+ }
+ function openModal(){restoreFocus=document.activeElement;switchTab('profile');overlay.hidden=false;document.body.style.overflow='hidden';closeButton.focus()}
+ function closeModal(){overlay.hidden=true;document.body.style.overflow='';if(restoreFocus&&typeof restoreFocus.focus==='function')restoreFocus.focus()}
+ photo.addEventListener('click',openModal);openButton.addEventListener('click',openModal);closeButton.addEventListener('click',closeModal);
+ overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal()});
+ tabs.forEach(tab=>tab.addEventListener('click',()=>switchTab(tab.dataset.tab)));
+ document.addEventListener('keydown',e=>{
+  if(overlay.hidden)return;
+  if(e.key==='Escape')closeModal();
+  if(e.key==='Tab'){
+   const elements=[...dialog.querySelectorAll('button:not([disabled]):not([tabindex="-1"])')].filter(el=>el.offsetParent!==null);
+   if(!elements.length)return;
+   const first=elements[0],last=elements[elements.length-1];
+   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+  }
+ });
+ const stage=document.getElementById('aboutStage');
+ stage.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const box=stage.getBoundingClientRect();const x=(e.clientX-box.left)/box.width*100;const y=(e.clientY-box.top)/box.height*100;stage.style.setProperty('--mx',x+'%');stage.style.setProperty('--my',y+'%')});
+ const reveals=document.querySelectorAll('.reveal-about');
+ if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){reveals.forEach(el=>el.classList.add('is-visible'))}
+ else{const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{threshold:.1});reveals.forEach(el=>revealObserver.observe(el))}
+ // Reveal original portfolio cards as users scroll.
+ const other=document.querySelectorAll('.section-title:not(#about .section-title),.skill-card,.artifact-card,.cisco-card');
+ if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.05});other.forEach(el=>{el.classList.add('aida-animate');observer.observe(el)})}
+})();
 </script>
 
 </body>
