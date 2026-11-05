@@ -341,5 +341,134 @@ const observer=new IntersectionObserver(entries=>{
 },{rootMargin:'-25% 0px -60% 0px'});
 document.querySelectorAll('section[id]').forEach(section=>observer.observe(section));
 </script>
+
+<style>
+/* AIDA NASUHA ANIMATION */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(45px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatPhoto {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes gradientMove {
+  from {
+    background-position: 200% center;
+  }
+  to {
+    background-position: 0% center;
+  }
+}
+
+/* Animated Name */
+
+#hero h1 {
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #b8a8ff,
+    #75e2d1,
+    #ffffff
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 6s linear infinite;
+}
+
+/* Floating Profile */
+
+.hero-image img {
+  animation: floatPhoto 5s ease-in-out infinite;
+}
+
+/* Skills, Projects & Certificates */
+.aida-animate {
+  opacity: 0;
+  transform: translateY(45px);
+  transition: opacity .8s ease,
+              transform .8s ease;
+}
+
+.aida-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover Effects */
+.skill-card,
+.artifact-card,
+.plan-card,
+.cisco-card {
+  transition: transform .35s ease,
+              box-shadow .35s ease !important;
+}
+
+.skill-card:hover,
+.artifact-card:hover,
+.plan-card:hover,
+.cisco-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 20px 45px
+    rgba(150, 110, 255, .25) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+  .aida-animate {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches) return;
+
+  const elements = document.querySelectorAll(
+    ".section-title, .skill-card, .artifact-card, " +
+    ".plan-card, .cisco-card"
+  );
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.05 }
+  );
+
+  elements.forEach((el) => {
+    el.classList.add("aida-animate");
+    observer.observe(el);
+  });
+});
+</script>
 </body>
 </html>
